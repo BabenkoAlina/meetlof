@@ -12,27 +12,60 @@
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{{ url_for('static', filename='tell_about.css') }}" />
 
-      <script src="https://kit.fontawesome.com/7162acd0f0.js" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="../static/tell_about.css">
+
+    <script src="https://kit.fontawesome.com/7162acd0f0.js" crossorigin="anonymous"></script>
     <title>Tell about yourself</title>
   </head>
   <body>
-    <main role="tell_about" class="container">
-        <h2> Tell about yourself! </h2>
+    <!-- Navigator -->
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-steel fixed-top">
+          <div class="container header-container">
+            <a class="navbar-brand mr-4" href="{{ url_for('main') }}">Meetlof</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarToggle"
+              aria-controls="navbarToggle"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggle">
+              <div class="navbar-nav mr-auto">
+                <!-- Navbar Left Side -->
+              </div>
+              <!-- Navbar Right Side -->
+              <div class="navbar-nav">
+              {% if current_user.is_authenticated %}
+  
+              {% else %}
+                <a class="nav-item nav-link" href="{{ url_for("login") }}">Login</a>
+                <a class="nav-item nav-link" href="{{ url_for("register") }}">Register</a>
+              {% endif %}
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
 
-        <form onSubmit="yourOnSubmitFunc()">
+    <main role="tell_about" class="container">
+        <p id="tell_about_title"> Tell about yourself! </p>
+
+        <form onSubmit="yourOnSubmitFunc()" id="form_tell_about">
 
             <!-- User -->
             <section class="user_info">
 
-            <!--  Name field -->
-            <input type="text" id="name" value="What is your name?" onfocus="clearInputValue(this)">
-            <input type="text" id="contact" value="Your contact (Telegram):" onfocus="clearInputValue(this)">
-
+            <div id="name_contact">
+                <!--  Name field -->
+                <input type="text" id="name" value="What is your name?" onfocus="clearInputValue(this)">
+                <input type="text" id="contact" value="Your contact (Telegram):" onfocus="clearInputValue(this)">
+            </div>
+           
             <!-- Sex field -->
             <input type="checkbox" id="sex_female" value="SexFemale">
             <label for="sex_female"> I am a lady </label>
@@ -69,7 +102,7 @@
             <i class="fa-solid fa-dumbbell"></i>
 
             <input type="checkbox" id="hobbies_procrastinate" value="HobbyProcrastinate">
-            <label for="hobbies_procrastinate"> I like procrastinate </label>
+            <label for="hobbies_procrastinate"> I like to procrastinate </label>
             <i class="fa-solid fa-bed"></i>
 
             <input type="checkbox" id="hobbies_walk" value="HobbyWalk">
