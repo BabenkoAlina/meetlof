@@ -213,14 +213,17 @@
                 </section>
                 
                 <!-- Agree to share field -->
-    
-                <input type="checkbox" id="agree" value="Agree">
-                <label for="agree"> I agree to share my info </label>
-    
+                <div class="agree_field">
+                    <div id="agree_share">
+                        <input type="checkbox" id="agree" value="Agree">
+                        <label for="agree"> I agree to share my info </label>
+                    </div>
+                    
+                    <button id="button_save" onClick="yourOnSubmitFunc()">
+                   Save
+                    </button>
+                </div>
                 
-                <button onClick="yourOnSubmitFunc()">
-               Save
-                </button>
            </form>
         </div>
     </main>

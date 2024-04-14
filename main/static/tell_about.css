@@ -51,6 +51,7 @@
   
   .site-header .navbar-nav .nav-link:hover {
     color: #ffce59;
+    transition: background-color 0.3s; 
   }
   
   .site-header .navbar-nav .nav-link.active {
@@ -203,6 +204,7 @@ input[type="checkbox"]:checked {
     border: 2.5px solid black; 
     background-color: black;
     color: white;
+    transition: background-color 0.3s; 
 }
 
 /* Hobbies */
@@ -294,3 +296,53 @@ input[type="checkbox"]:checked {
 #looking_c {
     margin-right: 30px;
 }
+
+#looking_l input[type="checkbox"]:checked {
+    background-color: #e888d0;
+    border-color: #e888d0;
+}
+
+#looking_c input[type="checkbox"]:checked {
+    background-color: #e3c47c;
+    border-color: #e3c47c;
+}
+
+/* Expectation */
+
+#expectation {
+    margin-top: 20px;
+    margin-left: 40px;
+    border: 2.5px solid #a4cfbc;
+    margin-bottom: 10px;
+    width: 40%;
+}
+
+/* Agree share */
+
+.agree_field {
+    display: flex;
+    flex-direction: column; /* Align items in a column */
+    align-items: flex-end; /* Align items to the right */
+    margin-right: 50px;
+}
+
+#agree_share {
+    margin-bottom: 10px; /* Add margin between checkbox and button */
+}
+
+#button_save {
+    border: 2.5px solid #a4cfbc;
+    border-radius: 3px;
+    width: 100px; /* Adjust button width */
+    height: 50px;
+    transition: background-color 0.3s;
+}
+
+#button_save:hover {
+    border: 2px solid black;
+    background-color: black; /* Change background color on hover */
+    color: white;
+}
+
+
+
