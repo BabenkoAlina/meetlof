@@ -19,6 +19,9 @@
     <title>Tell about yourself</title>
   </head>
   <body>
+
+    <script src="../scripts/tell_about.js"></script>
+
     <!-- Navigator -->
     <header class="site-header">
         <nav class="navbar navbar-expand-lg navbar-dark bg-steel fixed-top">
@@ -141,44 +144,68 @@
                 <section class="user_interest_info">
     
                 <!-- User interest -->
-    
-                <p>Who are you looking for?</p>
-    
-                <!-- Search field -->
-                <input type="checkbox" id="search_female" value="SearchFemale">
-                <label for="search_female"> I am looking for a beautiful lady </label>
-                <i class="fa-solid fa-venus"></i>
-    
-                <input type="checkbox" id="search_male" value="SearchMale">
-                <label for="search_male"> I am looking for a handsome gentleman </label>
-                <i class="fa-solid fa-mars"></i>
-    
-                <!-- Preferred age -->
-                <div class="age_range">
-                    <input type="range" min="17" max="30" steps="1" value="1">
-                  </div>
-                  
-                  <ul class="age_range-labels">
-                    <li id="age1">17-19 yo</li>
-                    <li id="age2">19-21 yo</li>
-                    <li id="age3">21-23 yo</li>
-                    <li id="age4">23-25 yo</li>
-                    <li id="age5">25-27 yo</li>
-                    <li id="age6">27-29 yo</li>
-                  </ul>
-    
+                <p id="text_header">Who are you looking for?</p>
+
+                <div class="user_interest">
+                    <!-- Search field -->
+                    <div class="search">
+                        <div id="search_f">
+                            <input type="checkbox" id="search_female" value="SearchFemale">
+                            <label for="search_female"> I am looking for a beautiful lady </label>
+                            <i class="fa-solid fa-venus"></i>
+                        </div>
+                        
+                        <div id="search_m">
+                            <input type="checkbox" id="search_male" value="SearchMale">
+                            <label for="search_male"> I am looking for a handsome gentleman </label>
+                            <i class="fa-solid fa-mars"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="range_field">
+                        <div id="range_1">
+                            <input type="checkbox" id="range_first" value="Range1">
+                            <label for="range1"> 17-20 y.o. </label>
+                        </div>
+                       
+                        <div id="range_2">
+                            <input type="checkbox" id="range_second" value="Range2">
+                            <label for="range2"> 20-23 y.o.</label>
+                        </div>
+
+                        <div id="range_3">
+                            <input type="checkbox" id="range_third" value="Range3">
+                            <label for="range3"> 23-25 y.o.</label>
+                        </div>
+
+                        <div id="range_4">
+                            <input type="checkbox" id="range_fourth" value="Range4">
+                            <label for="range4"> 25-27+ y.o.</label>
+                        </div>
+                    </div>
+                </div>
+                
                 <!-- Looking for field -->
-                <input type="checkbox" id="search_friend" value="SearchFriend">
-                <label for="search_friend"> I need a good friend </label>
-                <i class="fa-regular fa-handshake"></i>
-    
-                <input type="checkbox" id="search_lover" value="SearchLover">
-                <label for="search_lover"> I need a passionate lover </label>
-                <i class="fa-solid fa-hand-holding-heart"></i>
-    
-                <input type="checkbox" id="search_chat" value="SearchChat">
-                <label for="search_chat"> I want to just chat with someone </label>
-                <i class="fa-solid fa-hand-peace"></i>
+                <div class="looking_for">
+                    <div id="looking_f">
+                        <input type="checkbox" id="search_friend" value="SearchFriend">
+                        <label for="search_friend"> I need a good friend </label>
+                        <i class="fa-regular fa-handshake"></i>
+                    </div>
+                    
+                    <div id="looking_l">
+                        <input type="checkbox" id="search_lover" value="SearchLover">
+                        <label for="search_lover"> I need a passionate lover </label>
+                        <i class="fa-solid fa-hand-holding-heart"></i>
+                    </div>
+                    
+                    <div id="looking_c">
+                        <input type="checkbox" id="search_chat" value="SearchChat">
+                        <label for="search_chat"> I just want to chat with someone </label>
+                        <i class="fa-solid fa-hand-peace"></i>
+                    </div>
+                </div>
+                
     
                 <!-- Expectation field -->
                 <input type="text" id="expectation" value="What do you expect from communication?" onfocus="clearInputValue(this)">

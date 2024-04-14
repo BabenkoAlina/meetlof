@@ -78,7 +78,7 @@ main {
 
 #tell_about_title {
     text-align: center;
-    font-size: 24px;
+    font-size: 26px;
     margin: 5px 0;
     margin-bottom: 20px;
     color: #ffce59
@@ -224,7 +224,7 @@ input[type="checkbox"]:checked {
     align-items: center;
     justify-content: left;
     text-align: center;
-    padding: 8px; 
+    padding: 0px; 
 }
 
 .hobbie  input[type="checkbox"],
@@ -233,6 +233,64 @@ input[type="checkbox"]:checked {
     margin-right: 5px;
 }
 
+/* User interest */
+
+/* Header */
+#text_header {
+    text-align: center;
+    font-size: 16px;
+    margin: 5px 0;
+    margin-bottom: 20px;
+    color: black;
+    font-weight: bold;
+
+}
+
+.user_interest {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Align items with space between */
+}
+
+.search {
+    padding-left: 40px;
+    padding-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%; /* Adjust the max-width as needed */
+}
 
 
-  
+/* Range */
+
+.range_field {
+    margin-left: 0px;
+    margin-right: 10%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    text-align: center;
+    padding: 0px; 
+}
+
+.range_field  input[type="checkbox"],
+.range_field label,
+.range_field i {
+    margin-right: 5px;
+}
+
+.looking_for {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#looking_f,
+#looking_l,
+#looking_c {
+    margin-right: 30px;
+}
