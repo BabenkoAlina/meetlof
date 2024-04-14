@@ -51,124 +51,151 @@
           </div>
         </nav>
       </header>
+     
+    <main>
+        <div id="content_tell_about">
+            <p id="tell_about_title"> Tell about yourself! </p>
 
-    <main role="tell_about" class="container">
-        <p id="tell_about_title"> Tell about yourself! </p>
+            <form onSubmit="yourOnSubmitFunc()" id="form_tell_about">
 
-        <form onSubmit="yourOnSubmitFunc()" id="form_tell_about">
+                <!-- User -->
+                <section class="user_info">
+                    <div class="left-section">
+                        <!--  Name field -->
+                        <div id="name_contact">
+                            <input type="text" id="name" value="What is your name?" onfocus="clearInputValue(this)">
+                            <input type="text" id="contact" value="Your contact (Telegram):" onfocus="clearInputValue(this)">
+                        </div>
 
-            <!-- User -->
-            <section class="user_info">
-
-            <div id="name_contact">
-                <!--  Name field -->
-                <input type="text" id="name" value="What is your name?" onfocus="clearInputValue(this)">
-                <input type="text" id="contact" value="Your contact (Telegram):" onfocus="clearInputValue(this)">
-            </div>
-           
-            <!-- Sex field -->
-            <input type="checkbox" id="sex_female" value="SexFemale">
-            <label for="sex_female"> I am a lady </label>
-            <i class="fa-solid fa-venus"></i>
-
-            <input type="checkbox" id="sex_male" value="SexMale">
-            <label for="sex_male"> I am a gentleman </label>
-            <i class="fa-solid fa-mars"></i>
-
-            <!-- Photo field -->
-            <input type="file" id="imageUpload" name="imageUpload"> 
-            <label for="imageUpload">You can upload photo here</label> 
-
-            <!-- Hobbies field -->
-            
-            <input type="checkbox" id="hobbies_film" value="HobbiesFilm">
-            <label for="hobbies_film"> I am cinemaddict </label>
-            <i class="fa-solid fa-film"></i>
-
-            <input type="checkbox" id="hobbies_music" value="HobbiesMusic">
-            <label for="hobbies_music"> I am music lover </label>
-            <i class="fa-solid fa-music"></i>
-
-            <input type="checkbox" id="hobbies_read" value="HobbiesRead">
-            <label for="hobbies_read"> I am bookworm </label>
-            <i class="fa-solid fa-book"></i>
-
-            <input type="checkbox" id="hobbies_politics" value="HobbyPolitics">
-            <label for="hobbies_politics"> I know everything about politics </label>
-            <i class="fa-solid fa-landmark-dome"></i>
-
-            <input type="checkbox" id="hobbies_sport" value="HobbySport">
-            <label for="hobbies_sport"> I am a sportsman/woman </label>
-            <i class="fa-solid fa-dumbbell"></i>
-
-            <input type="checkbox" id="hobbies_procrastinate" value="HobbyProcrastinate">
-            <label for="hobbies_procrastinate"> I like to procrastinate </label>
-            <i class="fa-solid fa-bed"></i>
-
-            <input type="checkbox" id="hobbies_walk" value="HobbyWalk">
-            <label for="hobbies_walk"> I am keen of promenade </label>
-            <i class="fa-solid fa-person-walking"></i>
-
-            </section>
-
-            <section class="user_interest_info">
-
-            <!-- User interest -->
-
-            <p>Who are you looking for?</p>
-
-            <!-- Search field -->
-            <input type="checkbox" id="search_female" value="SearchFemale">
-            <label for="search_female"> I am looking for a beautiful lady </label>
-            <i class="fa-solid fa-venus"></i>
-
-            <input type="checkbox" id="search_male" value="SearchMale">
-            <label for="search_male"> I am looking for a handsome gentleman </label>
-            <i class="fa-solid fa-mars"></i>
-
-            <!-- Preferred age -->
-            <div class="age_range">
-                <input type="range" min="17" max="30" steps="1" value="1">
-              </div>
-              
-              <ul class="age_range-labels">
-                <li id="age1">17-19 yo</li>
-                <li id="age2">19-21 yo</li>
-                <li id="age3">21-23 yo</li>
-                <li id="age4">23-25 yo</li>
-                <li id="age5">25-27 yo</li>
-                <li id="age6">27-29 yo</li>
-              </ul>
-
-            <!-- Looking for field -->
-            <input type="checkbox" id="search_friend" value="SearchFriend">
-            <label for="search_friend"> I need a good friend </label>
-            <i class="fa-regular fa-handshake"></i>
-
-            <input type="checkbox" id="search_lover" value="SearchLover">
-            <label for="search_lover"> I need a passionate lover </label>
-            <i class="fa-solid fa-hand-holding-heart"></i>
-
-            <input type="checkbox" id="search_chat" value="SearchChat">
-            <label for="search_chat"> I want to just chat with someone </label>
-            <i class="fa-solid fa-hand-peace"></i>
-
-            <!-- Expectation field -->
-            <input type="text" id="expectation" value="What do you expect from communication?" onfocus="clearInputValue(this)">
-
-            </section>
-            
-            <!-- Agree to share field -->
-
-            <input type="checkbox" id="agree" value="Agree">
-            <label for="agree"> I agree to share my info </label>
-
-            
-            <button onClick="yourOnSubmitFunc()">
-           Save
-            </button>
-       </form>
-       
+                        <!-- Sex field -->
+                        <div id="sex">
+                            <div id="sex_f">
+                                <input type="checkbox" id="sex_female" value="SexFemale">
+                                <label for="sex_female"> I am a lady </label>
+                                <i class="fa-solid fa-venus"></i>
+                            </div>
+                           
+                            <div id="sex_m">
+                                <input type="checkbox" id="sex_male" value="SexMale">
+                                <label for="sex_male"> I am a gentleman </label>
+                                <i class="fa-solid fa-mars"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="right-section">
+                        <!-- Photo field -->
+                        <div id="photo">
+                            <input type="file" id="imageUpload" name="imageUpload"> 
+                            <label for="imageUpload">You can upload photo here</label>
+                        </div>
+                    </div>
+                    
+               
+                 <!-- Hobbies field -->
+                    <div id="hobbies">
+                        <div class="hobbie" id="hobbie1">
+                            <input type="checkbox" id="hobbies_film" value="HobbiesFilm">
+                            <label for="hobbies_film"> I am cinemaddict </label>
+                            <i class="fa-solid fa-film"></i>
+                        </div>
+                        
+                        <div class="hobbie" id="hobbie2">
+                            <input type="checkbox" id="hobbies_music" value="HobbiesMusic">
+                            <label for="hobbies_music"> I am music lover </label>
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+                        
+                        <div class="hobbie" id="hobbie3">
+                            <input type="checkbox" id="hobbies_read" value="HobbiesRead">
+                            <label for="hobbies_read"> I am bookworm </label>
+                            <i class="fa-solid fa-book"></i>
+                        </div>
+                        
+                        <div class="hobbie" id="hobbie4">
+                            <input type="checkbox" id="hobbies_politics" value="HobbyPolitics">
+                            <label for="hobbies_politics"> I know everything about politics </label>
+                            <i class="fa-solid fa-landmark-dome"></i>
+                        </div>
+                       
+                        <div class="hobbie" id="hobbie5">
+                            <input type="checkbox" id="hobbies_sport" value="HobbySport">
+                            <label for="hobbies_sport"> I am a sportsman/woman </label>
+                            <i class="fa-solid fa-dumbbell"></i>
+                        </div>
+                        
+                        <div class="hobbie" id="hobbie6">
+                            <input type="checkbox" id="hobbies_procrastinate" value="HobbyProcrastinate">
+                            <label for="hobbies_procrastinate"> I like to procrastinate </label>
+                            <i class="fa-solid fa-bed"></i>
+                        </div>
+                        
+                        <div class="hobbie" id="hobbie7">
+                            <input type="checkbox" id="hobbies_walk" value="HobbyWalk">
+                            <label for="hobbies_walk"> I am keen of promenade </label>
+                            <i class="fa-solid fa-person-walking"></i>
+                        </div>
+                    </div>
+                </section>
+    
+                <section class="user_interest_info">
+    
+                <!-- User interest -->
+    
+                <p>Who are you looking for?</p>
+    
+                <!-- Search field -->
+                <input type="checkbox" id="search_female" value="SearchFemale">
+                <label for="search_female"> I am looking for a beautiful lady </label>
+                <i class="fa-solid fa-venus"></i>
+    
+                <input type="checkbox" id="search_male" value="SearchMale">
+                <label for="search_male"> I am looking for a handsome gentleman </label>
+                <i class="fa-solid fa-mars"></i>
+    
+                <!-- Preferred age -->
+                <div class="age_range">
+                    <input type="range" min="17" max="30" steps="1" value="1">
+                  </div>
+                  
+                  <ul class="age_range-labels">
+                    <li id="age1">17-19 yo</li>
+                    <li id="age2">19-21 yo</li>
+                    <li id="age3">21-23 yo</li>
+                    <li id="age4">23-25 yo</li>
+                    <li id="age5">25-27 yo</li>
+                    <li id="age6">27-29 yo</li>
+                  </ul>
+    
+                <!-- Looking for field -->
+                <input type="checkbox" id="search_friend" value="SearchFriend">
+                <label for="search_friend"> I need a good friend </label>
+                <i class="fa-regular fa-handshake"></i>
+    
+                <input type="checkbox" id="search_lover" value="SearchLover">
+                <label for="search_lover"> I need a passionate lover </label>
+                <i class="fa-solid fa-hand-holding-heart"></i>
+    
+                <input type="checkbox" id="search_chat" value="SearchChat">
+                <label for="search_chat"> I want to just chat with someone </label>
+                <i class="fa-solid fa-hand-peace"></i>
+    
+                <!-- Expectation field -->
+                <input type="text" id="expectation" value="What do you expect from communication?" onfocus="clearInputValue(this)">
+    
+                </section>
+                
+                <!-- Agree to share field -->
+    
+                <input type="checkbox" id="agree" value="Agree">
+                <label for="agree"> I agree to share my info </label>
+    
+                
+                <button onClick="yourOnSubmitFunc()">
+               Save
+                </button>
+           </form>
+        </div>
     </main>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -57,44 +57,170 @@
     font-weight: 500;
     color: #ffce59;
   }
-  
 
 /* Main and form */
+
 main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; 
+    height: 100vh;
     background-color: white;
-  }
-  
+}
+
+#content_tell_about {
+    width: 80%;
+    max-width: 1000px;
+    border: 2.5px solid #a4cfbc;
+    padding: 20px;
+    margin: auto;
+}
+
 #tell_about_title {
-    text-align: center; 
-    font-size: 24px; 
+    text-align: center;
+    font-size: 24px;
+    margin: 5px 0;
     margin-bottom: 20px;
-    display: block;
-  }
-  
-#form_tell_about {
-    width: 80%; 
-    max-width: 3000 auto; 
-    margin-top: 100 auto; 
-    padding: 20px; 
-    background-color: white; 
-    border: 2.5px solid #a4cfbc; 
-  }
+    color: #ffce59
+}
 
-  /* User info */
+/* User info */
 
-/* .user_info {
+input {
+    cursor: pointer; 
+}
+
+input[type="text"] {
+    color: #757575
+}
+
+label {
+    color: #757575;
+    margin-top: 5px;
+}
+
+i {
+    color: #57817f;
+    margin-left: 5px;
+}
+
+/* Default checkbox style */
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 2px solid #a4cfbc; 
+    border-radius: 3px; 
+    width: 20px; 
+    height: 20px;
+}
+
+/* Checkbox when checked */
+input[type="checkbox"]:checked {
+    background-color: #a4cfbc;
+    border-color: #a4cfbc;
+}
+
+.user_info {
     display: flex;
-    flex-direction: center;
-} */
+    flex-wrap: wrap;
+}
+
+/* Left */
+
+.left-section {
+    flex: 1 0 50%; /* Grow, shrink, basis */
+    display: flex;
+    flex-direction: column;
+    padding-left: 50px;
+    padding-top: 10px;
+}
 
 #name_contact {
+    padding-bottom: 5px;
+    display: flex;
     flex-direction: column;
-    margin-bottom: 30px;
+    max-width: 70%;
 }
+
+#name,
+#contact {
+    border: 2.5px solid #a4cfbc;
+    margin-bottom: 10px;
+}
+
+#sex {
+    display: flex;
+    flex-direction: row; 
+    margin-left: 0px;
+}
+
+#sex_f, #sex_m {
+    margin-left: 0px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+#sex_f label,
+#sex_m label {
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+#sex_f i,
+#sex_m i {
+    margin-left: 5px; 
+    font-size: 20px;
+}
+
+
+
+/* Right */
+
+.right-section {
+    flex: 1 0 calc(20% - 20px);
+    display: flex;
+    flex-direction: column;
+    padding-right: 50px;
+    padding-top: 10px;
+}
+
+#photo {
+    margin-bottom: 20px;
+}
+
+#imageUpload {
+    display: none;
+}
+
+#photo label {
+    border: 2.5px solid #a4cfbc; 
+    padding: 10px;
+    cursor: pointer;
+}
+
+#photo label:hover {
+    background-color: #f0f0f0;
+}
+
+/* Hobbies */
+
+#hobbies {
+    padding-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px; /* Adjust the gap between items */
+}
+
+.hobbie {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8px; /* Optional: Add padding for spacing */
+}
+
 
 
   
