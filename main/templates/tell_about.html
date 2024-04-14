@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Bootstrap and CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='tell_about.css') }}" />
+      <title>Tell about yourself</title>
+  </head>
+  <body>
+    <main role="tell_about" class="container">
+        <h2> Tell about yourself! </h2>
+
+        <form onSubmit="yourOnSubmitFunc()">
+
+            <!-- User -->
+            <section class="user_info">
+
+            <!--  Name field -->
+            <input type="text" id="name" value="What is your name?" onfocus="clearInputValue(this)">
+            <input type="text" id="contact" value="Your contact (Telegram):" onfocus="clearInputValue(this)">
+
+            <!-- Sex field -->
+            <input type="checkbox" id="sex_female" value="SexFemale">
+            <label for="sex_female"> I am a lady </label>
+
+            <input type="checkbox" id="sex_male" value="SexMale">
+            <label for="sex_male"> I am a gentleman </label>
+
+            <!-- Photo field -->
+            <input type="file" id="imageUpload" name="imageUpload"> 
+            <label for="imageUpload">You can upload photo here</label> 
+
+            <!-- Hobbies field -->
+            
+            <input type="checkbox" id="hobbies_film" value="HobbiesFilm">
+            <label for="hobbies_film"> I like films/serials </label>
+
+            <input type="checkbox" id="hobbies_music" value="HobbiesMusic">
+            <label for="hobbies_music"> I like music </label>
+
+            <input type="checkbox" id="hobbies_read" value="HobbiesRead">
+            <label for="hobbies_read"> I like books </label>
+
+            <input type="checkbox" id="hobbies_politics" value="HobbyPolitics">
+            <label for="hobbies_politics"> I like politics </label>
+
+            <input type="checkbox" id="hobbies_sport" value="HobbySport">
+            <label for="hobbies_sport"> I like sport </label>
+
+            <input type="checkbox" id="hobbies_procrastinate" value="HobbyProcrastinate">
+            <label for="hobbies_procrastinate"> I like procrastinate </label>
+
+            <input type="checkbox" id="hobbies_walk" value="HobbyWalk">
+            <label for="hobbies_walk"> I like walk </label>
+
+            </section>
+
+            <section class="user_interest_info">
+
+            <!-- User interest -->
+
+            <p>Who are you looking for?</p>
+
+            <!-- Search field -->
+            <input type="checkbox" id="search_female" value="SearchFemale">
+            <label for="search_female"> I am looking for a lady </label>
+
+            <input type="checkbox" id="search_male" value="SearchMale">
+            <label for="search_male"> I am looking for a gentleman </label>
+
+            <!-- Preferred age -->
+            <div class="age_range">
+                <input type="range" min="17" max="30" steps="1" value="1">
+              </div>
+              
+              <ul class="age_range-labels">
+                <li id="age1">17-19 yo</li>
+                <li id="age2">19-21 yo</li>
+                <li id="age3">21-23 yo</li>
+                <li id="age4">23-25 yo</li>
+                <li id="age5">25-27 yo</li>
+                <li id="age6">27-29 yo</li>
+              </ul>
+
+            <!-- Looking for field -->
+            <input type="checkbox" id="search_friend" value="SearchFriend">
+            <label for="search_friend"> I need a friend </label>
+
+            <input type="checkbox" id="search_lover" value="SearchLover">
+            <label for="search_lover"> I need a lover </label>
+
+            <input type="checkbox" id="search_chat" value="SearchChat">
+            <label for="search_chat"> I want to chat with someone </label>
+
+            <!-- Expectation field -->
+            <input type="text" id="expectation" value="What do you expect from communication?" onfocus="clearInputValue(this)">
+
+            </section>
+            
+            <!-- Agree to share field -->
+
+            <input type="checkbox" id="agree" value="Agree">
+            <label for="agree"> I agree to share my info </label>
+
+            
+            <button onClick="yourOnSubmitFunc()">
+           Save
+            </button>
+       </form>
+       
+    </main>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+  </body>
+</html>
