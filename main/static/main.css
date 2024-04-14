@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap");
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    margin-top: 62px;
+    /* background: #fff9f5; */
+    /* background-color: transparent; */
+    /* color: #333333; */
+    margin-top: 5rem;
+    background-image: url('https://i.imgur.com/EOwNIBg.png');
+  }
+.panel-body {
+  background: #fff9f5;
+  /* color: #333333; */
+  margin-top: 5rem;
+}
+
+.button-container {
+  background-color: #4b791c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-top: 10px; */
+  /* position: static; */
+}
+.alert{
+  margin-top: 10px;
+}
+/* .container-but{
+  position:fixed;
+} */
+.nav-link{
+  color: #fff;
+  background-color: #57817f;
+  font-weight: 500;
+}
+.bg-steel {
+  color: #fff;
+  background-color: #57817f;
+  text-align: center;
+  /* font-weight: 700; */
+}
+.navbar{
+  height: 62px;
+}
+.header-container {
+  /* position: fixed; */
+  max-width: 1140px !important;
+}
+.site-header .navbar-nav .nav-link {
+  color: #cbd5db;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+  color: #ffce59;
+}
+
+.site-header .navbar-nav .nav-link.active {
+  font-weight: 500;
+  color: #ffce59;
+}
+
+.content-section {
+  margin: 40px auto;
+  background: #fff9f5;
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  /* margin-bottom: 20px; */
+}
+
+.article-title {
+  color: #444444;
+}
+
+a.article-title:hover {
+  color: #ffce59;
+  text-decoration: none;
+}
+
+.article-content {
+  white-space: pre-line;
+}
+
+.article-img {
+  height: 65px;
+  width: 65px;
+  margin-right: 16px;
+}
+
+.article-metadata {
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #e3e3e3
+}
+
+.article-metadata a:hover {
+  color: #ffce59;
+  text-decoration: none;
+}
+
+.article-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}
+
+.panel-img {
+  height: 40px;
+  width: 40px;
+}

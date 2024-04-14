@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% block content %}
+<link href="{{ url_for('static', filename='meals.css') }}" rel="stylesheet">
+<div class="wrapper">
+  <form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <div class="title">
+    Choose available dishes
+    <div class="alert alert-danger">
+      <strong>Attention! Some dishes may include allergens</strong>
+    </div>
+    </div>
+    {% if form.meals.errors %}
+      <div class="invalid-feedback">
+      {% for error in form.meals.errors %}
+        <span>{{ error }}</span>
+      {% endfor %}
+      </div>
+    {% endif %}
+    <div class="category-buttons">
+      {% for category in form.meals %}
+        <button class="category-btn" type="button">{{ category.choices.label }}</button>
+      {% endfor %}
+    </div>
+    {% for category in form.meals %}
+    <fieldset class="form-group category-choices">
+        <div class="form-check">
+          {% for choice in category %}
+            <div class="form-check">
+              {{ choice() }}
+            </div>
+          {% endfor %}
+        </div>
+    </fieldset>
+    {% endfor %}
+    <br>
+      <div class="input_field">
+        {{ form.submit(class="btn btn-outline-info") }}
+      </div>
+  </form>
+</div>
+<script>
+  const categoryBtns = document.querySelectorAll('.category-btn');
+  const categoryChoices = document.querySelectorAll('.category-choices');
+
+  // Hide all category choices initially
+  categoryChoices.forEach(choices => choices.style.display = 'none');
+
+  let displayedChoices = null;
+
+  // Show category choices when corresponding button is clicked
+  categoryBtns.forEach((btn, index) => {
+    btn.addEventListener('click', () => {
+      const choices = categoryChoices[index];
+
+      // Hide currently displayed choices (if any)
+      if (displayedChoices !== null) {
+        displayedChoices.style.display = 'none';
+      }
+
+      // Show the clicked category choices
+      choices.style.display = 'block';
+
+      // Update displayedChoices variable
+      displayedChoices = choices;
+    });
+  });
+</script>
+{% endblock content %}

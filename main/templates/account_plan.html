@@ -1,0 +1,130 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="wrapper">
+<form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <fieldset class = "form">
+        <div class = "title">
+            Choose your plan
+        </div>
+        <div class="input_field_check_box">
+            {% for option in choice_form.plan_choice %}
+                {{ option() }}
+                {{ option.label }}
+            {% endfor %}
+        </div>
+        <div class="input_field">
+            {{ form.proteins.label(class="form-control-label")}}
+            {% if form.proteins.errors %}
+                {{ form.proteins(class="form-control form-control-xxl is-invalid")}}
+                <div class='invalid-feedback'>
+                    {% for error in form.proteins.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.proteins(class="form-control form-control-xxl", disabled=True, id="proteins", onchange="updateValues()")}}
+            {% endif%}
+        </div>
+        <div class="input_field">
+            {{ form.carbs.label(class="form-control-label")}}
+            {% if form.carbs.errors %}
+                {{ form.carbs(class="form-control form-control-xxl is-invalid")}}
+                <div class='invalid-feedback'>
+                    {% for error in form.carbs.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.carbs(class="form-control form-control-xxl", disabled=True, id="carbs", onchange="updateValues()")}}
+            {% endif%}
+        </div>
+        <div class="input_field">
+            {{ form.fats.label(class="form-control-label")}}
+            {% if form.fats.errors %}
+                {{ form.fats(class="form-control form-control-xxl is-invalid")}}
+                <div class='invalid-feedback'>
+                    {% for error in form.fats.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.fats(class="form-control form-control-xxl", disabled=True, id="fats", onchange="updateValues()")}}
+            {% endif%}
+        </div>
+    </fieldset>
+    <div id = 'result'>Total Calories: {{ current_user.calories }}</div>
+    <div class="input_field">
+        {{ choice_form.submit(class="btn btn-outline-info")}}
+    </div>
+</form>
+</div>
+<script>
+    // document.querySelector('input[type="radio"]:first-of-type').checked = true;
+    function updateValues() {
+      // Get the values of the input fields
+      const protein = parseInt(document.getElementById("proteins").value) || 0;
+      const carbs = parseInt(document.getElementById("carbs").value) || 0;
+      const fats = parseInt(document.getElementById("fats").value) || 0;
+
+      // Calculate the result
+      const result = protein * 4 + carbs * 4 + fats * 9;
+
+      // Update the text of the result box
+      document.getElementById("result").innerText = "Total Calories: " + result;
+    }
+
+    updateValues();
+
+    // Get the first radio button
+    const firstOption = document.querySelector('input[type="radio"]:first-of-type');
+    const lastOption = document.querySelector('input[type="radio"]:last-of-type');
+
+    const proteinsField = document.getElementById('proteins');
+    const carbsField = document.getElementById('carbs');
+    const fatsField = document.getElementById('fats');
+
+    // Add an event listener to the first radio button
+    firstOption.addEventListener('change', function() {
+        if (firstOption.checked) {
+        // Disable the fields
+        proteinsField.disabled = true;
+        carbsField.disabled = true;
+        fatsField.disabled = true;
+    } else {
+        // Enable the fields
+        proteinsField.disabled = false;
+        carbsField.disabled = false;
+        fatsField.disabled = false;
+    }
+    });
+
+    lastOption.addEventListener('change', function() {
+    if (lastOption.checked) {
+        // Enable the fields
+        proteinsField.disabled = false;
+        carbsField.disabled = false;
+        fatsField.disabled = false;
+        
+    } else {
+        // Disable the fields
+        proteinsField.disabled = true;
+        carbsField.disabled = true;
+        fatsField.disabled = true;
+    }
+});
+    window.onload = function() {
+        if (firstOption.checked) {
+            // Disable the fields
+            proteinsField.disabled = true;
+            carbsField.disabled = true;
+            fatsField.disabled = true;
+        } else {
+            // Enable the fields
+            proteinsField.disabled = false;
+            carbsField.disabled = false;
+            fatsField.disabled = false;
+        };
+    };
+  </script>
+{% endblock content %}
