@@ -7,7 +7,7 @@ from flask_login import current_user
 from datetime import datetime
 from wtforms import SubmitField, IntegerField, SelectMultipleField, widgets, \
     StringField, PasswordField, BooleanField, SelectField, RadioField, FileField,\
-        FieldList, FormField, SearchField
+        FieldList, FormField
 from wtforms.validators import DataRequired, EqualTo, Email, \
     Length, NumberRange, ValidationError
 from main.models import User

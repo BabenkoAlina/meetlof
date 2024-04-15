@@ -1,4 +1,21 @@
-{% extends "layout.html" %}
+{% extends "layoutmain.html" %}
 {% block content %}
-
-  {% endblock content %}
+<div class="container-1">
+  <h1 class="title">Почніть знаходити своїх друзів <br>
+  Цей проект створений з метою пошуку друзів, нових знайомст <br>
+  Багато тексту<br>
+  Багато тексту<br>
+  Багато тексту<br>
+  Багато тексту</h1>
+  <a href="{{ url_for('login') }}">
+      <button class="my-btn">
+          <span>Увійти</span>
+      </button>
+  </a>
+  <a href="{{ url_for('register') }}">
+      <button class="my-btn-1">
+          <span>Зареєструватися</span>
+      </button>
+  </a>
+</div>
+{% endblock content %}

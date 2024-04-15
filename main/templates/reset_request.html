@@ -1,30 +1,31 @@
 {% extends "layout.html" %}
 {% block content %}
-<link href="{{ url_for('static', filename='reset_request.css') }}" rel="stylesheet">
-<div class="wrapper">
-    <form method="POST" action="">
-        {{ form.hidden_tag() }}
-        <fieldset class="form">
-            <div class="title">
-                Reset Password
-            </div>
-            <div class="input_field">
-                {{ form.email.label(class="form-control-label") }}
-                {% if form.email.errors %}
-                    {{ form.email(class="form-control form-control-xxl is-invalid") }}
-                    <div class="invalid-feedback">
-                        {% for error in form.email.errors %}
+<div class="reset-request-container row d-flex justify-content-center align-items-center">
+    <div class="col-md-6">
+        <div class="content-section", id = "resetpas">
+            <form class = "item" method="POST" action="">
+                {{ form.hidden_tag() }}
+                <fieldset class="form-group item-form">
+                    <legend class="item-title">Змінити пароль</legend>
+                    <div class="form-group" id="request">
+                        {{ form.email.label(class="form-control-label") }}
+                        {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
                             <span>{{ error }}</span>
-                        {% endfor %}
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                        {% endif %}
                     </div>
-                {% else %}
-                    {{ form.email(class="form-control form-control-xxl") }}
-                {% endif %}
-            </div>
-        </fieldset>
-        <div class="input_field">
-            {{ form.submit(class="btn btn-outline-info") }}
+                </fieldset>
+                <div class="form-group item-btn mt-2">
+                    {{ form.submit(class="btn btn-outline-info") }}
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
 {% endblock content %}

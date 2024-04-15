@@ -16,8 +16,8 @@ from main.functions import send_reset_email
 def main():
     "Main page"
     if not current_user.is_authenticated:
-        return render_template('home.html', title = 'Home')
-    return render_template('main.html', title = 'Main')
+        return render_template('main.html', title = 'Home')
+    return render_template('home.html', title = 'Main')
 
 @app.route('/flash_message')
 def flash_message():

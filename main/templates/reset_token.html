@@ -1,43 +1,44 @@
 {% extends "layout.html" %}
 {% block content %}
-<link href="{{ url_for('static', filename='reset_token.css') }}" rel="stylesheet">
-<div class="wrapper">
-    <form method="POST" action="">
-        {{ form.hidden_tag() }}
-        <fieldset class="form">
-            <div class="title">
-                Reset Password
-            </div>
-            <div class="input_field">
-                {{ form.password.label(class="form-control-label") }}
-                {% if form.password.errors %}
-                    {{ form.password(class="form-control form-control-lg is-invalid") }}
-                    <div class="invalid-feedback">
-                        {% for error in form.password.errors %}
+<div class="row d-flex justify-content-center align-items-center">
+    <div class="col-md-6">
+        <div class="content-section", id = "token">
+            <form class = "item" method="POST" action="">
+                {{ form.hidden_tag() }}
+                <fieldset class="form-group item-form">
+                    <legend class="item-title">Змінити пароль</legend>
+                    <div class="form-group">
+                        {{ form.password.label(class="form-control-label") }}
+                        {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
                             <span>{{ error }}</span>
-                        {% endfor %}
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.password(class="form-control form-control-lg") }}
+                        {% endif %}
                     </div>
-                {% else %}
-                    {{ form.password(class="form-control form-control-lg") }}
-                {% endif %}
-            </div>
-            <div class="input_field">
-                {{ form.confirm_password.label(class="form-control-label") }}
-                {% if form.confirm_password.errors %}
-                    {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
-                    <div class="invalid-feedback">
-                        {% for error in form.confirm_password.errors %}
+                    <div class="form-group">
+                        {{ form.confirm_password.label(class="form-control-label") }}
+                        {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.confirm_password.errors %}
                             <span>{{ error }}</span>
-                        {% endfor %}
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.confirm_password(class="form-control form-control-lg") }}
+                        {% endif %}
                     </div>
-                {% else %}
-                    {{ form.confirm_password(class="form-control form-control-lg") }}
-                {% endif %}
-            </div>
-        </fieldset>
-        <div class="input_field">
-            {{ form.submit(class="btn btn-outline-info") }}
+                </fieldset>
+                <div class="form-group item-btn mt-2">
+                    {{ form.submit(class="btn btn-outline-info") }}
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
 {% endblock content %}
