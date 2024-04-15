@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
@@ -46,8 +46,8 @@
               {% if current_user.is_authenticated %}
   
               {% else %}
-                <a class="nav-item nav-link" href="{{ url_for("login") }}">Login</a>
-                <a class="nav-item nav-link" href="{{ url_for("register") }}">Register</a>
+                <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
+                <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
               {% endif %}
               </div>
             </div>
@@ -59,8 +59,8 @@
         <div class="nav_profile">
             <select id="profile_dropdown" onchange="navigateProfile()">
                 <option value="" disabled selected>Profile</option>
-                <option value="{{ url_for("view_profile") }}">View your profile</option>
-                <option value="{{ url_for("logout") }}">Log out</option>
+                <option value="{{ url_for('view_profile') }}">View your profile</option>
+                <option value="{{ url_for('logout') }}">Log out</option>
             </select>
         </div>
         

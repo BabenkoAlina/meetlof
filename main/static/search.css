@@ -2,7 +2,6 @@
 /* Nav bar */
 .panel-body {
     background: #fff9f5;
-    /* color: #333333; */
     margin-top: 5rem;
   }
   
@@ -41,8 +40,8 @@
   .navbar{
     height: 62px;
   }
-  .header-container {
-    /* position: fixed; */
+  /* .header-container {
+
     max-width: 1140px !important;
   }
   .site-header .navbar-nav .nav-link {
@@ -57,7 +56,7 @@
   .site-header .navbar-nav .nav-link.active {
     font-weight: 500;
     color: #ffce59;
-  }
+  } */
 
 /* Buttons */
 
