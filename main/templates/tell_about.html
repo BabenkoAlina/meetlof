@@ -66,8 +66,8 @@
                     <div class="left-section">
                         <!--  Name field -->
                         <div id="name_contact">
-                            <input type="text" id="name" value="What is your name?" onfocus="clearInputValue(this)">
-                            <input type="text" id="contact" value="Your contact (Telegram):" onfocus="clearInputValue(this)">
+                            <input type="text" id="name" value="" data-default="What is your name?" onfocus="clearInputValue(this)" onblur="setDefaultText(this)">
+                            <input type="text" id="contact" value="" data-default="Your contact (Telegram):" onfocus="clearInputValue(this)" onblur="setDefaultText(this)">
                         </div>
 
                         <!-- Sex field -->
@@ -89,10 +89,14 @@
                     <div class="right-section">
                         <!-- Photo field -->
                         <div id="photo">
-                            <input type="file" id="imageUpload" name="imageUpload"> 
+                            <input type="file" id="imageUpload" name="imageUpload" accept="image/*"> 
                             <label for="imageUpload">You can upload photo here</label>
                         </div>
+                        
+                        <!-- Display uploaded photo -->
+                        <div id="uploadedPhoto"></div>
                     </div>
+                    
                     
                
                  <!-- Hobbies field -->
@@ -205,23 +209,22 @@
                         <i class="fa-solid fa-hand-peace"></i>
                     </div>
                 </div>
-    
+            </section>
+            <div class="exp_agree">
                 <!-- Expectation field -->
-                <input type="text" id="expectation" value="What do you expect from communication?" onfocus="clearInputValue(this)">
-    
-                </section>
-                
+
+                <textarea id="expectation" rows="2" cols="10" data-default="What do you expect from communication?" onfocus="clearInputValue(this)" onblur="setDefaultText(this)">What do you expect from communication?</textarea>                    
+                                
                 <!-- Agree to share field -->
                 <div class="agree_field">
                     <div id="agree_share">
                         <input type="checkbox" id="agree" value="Agree">
                         <label for="agree"> I agree to share my info </label>
                     </div>
-                    
-                    <button id="button_save" onClick="yourOnSubmitFunc()">
-                   Save
-                    </button>
+                    <button id="button_save" onClick="yourOnSubmitFunc()">Save</button>
                 </div>
+            </div>
+               
                 
            </form>
         </div>

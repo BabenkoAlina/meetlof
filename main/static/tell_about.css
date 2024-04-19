@@ -1,11 +1,14 @@
-/* body {
+body {
     height: 100vh;
-    background-image: url(./img/back5.jpeg);
+    background-image: url(./img/back.jpeg);
     background-size: cover;
-} */
+    background-repeat: no-repeat;
+    color: #333333;
+}
+
 /* Nav bar */
 .panel-body {
-    background: #fff9f5;
+   
     /* color: #333333; */
     margin-top: 5rem;
   }
@@ -70,7 +73,6 @@ main {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: white;
 }
 
 #content_tell_about {
@@ -79,6 +81,7 @@ main {
     border: 2.5px solid #a4cfbc;
     padding: 20px;
     margin: auto;
+    background-color: rgba(255,255,255,0.79);
 }
 
 #tell_about_title {
@@ -86,7 +89,7 @@ main {
     font-size: 26px;
     margin: 5px 0;
     margin-bottom: 20px;
-    color: #ffce59
+    color: #f0ab08
 }
 
 /* User info */
@@ -101,7 +104,7 @@ input[type="text"] {
 }
 
 label {
-    color: #757575;
+    color: #464545;
     margin-top: 5px;
 }
 
@@ -119,6 +122,7 @@ input[type="checkbox"] {
     border-radius: 3px; 
     width: 20px; 
     height: 20px;
+    background-color: white;
 }
 
 /* Checkbox when checked */
@@ -172,6 +176,7 @@ input[type="checkbox"]:checked {
 #sex_m label {
     font-size: 16px;
     margin-left: 10px;
+    
 }
 
 #sex_f i,
@@ -202,6 +207,7 @@ input[type="checkbox"]:checked {
     border: 2.5px solid #a4cfbc; 
     padding: 10px;
     cursor: pointer;
+    background-color: white;
 }
 
 #photo label:hover {
@@ -259,47 +265,85 @@ input[type="checkbox"]:checked {
 }
 
 .search {
-    padding-left: 40px;
+    padding-left: 30px;
     padding-bottom: 5px;
     display: flex;
     flex-direction: column;
     max-width: 100%;
 }
 
+#search_f,
+#search_m {
+    margin-right: 5px; /* Adjust margin between items as needed */
+    display: flex;
+    align-items: center; /* Align items vertically */
+}
+
+#search_f input[type="checkbox"],
+#search_m input[type="checkbox"],
+#search_f label,
+#search_m label,
+#search_f i,
+#search_m i {
+    margin-right: 5px; /* Adjust spacing between elements as needed */
+}
+
 
 /* Range */
 
 .range_field {
-    margin-left: 0px;
-    margin-right: 10%;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: left;
-    text-align: center;
-    padding: 0px; 
 }
 
-.range_field  input[type="checkbox"],
-.range_field label,
-.range_field i {
-    margin-right: 5px;
+#range_1,
+#range_2,
+#range_3,
+#range_4 {
+    margin-right: 5px; 
+    display: flex;
+    align-items: center;
 }
+
+#range_1 input[type="checkbox"],
+#range_2 input[type="checkbox"],
+#range_3 input[type="checkbox"],
+#range_4 input[type="checkbox"],
+#range_1 label,
+#range_2 label,
+#range_3 label,
+#range_4 label {
+    margin-right: 10px; 
+}
+
+
+/* Looking for */
 
 .looking_for {
-    margin-top: 20px;
+    margin-left: 40px;
+    padding-top: 20px;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
 }
 
 #looking_f,
 #looking_l,
 #looking_c {
-    margin-right: 30px;
+    margin-right: 50px; /* Adjust margin between items as needed */
+    display: flex;
+    align-items: center; /* Align items vertically */
 }
+
+#looking_f input[type="checkbox"],
+#looking_l input[type="checkbox"],
+#looking_c input[type="checkbox"],
+#looking_f label,
+#looking_l label,
+#looking_c label,
+#looking_f i,
+#looking_l i,
+#looking_c i {
+    margin-right: 5px; /* Adjust spacing between elements as needed */
+}
+
 
 #looking_l input[type="checkbox"]:checked {
     background-color: #e888d0;
@@ -311,9 +355,14 @@ input[type="checkbox"]:checked {
     border-color: #e3c47c;
 }
 
+.exp_agree {
+    display: flex;
+    align-items: center;
+}
 /* Expectation */
 
 #expectation {
+    color: #757575;
     margin-top: 20px;
     margin-left: 40px;
     border: 2.5px solid #a4cfbc;
@@ -326,12 +375,19 @@ input[type="checkbox"]:checked {
 .agree_field {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    margin-right: 50px;
+    align-items: center;
+    margin-left: 200px;
+    margin-top: 20px;
 }
 
 #agree_share {
-    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#agree_share input[type="checkbox"],
+#agree_share label {
+    margin-right: 10px; 
 }
 
 #button_save {
