@@ -1,71 +1,47 @@
 body {
     height: 100vh;
-    background-image: url(./img/back.jpeg);
+    /* background-image: url(./img/back.jpeg); */
     background-size: cover;
     background-repeat: no-repeat;
     color: #333333;
+    font-family: 'Lexend', sans-serif;
 }
 
-/* Nav bar */
-.panel-body {
-   
-    /* color: #333333; */
-    margin-top: 5rem;
+.nav_profile {
+    position: absolute;
+    top: 20px; /* Adjust top position */
+    right: 100px; /* Adjust right position */
   }
   
-  .button-container {
-    background-color: #4b791c;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
-  }
-  .row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* margin-top: 10px; */
-    /* position: static; */
-  }
-  .alert{
-    margin-top: 10px;
-  }
-  /* .container-but{
-    position:fixed;
-  } */
-  .nav-link{
-    color: #fff;
-    background-color: #57817f;
-    font-weight: 500;
-  }
-  .bg-steel {
-    color: #fff;
-    background-color: #57817f;
-    text-align: center;
-    /* font-weight: 700; */
-  }
-  .navbar{
-    height: 62px;
-  }
-  .header-container {
-    /* position: fixed; */
-    max-width: 1140px !important;
-  }
-  .site-header .navbar-nav .nav-link {
-    color: #cbd5db;
+  
+  #profile_dropdown {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #a4cfbc;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    color: #4b791c;
+    cursor: pointer;
   }
   
-  .site-header .navbar-nav .nav-link:hover {
-    color: #ffce59;
-    transition: background-color 0.3s; 
+  #profile_dropdown:hover {
+    background-color: #e0e0e0;
   }
   
-  .site-header .navbar-nav .nav-link.active {
-    font-weight: 500;
-    color: #ffce59;
+  #profile_dropdown option {
+    padding: 10px;
   }
-
+  
+  #profile_dropdown option[disabled] {
+    color: #888;
+  }
+  
+  #profile_dropdown option[selected] {
+    font-weight: bold;
+    background-color: #a4cfbc;
+    color: white;
+  }
+  
 /* Main and form */
 
 main {
@@ -78,18 +54,23 @@ main {
 #content_tell_about {
     width: 80%;
     max-width: 1000px;
-    border: 2.5px solid #a4cfbc;
     padding: 20px;
     margin: auto;
-    background-color: rgba(255,255,255,0.79);
+
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #a4cfbc;
+    border-radius: 5px;
+    color: #4b791c;
+    cursor: pointer;
 }
 
 #tell_about_title {
     text-align: center;
-    font-size: 26px;
     margin: 5px 0;
     margin-bottom: 20px;
-    color: #f0ab08
+    color:#4ab66e;
+    font-size: 40px;
 }
 
 /* User info */
@@ -100,7 +81,7 @@ input {
 }
 
 input[type="text"] {
-    color: #757575
+    color: #464545;
 }
 
 label {
@@ -204,17 +185,20 @@ input[type="checkbox"]:checked {
 }
 
 #photo label {
-    border: 2.5px solid #a4cfbc; 
     padding: 10px;
+    font-size: 16px;
+    
+    background-color: #4ab66e;
+    color: white;
+    border: 2px solid;
+    border-radius: 32px;
+    border-color: #4ab66e;
     cursor: pointer;
-    background-color: white;
+    transition: transform 0.2s;
 }
 
 #photo label:hover {
-    border: 2.5px solid black; 
-    background-color: black;
-    color: white;
-    transition: background-color 0.3s; 
+    transform: scale(1.05);
 }
 
 /* Hobbies */
@@ -362,12 +346,16 @@ input[type="checkbox"]:checked {
 /* Expectation */
 
 #expectation {
-    color: #757575;
     margin-top: 20px;
     margin-left: 40px;
-    border: 2.5px solid #a4cfbc;
     margin-bottom: 10px;
     width: 40%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #a4cfbc;
+    border-radius: 5px;
+    color: #464545;
+    cursor: pointer;
 }
 
 /* Agree share */
@@ -391,15 +379,19 @@ input[type="checkbox"]:checked {
 }
 
 #button_save {
-    border: 2.5px solid #a4cfbc;
-    border-radius: 3px;
-    width: 100px;
-    height: 50px;
-    transition: background-color 0.3s;
+    margin-top: 10px;
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #4ab66e;
+    color: white;
+    border: 2px solid;
+    border-radius: 32px;
+    border-color: #4ab66e;
+    cursor: pointer;
+    transition: transform 0.2s;
 }
 
 #button_save:hover {
-    border: 2px solid black;
-    background-color: black;
-    color: white;
+    transform: scale(1.05);
 }
