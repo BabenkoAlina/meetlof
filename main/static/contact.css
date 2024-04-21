@@ -1,0 +1,83 @@
+body {
+    font-family: 'Lexend', sans-serif;
+    padding: 20px;
+  }
+
+.nav_profile {
+  margin-top: 20px;
+  text-align: right;
+  margin-right: 100px;
+}
+
+#profile_dropdown {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #a4cfbc;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  color: #4b791c;
+  cursor: pointer;
+}
+
+#profile_dropdown:hover {
+  background-color: #e0e0e0;
+}
+
+#profile_dropdown option {
+  padding: 10px;
+}
+
+#profile_dropdown option[disabled] {
+  color: #888;
+}
+
+#profile_dropdown option[selected] {
+  font-weight: bold;
+  background-color: #a4cfbc;
+  color: white;
+}
+
+.match-card {
+    border: 1px solid #ccc;
+    border-radius: 32px;
+    padding: 20px;
+    margin: 40px auto;
+    text-align: center;
+    width: 70vw;
+    box-shadow: 0px 9px 32px 0px #595CDB0D;
+}
+.match-card h2{
+    color:#4ab66e;
+    font-size: 40px;
+  }
+.match-card h3 {
+    font-size: 32px;
+    color:#353535
+}
+.match-card p {
+    font-size: 18px;
+}
+.match-card button {
+    padding: 10px 30px;
+    margin: 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s;
+  }
+  
+  .match-card button:hover {
+    transform: scale(1.05);
+  }
+  
+  .match-card button:active {
+    transform: scale(0.95);
+  }
+  .match-card .search {
+    background-color: #4ab66e;
+    color: white;
+    border: 2px solid;
+    border-radius: 32px;
+    border-color: #4ab66e;
+  }
