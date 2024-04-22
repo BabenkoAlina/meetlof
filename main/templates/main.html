@@ -1,21 +1,48 @@
-{% extends "layoutmain.html" %}
-{% block content %}
+{% extends "layoutmain.html" %} {% block content %}
+<h1 class="title">Welcome to MeetLoF!</h1>
+<h1 class="title">MeetLoF is an online community to find friends</h1>
+<div class="horyzontal-images">
+    <img src="../static/img/friends.jpeg" />
+    <img src="../static/img/couple.webp" />
+</div>
 <div class="container-1">
-  <h1 class="title">Почніть знаходити своїх друзів <br>
-  Цей проект створений з метою пошуку друзів, нових знайомст <br>
-  Багато тексту<br>
-  Багато тексту<br>
-  Багато тексту<br>
-  Багато тексту</h1>
-  <a href="{{ url_for('login') }}">
-      <button class="my-btn">
-          <span>Увійти</span>
-      </button>
-  </a>
-  <a href="{{ url_for('register') }}">
-      <button class="my-btn-1">
-          <span>Зареєструватися</span>
-      </button>
-  </a>
+    <div class="Buttons">
+        <div class="Buttons-btn-1">
+            <a href="{{ url_for('login') }}">
+                <button class="my-btn">
+                    <span>Log In</span>
+                </button>
+            </a>
+        </div>
+        <div class="Buttons-btn-2">
+            <a href="{{ url_for('register') }}">
+                <button class="my-btn-1">
+                    <span>Sign In</span>
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="Explore">
+        <h1 class="title">Explore useful tips!</h1>
+        <div class="Explore-topic-1">
+            <h2 class="explore-title">
+                100 icebreaker questions to get the conversation started
+            </h2>
+            <div class="explore-table">
+                <img src="../static/img/icebreakers.jpeg" />
+                <p>
+                    Mural is a collaborative online platform that enhances team
+                    communication with fun and engaging icebreaker questions. It
+                    offers a wide range of icebreaker categories suitable for
+                    any team meeting or classroom setting. The website provides
+                    easy access to over 100 questions designed to help team
+                    members connect and communicate effectively.<br />
+                    <a href="https://www.mural.co/blog/icebreaker-questions"
+                        >LINK</a
+                    >
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock content %}
