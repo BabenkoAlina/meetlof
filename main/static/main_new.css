@@ -405,17 +405,20 @@ h6 {
     margin-top: 5px;
     margin-bottom: 10px;
 }
-
-.explore-table {
+.Explore-topic{
     width: 100%;
     display: grid;
-    grid-template-columns: 25% 75%;
+    grid-template-columns: 31% auto;
     background-color: #ffffff;
     border-radius: 15px;
     border: 3px solid black;
 }
 
-.explore-table img {
+.Explore-topic h2{
+    color: black;
+}
+
+.Explore-topic img {
     border-radius: 15px;
     padding-top: 5px;
     padding-left: 5px;
@@ -426,7 +429,7 @@ h6 {
 
 .explore-table p {
     padding-top: 5px;
-    padding-bottom: 5px;
+    /* padding-bottom: 5px; */
     font-family: "Montserrat";
     font-weight: 500;
     font-size: 16px;
