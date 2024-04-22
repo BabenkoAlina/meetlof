@@ -9,11 +9,10 @@ body {
 
 .nav_profile {
     position: absolute;
-    top: 20px; /* Adjust top position */
+    top: 40px; /* Adjust top position */
     right: 100px; /* Adjust right position */
   }
-  
-  
+
   #profile_dropdown {
     padding: 10px;
     font-size: 16px;
@@ -59,8 +58,8 @@ main {
 
     padding: 10px;
     font-size: 16px;
-    border: 2px solid #a4cfbc;
-    border-radius: 5px;
+    border: 2px solid #dee1e0;
+    border-radius: 32px;
     color: #4b791c;
     cursor: pointer;
 }
@@ -182,6 +181,13 @@ input[type="checkbox"]:checked {
 
 #imageUpload {
     display: none;
+}
+
+#uploadedPhoto {
+    display: block;
+    width: 5px; 
+    height: 5px;
+    object-fit: contain;
 }
 
 #photo label {
