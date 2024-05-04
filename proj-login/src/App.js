@@ -1,30 +1,41 @@
 // App.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import LoginPage from './components/LoginPage';
 import HomePage from './components/HomePage';
 import RegisterPage from './components/RegisterPage';
 import GreetingPage from './components/GreetingPage';
+import { auth } from './firebaseConfig';
+import { onAuthStateChanged } from 'firebase/auth';
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [username, setUsername] = useState('');
+  const [userEmail, setUserEmail] = useState('');
 
-  const handleLogin = (username) => {
-    setUsername(username);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUserEmail(user.email);
+        setLoggedIn(true);
+      } else {
+        setUserEmail('');
+        setLoggedIn(false);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  const handleLogin = (email) => {
+    setUserEmail(email);
     setLoggedIn(true);
   };
 
   const handleLogout = () => {
-    setUsername('');
+    setUserEmail('');
     setLoggedIn(false);
-  };
-
-  const handleRegister = ({ username, password }) => {
-    // Assuming you have already implemented the registration logic
-    localStorage.setItem(username, JSON.stringify({ username, password }));
-    alert('Registered successfully!');
-    window.location.href = '/login'; // Redirect to the login page after successful registration
   };
 
   return (
@@ -35,10 +46,10 @@ const App = () => {
             <Route path="/login">
               {loggedIn ? <Redirect to="/home" /> : <LoginPage onLogin={handleLogin} />}
             </Route>
-            <Route path="/register" render={() => <RegisterPage onRegister={handleRegister} />} />
+            <Route path="/register" component={RegisterPage} />
             <Route path="/home">
               {loggedIn ? (
-                  <HomePage username={username} onLogout={handleLogout} />
+                  <HomePage userEmail={userEmail} onLogout={handleLogout} />
               ) : (
                   <Redirect to="/" />
               )}
@@ -49,4 +60,5 @@ const App = () => {
       </Router>
   );
 };
+
 export default App;

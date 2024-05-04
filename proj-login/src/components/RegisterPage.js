@@ -1,66 +1,54 @@
-// RegisterPage.js
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from './Navbar'; // Import the Navbar component
-
-
+import Navbar from './Navbar';
+import { auth } from '../firebaseConfig';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const RegisterPage = ({ onRegister }) => {
-    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [registeredUsernames, setRegisteredUsernames] = useState([]); // Define the array
 
-    const handleRegister = () => {
-        // Validate registration data
-        if (!username || !email || !password || !confirmPassword) {
-            alert('Please fill in all fields');
-            return;
+    const handleRegister = async () => {
+        try {
+            if (password !== confirmPassword) {
+                throw new Error("Passwords do not match");
+            }
+
+            await createUserWithEmailAndPassword(auth, email, password)
+            alert('Registered successfully!');
+        } catch (error) {
+            const errorCode = error.code;
+            let errorMessage = error.message;
+
+            switch (errorCode) {
+                case 'auth/weak-password':
+                    errorMessage = 'Password is too weak';
+                    break;
+                case 'auth/email-already-in-use':
+                    errorMessage = 'Email address is already in use';
+                    break;
+                case 'auth/invalid-email':
+                    errorMessage = 'Invalid email address';
+                    break;
+                case 'auth/missing-email':
+                    errorMessage = 'Please enter an email address';
+                    break;
+                case 'auth/missing-password':
+                    errorMessage = 'Please enter a password';
+                    break;
+                default:
+                    break;
+            }
+
+            alert(errorMessage);
         }
-
-        // Validate email format
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            alert('Please enter a valid email address');
-            return;
-        }
-
-        // Validate password length
-        if (password.length < 6) {
-            alert('Password must be at least 6 characters long');
-            return;
-        }
-
-        // Check if passwords match
-        if (password !== confirmPassword) {
-            alert('Passwords do not match');
-            return;
-        }
-
-        // Check if the username is already registered
-        if (registeredUsernames.includes(username)) {
-            alert('Username is already taken');
-            return;
-        }
-
-        // Call the onRegister callback with the registration data
-        onRegister({ username, email, password });
-
-        // Update the array of registered usernames
-        setRegisteredUsernames([...registeredUsernames, username]);
     };
 
     return (
         <div>
-            <Navbar isAuthenticated={false} /> {/* Pass isAuthenticated as false for register page */}
+            <Navbar isAuthenticated={false} />
             <h2>Register</h2>
-            <input
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
             <input
                 type="email"
                 placeholder="Email"
