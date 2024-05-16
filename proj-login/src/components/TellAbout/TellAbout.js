@@ -83,22 +83,26 @@ function TellAbout() {
     };
   };
 
+  const handleSelectChange = (e) => {
+    e.preventDefault();
+  };
+
 
 
 
   return (
     <main>
-      <Navbar isAuthenticated={false}/> {/* Pass isAuthenticated as false for login page */}
+      {/* <Navbar isAuthenticated={false}/> Pass isAuthenticated as false for login page */}
       <div id="content_tell_about">
         <p id="tell_about_title"> Tell about yourself! </p>
-        <div className={styles.nav_profile}>
+        {/* <div className={styles.nav_profile}>
           <select id={styles.profile_dropdown} onChange={handleSelectChange} value={selectedOption}>
             <option value="" disabled selected>Profile</option>
             <option value="/view_profile">View your profile</option>
             <option value="/logout">Log out</option>
           </select>
           <button onClick={navigateProfile}>Go</button>
-        </div>
+        </div> */}
         <form onSubmit={handleSubmit} id={styles.form_tell_about}>
 
           {/* User */}

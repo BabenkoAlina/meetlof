@@ -58,10 +58,8 @@ const App = () => {
                         ) : (
                           <Redirect to="/" />
                         )}
-                    <Route path="/tell_about">
-                        <TellAbout />
                     </Route>
-                    </Route>
+                    <Route path="/tell_about" component={TellAbout}/>
                     <Route render={() => <Redirect to="/" />} />
                 </Switch>
             </div>
