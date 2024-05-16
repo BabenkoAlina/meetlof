@@ -18,9 +18,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 50px 0 50px;
-
+    justify-content: center; 
+    margin: 20px auto; 
+    padding: 20px;
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    /* border-radius: 32px; */
+    width: 60vw;
+    color: white;
 }
+
 
 .greeting-text h1, h2 {
     margin: 0;
@@ -31,6 +37,7 @@
 
 .greeting-text h1 {
     margin-bottom: 15px;
+    
 }
 
 
@@ -61,10 +68,10 @@
 .my-btn-1 {
     box-sizing: border-box;
     width: 280px;
-    height: 85px;
-    border: 3px solid black;
+    height: 70px;
+    border: 3px rgba(255, 255, 255, 0.5);
     border-radius: 0 50px 50px 75px;
-    background-color: black;
+    background-color: rgba(255, 255, 255, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -79,20 +86,20 @@
     font-weight: 600;
     font-size: 23px;
     line-height: 37px;
-    color: #ffffff;
+    color: #282828;
 }
 
 .my-btn:hover {
-    background-color: grey;
+    background-color: rgb(255, 255, 255);
 }
 
 .my-btn-1 {
-    border: 3px solid #05b895;
-    background-color: #05b895;
+    border: 3px solid rgba(205, 251, 69, 0.5);
+    background-color: rgba(205, 251, 69, 0.5);
 }
 
 .my-btn-1:hover {
-    background-color: #074135;
+    background-color: rgba(205, 251, 69, 1);;
 }
 
 .buttons a {
@@ -108,12 +115,16 @@
 }
 
 .explore-topic {
-    width: 100%;
+    width: 90%;
+    padding: 20px;
     display: grid;
     grid-template-columns: 31% auto;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 15px;
-    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 32px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .nav_profile {

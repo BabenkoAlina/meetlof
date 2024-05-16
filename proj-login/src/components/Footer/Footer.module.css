@@ -2,14 +2,16 @@
     display: flex;
     justify-content: space-between;
     padding: 20px;
+    /* margin-left: 20px; */
+    margin-right: 40px;
 }
 
 .social__icon a img {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
 }
 
 .social__icon a img:hover {
-    opacity: 0.7;
+    opacity: 0.7;  
 }
