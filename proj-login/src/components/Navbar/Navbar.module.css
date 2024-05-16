@@ -6,12 +6,13 @@ nav {
     background-color: rgba(255, 255, 255, 0.5);
     width: 70px;
     border-radius: 50%;
-
 }
+
 .nav_profile {
-    margin-top: 20px;
-    text-align: right;
-    margin-right: 100px;
+    margin-top: -14px;
+    position: absolute;
+    right: 0;
+    margin-right: 80px;
 }
 
 #profile_dropdown {
