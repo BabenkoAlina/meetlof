@@ -9,7 +9,7 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "../../firebaseConfig";
 import Navbar from "../Navbar/Navbar";
-import styles from "./History.css";
+import "./History.css"; // Correctly import the CSS file
 
 const HistoryPage = () => {
     const [likedArray, setLikedArray] = useState([]);
@@ -99,10 +99,12 @@ const HistoryPage = () => {
                 {action === "request" && !userAction && (
                     <td>
                         <button
+                            className="like"
                             onClick={() => handleActionClick(userId, "like")}>
                             Like
                         </button>
                         <button
+                            className="reject"
                             onClick={() => handleActionClick(userId, "reject")}>
                             Reject
                         </button>
@@ -115,11 +117,11 @@ const HistoryPage = () => {
     return (
         <div>
             <Navbar isAuthenticated={true} />
-            <div className={styles.historyContainer}>
+            <div className="historyContainer">
                 <h2>History Page</h2>
-                <div className={styles.tableContainer}>
+                <div className="tableContainer">
                     <h3>Requests I Sent</h3>
-                    <table className={styles.historyTable}>
+                    <table className="historyTable">
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -134,9 +136,9 @@ const HistoryPage = () => {
                         </tbody>
                     </table>
                 </div>
-                <div className={styles.tableContainer}>
+                <div className="tableContainer">
                     <h3>Requests I Got</h3>
-                    <table className={styles.historyTable}>
+                    <table className="historyTable">
                         <thead>
                             <tr>
                                 <th>Name</th>
