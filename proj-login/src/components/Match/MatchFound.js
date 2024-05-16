@@ -3,13 +3,21 @@ import { useHistory } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import styles from "./MatchFound.module.css";
 import { auth, db } from "../../firebaseConfig";
-import { collection, doc, updateDoc, arrayUnion, getDocs, getDoc } from "firebase/firestore";
+import {
+    collection,
+    doc,
+    updateDoc,
+    arrayUnion,
+    getDocs,
+    getDoc,
+} from "firebase/firestore";
 
 function MatchFound() {
     const history = useHistory();
     const currentUser = auth.currentUser;
     const [userEmail, setUserEmail] = useState("");
-    const [matchedUserId, setMatchedUserId] = useState(null); 
+    const [matchedUsers, setMatchedUsers] = useState([]);
+    const [currentMatchIndex, setCurrentMatchIndex] = useState(0);
     const matchTime = new Date();
 
     const navigateProfile = (event) => {
@@ -50,7 +58,7 @@ function MatchFound() {
             "years23",
             "years25",
         ];
-        
+
         let matches = 0;
         attributes.forEach((attr) => {
             if (user1[attr] === user2[attr]) {
@@ -66,24 +74,36 @@ function MatchFound() {
         const usersSnapshot = await getDocs(usersInfoCollection);
         const historyDoc = await getDoc(usersHistoryDocRef);
 
-        const currentUserInfo = usersSnapshot.docs.find(doc => doc.id === currentUser.uid)?.data();
+        const currentUserInfo = usersSnapshot.docs
+            .find((doc) => doc.data().userId === currentUser.uid)
+            ?.data();
         const rejectedList = historyDoc.data()?.rejectedList || [];
 
         let userMatches = [];
 
-        usersSnapshot.forEach(doc => {
-            if (doc.id !== currentUser.uid && !rejectedList.includes(doc.id)) {
-                const matchPercentage = calculateMatchPercentage(currentUserInfo, doc.data());
-                userMatches.push({ userId: doc.id, matchPercentage });
+        usersSnapshot.forEach((doc) => {
+            if (
+                doc.data().userId !== currentUser.uid &&
+                !rejectedList.includes(doc.data().userId)
+            ) {
+                const matchPercentage = calculateMatchPercentage(
+                    currentUserInfo,
+                    doc.data()
+                );
+                userMatches.push({
+                    userId: doc.data().userId,
+                    matchPercentage,
+                    data: doc.data(),
+                });
             }
         });
 
         userMatches.sort((a, b) => b.matchPercentage - a.matchPercentage);
 
         if (userMatches.length > 0) {
-            setMatchedUserId(userMatches[0].userId);
+            setMatchedUsers(userMatches);
             await updateDoc(usersHistoryDocRef, {
-                currentMatchID: userMatches[0].userId,
+                likedArray: userMatches.map((user) => user.userId),
             });
         }
     };
@@ -93,23 +113,30 @@ function MatchFound() {
     }, []);
 
     const handleLikeClick = async () => {
-        if (currentUser) {
+        if (currentUser && matchedUsers.length > currentMatchIndex) {
             const userDocRef = doc(db, "usersHistory", currentUser.uid);
             await updateDoc(userDocRef, {
-                [`history.${matchedUserId}`]: matchTime,
+                [`history.${matchedUsers[currentMatchIndex].userId}`]:
+                    matchTime,
             });
+            setCurrentMatchIndex((prevIndex) => prevIndex + 1);
         }
-        history.push("/contacts");
     };
 
     const handleSkipClick = async () => {
-        if (currentUser) {
+        if (currentUser && matchedUsers.length > currentMatchIndex) {
             const userDocRef = doc(db, "usersHistory", currentUser.uid);
             await updateDoc(userDocRef, {
-                rejectedList: arrayUnion(matchedUserId),
+                rejectedList: arrayUnion(
+                    matchedUsers[currentMatchIndex].userId
+                ),
             });
+            setCurrentMatchIndex((prevIndex) => prevIndex + 1);
         }
-        history.push("/search");
+    };
+
+    const handleExitClick = () => {
+        history.push("/home");
     };
 
     return (
@@ -127,32 +154,45 @@ function MatchFound() {
                     <option value="logout">Log out</option>
                 </select>
             </div>
-            <div className={styles.match_card}>
-                <h2>MATCH FOUND</h2>
-                <div className={styles.match_card_top}>
-                    <div className={styles.match_card_top_right}>
-                        <h3>What your best match is looking for:</h3>
-                        <p>
-                            Sit osculatur puer tuus aut uxorem tuam, osculum,
-                            non dico quod omnia quae sunt hominis, et sic non
-                            tangetur, si aut ex eis moriatur. Nam tristique
-                            facilisis dolor, non lacinia quam. Curabitur sed
-                            posuere enim, eget luctus justo. Cras rhoncus
-                            porttitor varius. In sit amet eros venenatis,
-                            consequat nibh et, sollicitudin lorem. Suspendisse
-                            pretium libero dui, eu aliquet leo congue et.
-                        </p>
+            {matchedUsers.length > 0 &&
+            currentMatchIndex < matchedUsers.length ? (
+                <div className={styles.match_card}>
+                    <h2>MATCH FOUND</h2>
+                    <div className={styles.match_card_top}>
+                        <div className={styles.match_card_top_right}>
+                            <h3>What your best match is looking for:</h3>
+                            <p>
+                                {matchedUsers[currentMatchIndex].data
+                                    .expectation || "No expectations provided."}
+                            </p>
+                        </div>
+                    </div>
+                    <div className={styles.match_card_bottom}>
+                        <button
+                            className={styles.like}
+                            onClick={handleLikeClick}>
+                            Like
+                        </button>
+                        <button
+                            className={styles.skip}
+                            onClick={handleSkipClick}>
+                            Skip
+                        </button>
+                        <button
+                            className={styles.exit}
+                            onClick={handleExitClick}>
+                            Exit
+                        </button>
                     </div>
                 </div>
-                <div className={styles.match_card_bottom}>
-                    <button className={styles.like} onClick={handleLikeClick}>
-                        Like
-                    </button>
-                    <button className={styles.skip} onClick={handleSkipClick}>
-                        Skip
+            ) : (
+                <div className={styles.no_match}>
+                    <h2>No Matches Found</h2>
+                    <button className={styles.exit} onClick={handleExitClick}>
+                        Exit
                     </button>
                 </div>
-            </div>
+            )}
         </div>
     );
 }

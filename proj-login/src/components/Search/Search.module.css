@@ -164,4 +164,12 @@
   color:#4ab66e;
   font-size: 36px;
   font-family: 'Lexend', sans-serif;
+  overflow-x: hidden;  overflow-y: auto;
+}
+
+.quote {
+  margin-top: 40px;
+  text-align: center;
+  color: black;
+  font-size: 20px;
 }

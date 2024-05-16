@@ -30,7 +30,7 @@ const RegisterPage = ({ onRegister }) => {
                 userId: user.uid,
                 history: {},
                 rejectedList: [],
-                currentMatchID: null,
+                likedArray: [],
             });
 
             alert("Registered successfully!");
