@@ -62,7 +62,7 @@ const App = () => {
                         <TellAbout />
                     </Route>
                     </Route>
-                    
+                    <Route render={() => <Redirect to="/" />} />
                 </Switch>
             </div>
         </Router>

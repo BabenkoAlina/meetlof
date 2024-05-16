@@ -91,264 +91,264 @@ function TellAbout() {
       <Navbar isAuthenticated={false}/> {/* Pass isAuthenticated as false for login page */}
       <div id="content_tell_about">
         <p id="tell_about_title"> Tell about yourself! </p>
-        <div className="nav_profile">
-          <select id="profile_dropdown" onChange={handleSelectChange} value={selectedOption}>
+        <div className={styles.nav_profile}>
+          <select id={styles.profile_dropdown} onChange={handleSelectChange} value={selectedOption}>
             <option value="" disabled selected>Profile</option>
             <option value="/view_profile">View your profile</option>
             <option value="/logout">Log out</option>
           </select>
           <button onClick={navigateProfile}>Go</button>
         </div>
-        <form onSubmit={handleSubmit} id="form_tell_about">
+        <form onSubmit={handleSubmit} id={styles.form_tell_about}>
 
           {/* User */}
-          <section className="user_info">
+          <section className={styles.user_info}>
             {/* Left section */}
-            <div className="left-section">
-              <div id="name_contact">
+            <div className={styles.left_section}>
+              <div id={styles.name_contact}>
                 <input
                   type="text"
-                  id="name"
+                  id={styles.name}
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="What is your name?"
                 />
                 <input
                   type="text"
-                  id="contact"
+                  id={styles.contact}
                   value={telegram}
                   onChange={(e) => setTelegram(e.target.value)}
                   placeholder="Your contact (Telegram):"
                 />
               </div>
 
-              <div id="sex">
-                <div id="sex_f">
+              <div id={styles.sex}>
+                <div id={styles.sex_f}>
                   <input
                     type="checkbox"
-                    id="sex_female"
+                    id={styles.sex_female}
                     checked={isFemale}
                     onChange={(e) => setIsFemale(e.target.checked) && setIsMale(!e.target.checked)}
                   />
-                  <label htmlFor="sex_female"> I am a lady </label>
+                  <label htmlFor={styles.sex_female}> I am a lady </label>
                   <i className="fa-solid fa-venus"></i>
                 </div>
 
-                <div id="sex_m">
+                <div id={styles.sex_m}>
                   <input
                     type="checkbox"
-                    id="sex_male"
+                    id={styles.sex_male}
                     checked={isMale}
                     onChange={(e) => setIsMale(e.target.checked) && setIsFemale(!e.target.checked)}
                   />
-                  <label htmlFor="sex_male"> I am a gentleman </label>
+                  <label htmlFor={styles.sex_male}> I am a gentleman </label>
                   <i className="fa-solid fa-mars"></i>
                 </div>
               </div>
             </div>
 
             {/* Right section */}
-            <div className="right-section">
-              <div id="photo">
+            <div className={styles.right_section}>
+              <div id={styles.photo}>
                 <input
                   type="file"
-                  id="imageUpload"
+                  id={styles.imageUpload}
                   name="imageUpload"
                   accept="image/*"
                   onChange={handlePhotoUpload}
                 />
-                <label htmlFor="imageUpload">You can upload photo here</label>
+                <label htmlFor={styles.imageUpload}>You can upload photo here</label>
               </div>
 
-              <div id="uploadedPhoto">
+              <div id={styles.uploadedPhoto}>
                 {uploadedPhoto && <img src={uploadedPhoto} alt="Uploaded" />}
               </div>
             </div>
           </section>
 
           {/* Hobbies */}
-          <div id="hobbies">
-              <div className="hobbie" id="hobbie1">
+          <div id={styles.hobbies}>
+              <div className={styles.hobbie} id={styles.hobbie1}>
                   <input
                       type="checkbox"
-                      id="hobbies_film"
+                      id={styles.hobbies_film}
                       checked={cinemaddict}
                       onChange={(e) => setCinemaddict(e.target.checked)}
                   />
-                  <label htmlFor="hobbies_film"> I am cinemaddict </label>
+                  <label htmlFor={styles.hobbies_film}> I am cinemaddict </label>
                   <i className="fa-solid fa-film"></i>
               </div>
-              <div class="hobbie" id="hobbie2">
+              <div class={styles.hobbie} id={styles.hobbie2}>
                   <input
                       type="checkbox"
-                      id="hobbies_music"
+                      id={styles.hobbies_music}
                       checked={music}
                       onChange={(e) => setMusic(e.target.checked)}
                   />
-                  <label htmlFor="hobbies_music"> I am music lover </label>
+                  <label htmlFor={styles.hobbies_music}> I am music lover </label>
                   <i className="fa-solid fa-music"></i>
               </div>
-              <div class="hobbie" id="hobbie3">
+              <div class={styles.hobbie} id={styles.hobbie3}>
                   <input
                       type="checkbox"
-                      id="hobbies_read"
+                      id={styles.hobbies_read}
                       checked={bookworm}
                       onChange={(e) => setBookworm(e.target.checked)}
                   />
-                  <label htmlFor="hobbies_read"> I am bookworm </label>
+                  <label htmlFor={styles.hobbies_read}> I am bookworm </label>
                   <i className="fa-solid fa-book"></i>
               </div>
-              <div class="hobbie" id="hobbie7">
+              <div class={styles.hobbie} id={styles.hobbie7}>
                   <input
                       type="checkbox"
-                      id="hobbies_politics"
+                      id={styles.hobbies_politics}
                       checked={politics}
                       onChange={(e) => setPolitics(e.target.checked)}
                   />
-                  <label htmlFor="hobbies_politics"> I am interested in politics </label>
+                  <label htmlFor={styles.hobbies_politics}> I am interested in politics </label>
                   <i className="fa-solid fa-globe"></i>
               </div>
-              <div class="hobbie" id="hobbie4">
+              <div class={styles.hobbie} id={styles.hobbie4}>
                   <input
                       type="checkbox"
-                      id="hobbies_sport"
+                      id={styles.hobbies_sport}
                       checked={sportsman}
                       onChange={(e) => setSportsman(e.target.checked)}
                   />
-                  <label htmlFor="hobbies_sport"> I am a sportsman/woman </label>
+                  <label htmlFor={styles.hobbies_sport}> I am a sportsman/woman </label>
                   <i className="fa-solid fa-dumbbell"></i>
               </div>
-              <div class="hobbie" id="hobbie5">
+              <div class={styles.hobbie} id={styles.hobbie5}>
                   <input
                       type="checkbox"
-                      id="hobbies_procrastinate"
+                      id={styles.hobbies_procrastinate}
                       checked={procrastinate}
                       onChange={(e) => setProcrastinate(e.target.checked)}
                   />
-                  <label htmlFor="hobbies_procrastinate"> I like to procrastinate </label>
+                  <label htmlFor={styles.hobbies_procrastinate}> I like to procrastinate </label>
                   <i className="fa-solid fa-bed"></i>
               </div>
-              <div class="hobbie" id="hobbie6">
+              <div class={styles.hobbie} id={styles.hobbie6}>
                   <input
                       type="checkbox"
-                      id="hobbies_walk"
+                      id={styles.hobbies_walk}
                       checked={promenade}
                       onChange={(e) => setPromenade(e.target.checked)}
                   />
-                  <label htmlFor="hobbies_walk"> I am keen of promenade </label>
+                  <label htmlFor={styles.hobbies_walk}> I am keen of promenade </label>
                   <i className="fa-solid fa-walking"></i>
               </div>
           </div>
 
           {/* User interest */}
-            <section className="user_interest_info">
-            <p id="text_header">Who are you looking for?</p>
+            <section className={styles.user_interest_info}>
+            <p id={styles.text_header}>Who are you looking for?</p>
 
             {/* Search field */}
-            <div className="user_interest">
-                <div className="search">
-                <div id="search_f">
+            <div className={styles.user_interest}>
+                <div className={styles.search}>
+                <div id={styles.search_f}>
                     <input
                     type="checkbox"
-                    id="search_female"
+                    id={styles.search_female}
                     checked={lookingForFemale}
                     onChange={(e) => setLookingForFemale(e.target.checked)}
                     />
-                    <label htmlFor="search_female"> I am looking for a beautiful lady </label>
+                    <label htmlFor={styles.search_female}> I am looking for a beautiful lady </label>
                     <i className="fa-solid fa-venus"></i>
                 </div>
 
-                <div id="search_m">
+                <div id={styles.search_m}>
                     <input
                     type="checkbox"
-                    id="search_male"
+                    id={styles.search_male}
                     checked={lookingForMale}
                     onChange={(e) => setLookingForMale(e.target.checked)}
                     />
-                    <label htmlFor="search_male"> I am looking for a handsome gentleman </label>
+                    <label htmlFor={styles.search_male}> I am looking for a handsome gentleman </label>
                     <i className="fa-solid fa-mars"></i>
                 </div>
                 </div>
 
                 {/* Range field */}
-                <div className="range_field">
-                <div id="range_1">
+                <div className={styles.range_field}>
+                <div id={styles.range_1}>
                     <input
                     type="checkbox"
-                    id="range_first"
+                    id={styles.range_first}
                     // value="Range1"
                     checked={years17}
                     onChange={(e) => setYears17(e.target.checked)}
                     />
-                    <label htmlFor="range1"> 17-20 y.o. </label>
+                    <label htmlFor={styles.range1}> 17-20 y.o. </label>
                 </div>
 
-                <div id="range_2">
+                <div id={styles.range_2}>
                     <input
                     type="checkbox"
-                    id="range_second"
+                    id={styles.range_second}
                     // value="Range2"
                     checked={years20}
                     onChange={(e) => setYears20(e.target.checked)}
                     />
-                    <label htmlFor="range2"> 20-23 y.o.</label>
+                    <label htmlFor={styles.range2}> 20-23 y.o.</label>
                 </div>
 
-                <div id="range_3">
+                <div id={styles.range_3}>
                     <input
                     type="checkbox"
-                    id="range_third"
+                    id={styles.range_third}
                     value="Range3"
                     checked={years23}
                     onChange={(e) => setYears23(e.target.checked)}
                     />
-                    <label htmlFor="range3"> 23-25 y.o.</label>
+                    <label htmlFor={styles.range3}> 23-25 y.o.</label>
                 </div>
 
-                <div id="range_4">
+                <div id={styles.range_4}>
                     <input
                     type="checkbox"
-                    id="range_fourth"
+                    id={styles.range_fourth}
                     value="Range4"
                     checked={years25}
                     onChange={(e) => setYears25(e.target.checked)}
                     />
-                    <label htmlFor="range4"> 25-27+ y.o.</label>
+                    <label htmlFor={styles.range4}> 25-27+ y.o.</label>
                 </div>
                 </div>
 
                 {/* Looking for field */}
-                <div className="looking_for">
-                <div id="looking_f">
+                <div className={styles.looking_for}>
+                <div id={styles.looking_f}>
                     <input
                     type="checkbox"
-                    id="search_friend"
+                    id={styles.search_friend}
                     checked={lookingForFriend}
                     onChange={(e) => setLookingForFriend(e.target.checked)}
                     />
-                    <label htmlFor="search_friend"> I need a good friend </label>
+                    <label htmlFor={styles.search_friend}> I need a good friend </label>
                     <i className="fa-regular fa-handshake"></i>
                 </div>
 
-                <div id="looking_l">
+                <div id={styles.looking_l}>
                     <input
                     type="checkbox"
-                    id="search_lover"
+                    id={styles.search_lover}
                     checked={lookingForLover}
                     onChange={(e) => setLookingForLover(e.target.checked)}
                     />
-                    <label htmlFor="search_lover"> I need a passionate lover </label>
+                    <label htmlFor={styles.search_lover}> I need a passionate lover </label>
                     <i className="fa-solid fa-hand-holding-heart"></i>
                 </div>
 
-                <div id="looking_c">
+                <div id={styles.looking_c}>
                     <input
                     type="checkbox"
-                    id="search_chat"
+                    id={styles.search_chat}
                     checked={lookingForChat}
                     onChange={(e) => setLookingForChat(e.target.checked)}
                     />
-                    <label htmlFor="search_chat"> I just want to chat with someone </label>
+                    <label htmlFor={styles.search_chat}> I just want to chat with someone </label>
                     <i className="fa-solid fa-hand-peace"></i>
                 </div>
                 </div>
@@ -356,7 +356,7 @@ function TellAbout() {
             </section>
           {/* Expectation */}
           <textarea
-            id="expectation"
+            id={styles.expectation}
             rows="2"
             cols="10"
             value={expectation}
@@ -365,17 +365,17 @@ function TellAbout() {
           ></textarea>
 
           {/* Agree to share */}
-          <div className="agree_field">
-            <div id="agree_share">
+          <div className={styles.agree_field}>
+            <div id={styles.agree_share}>
               <input
                 type="checkbox"
-                id="agree"
+                id={styles.agree}
                 checked={agreeToShare}
                 onChange={(e) => setAgreeToShare(e.target.checked)}
               />
-              <label htmlFor="agree"> I agree to share my info </label>
+              <label htmlFor={styles.agree}> I agree to share my info </label>
             </div>
-            <button id="button_save" type="submit">Save</button>
+            <button id={styles.button_save} type="submit">Save</button>
           </div>
 
         </form>
