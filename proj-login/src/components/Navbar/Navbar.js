@@ -14,7 +14,7 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
         const selectedOption = event.target.value;
         switch (selectedOption) {
           case "viewProfile":
-            history.push("/tell_about"); // Navigate to the user's profile page
+            history.push("/tell_about");
             break;
           case "logout":
             handleLogout();

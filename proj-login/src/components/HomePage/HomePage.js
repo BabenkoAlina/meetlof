@@ -51,7 +51,7 @@ return (
                     </Link>
                 </div>
                 <div>
-                    <h2 className={styles.title}>Explore useful tips!</h2>
+                    <h2 className={styles.title}>Explore useful tips down below!</h2>
                     <div className={styles["explore-topic"]}>
                         <img src="/icebreakers.jpeg" alt="Ice breakers" />
                         <div className={styles["explore-table"]}>

@@ -67,7 +67,7 @@
 /* Buttons */
 
 .nav_profile {
-  margin-top: 100px;
+  margin-top: 60px;
   text-align: right;
   margin-right: 100px;
 }
@@ -113,6 +113,7 @@
   border: 2.5px solid #a4cfbc;
   border-radius: 32px;
   padding: 20px;
+  background-color: rgb(255, 255, 255, 0.5);
 
 }
 
@@ -148,25 +149,37 @@
   margin-top: 50px;
   border: 2.5px solid #a4cfbc;
   border-radius: 30px;
-  width: 100px;
+  width: 150px;
   height: 50px;
   transition: background-color 0.3s;
+  font-size: 18px;
+  opacity: 0.8;
 }
 
 #button_stop:hover {
   border: 2px solid black;
   background-color: black;
   color: white;
+  opacity: 0.7;
 }
 #content_search h2{
   margin-top: 20px;
-  margin-bottom: 30px;
-  color:#4ab66e;
-  font-size: 36px;
+  margin-bottom: 40px;
+  color: #000;
+  font-size: 38px;
   font-family: 'Lexend', sans-serif;
-  overflow-x: hidden;  overflow-y: auto;
+
 }
 
+#content_search p{
+  /* margin-top: 20px;
+  margin-bottom: 30px; */
+  color: #000;
+  font-size: 24px;
+  font-family: 'Lexend', sans-serif;
+  margin-left: 20px;
+  margin-right: 20px;
+}
 .quote {
   margin-top: 40px;
   text-align: center;

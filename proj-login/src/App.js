@@ -22,6 +22,7 @@ import History from "./components/History/History";
 const App = () => {
     const [loggedIn, setLoggedIn] = useState(false);
     const [userEmail, setUserEmail] = useState("");
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -32,6 +33,7 @@ const App = () => {
                 setUserEmail("");
                 setLoggedIn(false);
             }
+            setLoading(false); // Set loading to false after auth state is determined
         });
 
         return () => {
@@ -45,9 +47,15 @@ const App = () => {
     };
 
     const handleLogout = () => {
-        setUserEmail("");
-        setLoggedIn(false);
+        auth.signOut().then(() => {
+            setUserEmail("");
+            setLoggedIn(false);
+        });
     };
+
+    if (loading) {
+        return <div>Loading...</div>; // Show a loading indicator while checking auth status
+    }
 
     return (
         <Router>
@@ -61,26 +69,58 @@ const App = () => {
                             <LoginPage onLogin={handleLogin} />
                         )}
                     </Route>
-                    <Route path="/register" component={RegisterPage} />
+                    <Route path="/register">
+                        {loggedIn ? (
+                            <Redirect to="/home" />
+                        ) : (
+                            <RegisterPage />
+                        )}
+                    </Route>
                     <Route path="/home">
                         {loggedIn ? (
                             <div>
-                                <Navbar
-                                    isAuthenticated={loggedIn}
-                                    onLogout={handleLogout}
-                                />
+                                <Navbar isAuthenticated={loggedIn} onLogout={handleLogout} />
                                 <HomePage userEmail={userEmail} />
                             </div>
                         ) : (
-                            <Redirect to="/" />
+                            <Redirect to="/login" />
                         )}
                     </Route>
-                    <Route path="/tell_about" component={TellAbout} />
-
-                    <Route path="/match_found" component={MatchFound} />
-                    <Route path="/contacts" component={Contact} />
-                    <Route path="/search" component={Search} />
-                    <Route path="/history" component={History} />
+                    <Route path="/tell_about">
+                        {loggedIn ? (
+                            <TellAbout />
+                        ) : (
+                            <Redirect to="/login" />
+                        )}
+                    </Route>
+                    <Route path="/match_found">
+                        {loggedIn ? (
+                            <MatchFound />
+                        ) : (
+                            <Redirect to="/login" />
+                        )}
+                    </Route>
+                    <Route path="/contacts">
+                        {loggedIn ? (
+                            <Contact />
+                        ) : (
+                            <Redirect to="/login" />
+                        )}
+                    </Route>
+                    <Route path="/search">
+                        {loggedIn ? (
+                            <Search />
+                        ) : (
+                            <Redirect to="/login" />
+                        )}
+                    </Route>
+                    <Route path="/history">
+                        {loggedIn ? (
+                            <History />
+                        ) : (
+                            <Redirect to="/login" />
+                        )}
+                    </Route>
                     <Route render={() => <Redirect to="/" />} />
                 </Switch>
             </div>
