@@ -1,6 +1,5 @@
 import React from 'react';
 import '../static/search.css'; // Import CSS file
-import './Search.css'; // You can create a separate CSS file for this component if needed
 
 const Search = () => {
   // Your logic for handleProfileChange, handleStopSearch, etc.

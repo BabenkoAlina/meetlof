@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import '../static/tell_about.css';
+import styles from '../static/tell_about.css'; // Import the CSS module
+
+import { initializeApp} from "firebase/app"
+import { getFirestore} from "firebase/firestore"
+
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 
@@ -105,6 +109,7 @@ function TellAbout() {
 
   return (
     <main>
+      <Navbar isAuthenticated={false}/> {/* Pass isAuthenticated as false for login page */}
       <div id="content_tell_about">
         <p id="tell_about_title"> Tell about yourself! </p>
 
@@ -369,4 +374,8 @@ function TellAbout() {
   );
 }
 
+const app = initializeApp(firebaseConfig);
+// export const auth = getAuth(app);
+
+export const db = getFirestore(app);
 export default TellAbout;
