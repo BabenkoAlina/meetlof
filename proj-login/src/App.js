@@ -54,8 +54,8 @@ const App = () => {
                         )}
                     </Route>
                     <Route path="/register" component={RegisterPage} />
-                    <Route path="/home">
-                        {loggedIn ? (
+                    <Route path="/home" component={HomePage}/>
+                        {/* {loggedIn ? (
                             <div>
                                 <Navbar
                                     isAuthenticated={loggedIn}
@@ -66,7 +66,7 @@ const App = () => {
                         ) : (
                             <Redirect to="/" />
                         )}
-                    </Route>
+                    </Route> */}
                     <Route path="/tell_about" component={TellAbout}/>
                     
                     <Route path="/match_found" component={MatchFound}/>
