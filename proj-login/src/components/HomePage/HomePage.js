@@ -28,14 +28,6 @@ function HomePage({curUserEmail, onLogout}) {
 return (
     
     <div className={styles.main}>
-    <div className={styles.nav_profile}>
-          
-                <select id={styles.profile_dropdown} onChange={navigateProfile} defaultValue="">
-                    <option value="" disabled>Profile</option>
-                    <option value="viewProfile">View your profile</option>
-                    <option value="logout">Log out</option>
-                </select>
-        </div>
         <div className={styles.parent}>
             <div className={styles.page}>
                 <div>
