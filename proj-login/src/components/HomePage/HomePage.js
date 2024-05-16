@@ -6,22 +6,23 @@ import styles from "../GreetingPage/GreetingPage.module.css";
 import { useHistory } from 'react-router-dom';
 
 function HomePage({curUserEmail, onLogout}) {
-
     const [loggedIn, setLoggedIn] = useState(false);
     const [userEmail, setUserEmail] = useState("");
-        const history = useHistory();
-        const handleProfileChange = (event) => {
-          console.log(event.target.value);
-        };
-        const handleLogout = () => {
+    const history = useHistory();
+    const navigateProfile = (event) => {
+        const selectedOption = event.target.value;
+        switch (selectedOption) {
+          case "viewProfile":
+            history.push("/tell_about");
+            break;
+          case "logout":
             setUserEmail("");
-            setLoggedIn(false);
             history.push("/");
-
+            break;
+          default:
+            break;
         }
-        const handleAboutPage = () => {
-          history.push("/tell_about")
-        }
+      };
     
 
 return (
@@ -29,11 +30,11 @@ return (
     <div className={styles.main}>
     <div className={styles.nav_profile}>
           
-          <select id={styles.profile_dropdown} defaultValue="" onChange={handleProfileChange}>
-            <option value="" disabled>Profile</option>
-            <option value="viewProfile" onClick={handleAboutPage}>View your profile</option>
-            <option value="logout" onClick={handleLogout}>Log out</option>
-          </select>
+                <select id={styles.profile_dropdown} onChange={navigateProfile} defaultValue="">
+                    <option value="" disabled>Profile</option>
+                    <option value="viewProfile">View your profile</option>
+                    <option value="logout">Log out</option>
+                </select>
         </div>
         <div className={styles.parent}>
             <div className={styles.page}>
