@@ -3,9 +3,9 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {auth} from "../../firebaseConfig";
 import {signInWithEmailAndPassword} from "firebase/auth";
-import Navbar from '../Navbar/Navbar'; // Import the Navbar component
+import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import styles from './LoginPage.module.css'; // Import the CSS module
+import styles from './LoginPage.module.css';
 
 const LoginPage = ({onLogin}) => {
     const [email, setEmail] = useState('');
@@ -21,7 +21,6 @@ const LoginPage = ({onLogin}) => {
             const errorCode = error.code;
             let errorMessage = error.message;
 
-            // Customize error message based on error code
             switch (errorCode) {
                 case 'auth/invalid-email':
                     errorMessage = 'Invalid email address';

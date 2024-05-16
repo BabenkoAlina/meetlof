@@ -41,16 +41,16 @@ body {
     border: 1px solid #ccc;
     border-radius: 32px;
     padding: 20px;
-    
+    /* margin-bottom: 30px; */
     margin: 40px auto;
     text-align: center;
-    width: 60vw;
+    width: 55vw;
     box-shadow: 0px 9px 32px 0px #595CDB0D;
-    background-color: #f8f8f8;
+    background-color: rgba(248, 248, 248, 0.5);
 }
 .match_card h2{
     margin-top: 20px;
-    color:#4ab66e;
+    color:#000000;
     font-size: 36px;
     font-family: 'Lexend', sans-serif;
   }
@@ -60,17 +60,20 @@ body {
 }
 .match_card p {
     font-size: 18px;
+    color: black;
 }
 .match_card button {
-    padding: 10px 30px;
-    margin: 30px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 18px;
+  font-family: "Montserrat";
+  border-radius: 0 50px 50px 75px;
+  border: 1px solid black;
+  background-color: transparent;
+  font-weight: 500;
     transition: transform 0.2s;
   }
-  
+
   .match_card button:hover {
     transform: scale(1.05);
   }
@@ -79,9 +82,19 @@ body {
     transform: scale(0.95);
   }
   .match_card .search {
-    background-color: #4ab66e;
+
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 18px;
+    font-family: "Montserrat";
+    border-radius: 0 50px 50px 75px;
+    border: 1px solid black;
+    background-color: transparent;
+    font-weight: 500;
+    /* background-color: #4ab66e;
     color: white;
     border: 2px solid;
     border-radius: 32px;
-    border-color: #4ab66e;
+
+    border-color: #4ab66e; */
   }

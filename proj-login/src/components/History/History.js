@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { collection, doc, getDocs, getDoc } from "firebase/firestore";
+import {
+    collection,
+    doc,
+    getDocs,
+    getDoc,
+    updateDoc,
+    arrayUnion,
+} from "firebase/firestore";
 import { auth, db } from "../../firebaseConfig";
 import Navbar from "../Navbar/Navbar";
-import styles from "./History.css";
+import "./History.css"; // Correctly import the CSS file
 
 const HistoryPage = () => {
     const [likedArray, setLikedArray] = useState([]);
     const [requestsArray, setRequestsArray] = useState([]);
     const [usersInfo, setUsersInfo] = useState({});
+    const [actions, setActions] = useState({});
     const currentUser = auth.currentUser;
 
     useEffect(() => {
@@ -39,8 +47,38 @@ const HistoryPage = () => {
         return () => clearInterval(intervalId);
     }, [currentUser]);
 
+    const handleActionClick = async (userId, action) => {
+        const currentUserHistoryDocRef = doc(
+            db,
+            "usersHistory",
+            currentUser.uid
+        );
+
+        if (action === "like") {
+            await updateDoc(currentUserHistoryDocRef, {
+                [`history.${userId}`]: new Date(),
+                likedArray: arrayUnion(userId),
+            });
+
+            const likedUserDocRef = doc(db, "usersHistory", userId);
+            await updateDoc(likedUserDocRef, {
+                requestsArray: arrayUnion(currentUser.uid),
+            });
+        } else if (action === "reject") {
+            await updateDoc(currentUserHistoryDocRef, {
+                rejectedList: arrayUnion(userId),
+            });
+        }
+
+        setActions((prev) => ({
+            ...prev,
+            [userId]: action,
+        }));
+    };
+
     const renderUserInfo = (userId, action) => {
         const user = usersInfo[userId];
+        const userAction = actions[userId];
         if (!user) return null;
 
         return (
@@ -48,16 +86,30 @@ const HistoryPage = () => {
                 <td>{user.name}</td>
                 <td>{user.expectation}</td>
                 <td>
-                    {action === "like" && user.likedByCurrentUser
+                    {userAction === "like"
                         ? user.telegram
-                        : action === "reject" && !user.likedByCurrentUser
-                        ? "rejected by LoF"
-                        : action === "request" && user.likedByCurrentUser
-                        ? user.telegram
-                        : action === "request" && !user.likedByCurrentUser
+                        : userAction === "reject"
                         ? "rejected by me"
+                        : action === "like"
+                        ? user.likedByCurrentUser
+                            ? user.telegram
+                            : "N/A"
                         : "N/A"}
                 </td>
+                {action === "request" && !userAction && (
+                    <td>
+                        <button
+                            className="like"
+                            onClick={() => handleActionClick(userId, "like")}>
+                            Like
+                        </button>
+                        <button
+                            className="reject"
+                            onClick={() => handleActionClick(userId, "reject")}>
+                            Reject
+                        </button>
+                    </td>
+                )}
             </tr>
         );
     };
@@ -65,11 +117,11 @@ const HistoryPage = () => {
     return (
         <div>
             <Navbar isAuthenticated={true} />
-            <div className={styles.historyContainer}>
+            <div className="historyContainer">
                 <h2>History Page</h2>
-                <div className={styles.tableContainer}>
+                <div className="tableContainer">
                     <h3>Requests I Sent</h3>
-                    <table className={styles.historyTable}>
+                    <table className="historyTable">
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -84,14 +136,15 @@ const HistoryPage = () => {
                         </tbody>
                     </table>
                 </div>
-                <div className={styles.tableContainer}>
+                <div className="tableContainer">
                     <h3>Requests I Got</h3>
-                    <table className={styles.historyTable}>
+                    <table className="historyTable">
                         <thead>
                             <tr>
                                 <th>Name</th>
                                 <th>Expectation</th>
                                 <th>Telegram</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
