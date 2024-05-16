@@ -34,7 +34,7 @@ function SearchPage() {
       <div id={styles.content_search}>
         <h2>We are looking for a match</h2>
         <div className={styles.loader}></div>
-        <button id={styles.button_stop} onClick={() => history.push('/')}>
+        <button id={styles.button_stop} onClick={() => history.push('/home')}>
           Stop search
         </button>
       </div>
