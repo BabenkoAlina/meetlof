@@ -11,31 +11,36 @@ import { useHistory } from 'react-router-dom';
 function Contact() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState("");
-    const history = useHistory();
-    const handleProfileChange = (event) => {
-      console.log(event.target.value);
-    };
+  const history = useHistory();
+ 
+
+  const navigateProfile = (event) => {
+    const selectedOption = event.target.value;
+    switch (selectedOption) {
+      case "viewProfile":
+        history.push("/tell_about");
+        break;
+      case "logout":
+        setUserEmail("");
+        history.push("/");
+        break;
+      default:
+        break;
+    }
+  };
+
     const handleHomePage = () => {
         history.push("/");
-    }
-    const handleAboutPage = () => {
-      history.push("/tell_about")
-    }
-    const handleLogout = () => {
-      setUserEmail("");
-      setLoggedIn(false);
-      history.push("/");
-
-  }
+    };
     return (
       <div>
       {/* <Navbar isAuthenticated={true}/> */}
         <div className={styles.nav_profile}>
-          <select id={styles.profile_dropdown} defaultValue="" onChange={handleProfileChange}>
-            <option value="" disabled>Profile</option>
-            <option value="viewProfile" onClick={handleAboutPage}>View your profile</option>
-            <option value="logout" onClick={handleLogout}>Log out</option>
-          </select>
+        <select id={styles.profile_dropdown} onChange={navigateProfile} defaultValue="">
+                    <option value="" disabled>Profile</option>
+                    <option value="viewProfile">View your profile</option>
+                    <option value="logout">Log out</option>
+                </select>
         </div>
   
         <div className={styles.match_card}>
