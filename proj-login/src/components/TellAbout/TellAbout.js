@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../TellAbout/TellAbout.module.css';
-import { initializeApp} from "firebase/app"
-import { getFirestore} from "firebase/firestore"
-import {auth} from "../../firebaseConfig";
+import {getDocs, collection, addDoc} from 'firebase/firestore';
 
 
 import { db } from "../../firebaseConfig";
@@ -11,8 +9,11 @@ import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 
 function TellAbout() {
+
   // current userid 
   const [userId, setUserId] = useState('');
+
+  
 
   const [name, setName] = useState('');
   const [telegram, setTelegram] = useState('');
@@ -53,40 +54,37 @@ function TellAbout() {
     setUploadedPhoto(URL.createObjectURL(file));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // const handleSubmit = async (e) => {
+  //   onSubmitInfo({name, telegram, isFemale, isMale, uploadedPhoto, cinemaddict, music, bookworm, politics, sportsman, procrastinate, promenade, lookingForFemale, lookingForMale, lookingForFriend, lookingForLover, lookingForChat, years17, years20, years23, years25, expectation, agreeToShare});
+  // };
 
-    const user = {
-      name,
-      telegram,
-      isFemale,
-      isMale,
-      uploadedPhoto,
-      cinemaddict,
-      music,
-      bookworm,
-      politics,
-      sportsman,
-      procrastinate,
-      promenade,
-      lookingForFemale,
-      lookingForMale,
-      lookingForFriend,
-      lookingForLover,
-      lookingForChat,
-      years17,
-      years20,
-      years23,
-      years25,
-      expectation,
-      agreeToShare,
+  const [infos , setInfos] = useState([]);
+
+  const infosCollection = collection(db, "users");
+
+
+  const onSubmitInfo = async (user) => {
+  }
+  //   try {
+  //     await addDoc(infosCollection, {name: name, telegram: telegram, isFemale: isFemale, isMale: isMale, uploadedPhoto: uploadedPhoto, cinemaddict: cinemaddict, music: music, bookworm: bookworm, politics: politics, sportsman: sportsman, procrastinate: procrastinate, promenade: promenade, lookingForFemale: lookingForFemale, lookingForMale: lookingForMale, lookingForFriend: lookingForFriend, lookingForLover: lookingForLover, lookingForChat: lookingForChat, years17: years17, years20: years20, years23: years23, years25: years25, expectation: expectation, agreeToShare: agreeToShare});
+  //     } catch (e) {
+  //     console.error("Error adding document: ", e);
+  //   }
+  // };
+
+
+  useEffect(() => {
+    const getInfo = async () => {
+      try {
+        const data = await getDocs(infosCollection);
+        const filteredData = data.docs.map(doc => doc.data());
+        console.log(filteredData);
+      } catch (e) {
+        console.error("Error getting document: ", e);
+      } 
     };
-  };
-
-  const handleSelectChange = (e) => {
-    e.preventDefault();
-  };
-
+    getInfo();
+  }, []);
 
 
 
@@ -95,15 +93,7 @@ function TellAbout() {
       {/* <Navbar isAuthenticated={false}/> Pass isAuthenticated as false for login page */}
       <div id="content_tell_about">
         <p id="tell_about_title"> Tell about yourself! </p>
-        {/* <div className={styles.nav_profile}>
-          <select id={styles.profile_dropdown} onChange={handleSelectChange} value={selectedOption}>
-            <option value="" disabled selected>Profile</option>
-            <option value="/view_profile">View your profile</option>
-            <option value="/logout">Log out</option>
-          </select>
-          <button onClick={navigateProfile}>Go</button>
-        </div> */}
-        <form onSubmit={handleSubmit} id={styles.form_tell_about}>
+        <form onSubmit={onSubmitInfo} id={styles.form_tell_about}>
 
           {/* User */}
           <section className={styles.user_info}>
@@ -182,7 +172,7 @@ function TellAbout() {
                   <label htmlFor={styles.hobbies_film}> I am cinemaddict </label>
                   <i className="fa-solid fa-film"></i>
               </div>
-              <div class={styles.hobbie} id={styles.hobbie2}>
+              <div className={styles.hobbie} id={styles.hobbie2}>
                   <input
                       type="checkbox"
                       id={styles.hobbies_music}
@@ -192,7 +182,7 @@ function TellAbout() {
                   <label htmlFor={styles.hobbies_music}> I am music lover </label>
                   <i className="fa-solid fa-music"></i>
               </div>
-              <div class={styles.hobbie} id={styles.hobbie3}>
+              <div className={styles.hobbie} id={styles.hobbie3}>
                   <input
                       type="checkbox"
                       id={styles.hobbies_read}
@@ -202,7 +192,7 @@ function TellAbout() {
                   <label htmlFor={styles.hobbies_read}> I am bookworm </label>
                   <i className="fa-solid fa-book"></i>
               </div>
-              <div class={styles.hobbie} id={styles.hobbie7}>
+              <div className={styles.hobbie} id={styles.hobbie7}>
                   <input
                       type="checkbox"
                       id={styles.hobbies_politics}
@@ -212,7 +202,7 @@ function TellAbout() {
                   <label htmlFor={styles.hobbies_politics}> I am interested in politics </label>
                   <i className="fa-solid fa-globe"></i>
               </div>
-              <div class={styles.hobbie} id={styles.hobbie4}>
+              <div className={styles.hobbie} id={styles.hobbie4}>
                   <input
                       type="checkbox"
                       id={styles.hobbies_sport}
@@ -222,7 +212,7 @@ function TellAbout() {
                   <label htmlFor={styles.hobbies_sport}> I am a sportsman/woman </label>
                   <i className="fa-solid fa-dumbbell"></i>
               </div>
-              <div class={styles.hobbie} id={styles.hobbie5}>
+              <div className={styles.hobbie} id={styles.hobbie5}>
                   <input
                       type="checkbox"
                       id={styles.hobbies_procrastinate}
@@ -232,7 +222,7 @@ function TellAbout() {
                   <label htmlFor={styles.hobbies_procrastinate}> I like to procrastinate </label>
                   <i className="fa-solid fa-bed"></i>
               </div>
-              <div class={styles.hobbie} id={styles.hobbie6}>
+              <div className={styles.hobbie} id={styles.hobbie6}>
                   <input
                       type="checkbox"
                       id={styles.hobbies_walk}
@@ -388,9 +378,5 @@ function TellAbout() {
   );
 }
 
-// const app = initializeApp(firebaseConfig);
-// export const auth = getAuth(app);
-
-// export const db = getFirestore(app);
 
 export default TellAbout;
