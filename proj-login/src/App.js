@@ -68,6 +68,7 @@ const App = () => {
                         )}
                     </Route>
                     <Route path="/tell_about" component={TellAbout}/>
+                    
                     <Route path="/match_found" component={MatchFound}/>
                     <Route path="/contacts" component={Contact}/>
                     <Route render={() => <Redirect to="/" />} />

@@ -16,18 +16,22 @@ function Contact() {
     const handleHomePage = () => {
         history.push("/");
     }
+    const handleAboutPage = () => {
+      history.push("/tell_about")
+    }
     return (
       <div>
+      {/* <Navbar isAuthenticated={true}/> */}
         <div className={styles.nav_profile}>
           <select id={styles.profile_dropdown} defaultValue="" onChange={handleProfileChange}>
             <option value="" disabled>Profile</option>
-            <option value="viewProfile">View your profile</option>
+            <option value="viewProfile" onClick={handleAboutPage}>View your profile</option>
             <option value="logout">Log out</option>
           </select>
         </div>
   
         <div className={styles.match_card}>
-          <h2>Congratulations! You have a match!</h2>
+          <h2>CONGRATULATIONS! YOU HAVE A MATCH!</h2>
           <h3>Your match:</h3>
           <p>Name: some text</p>
           <p>Contact: some text</p>

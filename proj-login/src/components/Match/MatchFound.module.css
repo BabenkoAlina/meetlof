@@ -11,6 +11,8 @@ body {
     text-align: center;
     width: 70vw;
     box-shadow: 0px 9px 32px 0px #595CDB0D;
+    /* color:#ccc; */
+    background-color: #f8f8f8;
   }
 
   .match_card h2{
