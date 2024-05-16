@@ -12,52 +12,59 @@ import TellAbout from './components/TellAbout/TellAbout';
 import MatchFound from './components/Match/MatchFound';
 import Contact from './components/Contacts/Contacts';
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [userEmail, setUserEmail] = useState('');
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [userEmail, setUserEmail] = useState("");
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUserEmail(user.email);
-        setLoggedIn(true);
-      } else {
-        setUserEmail('');
-        setLoggedIn(false);
-      }
-    });
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setUserEmail(user.email);
+                setLoggedIn(true);
+            } else {
+                setUserEmail("");
+                setLoggedIn(false);
+            }
+        });
 
         return () => {
             unsubscribe();
         };
     }, []);
 
-  const handleLogin = (email) => {
-    setUserEmail(email);
-    setLoggedIn(true);
-  };
+    const handleLogin = (email) => {
+        setUserEmail(email);
+        setLoggedIn(true);
+    };
 
-  const handleLogout = () => {
-    setUserEmail('');
-    setLoggedIn(false);
-  };
+    const handleLogout = () => {
+        setUserEmail("");
+        setLoggedIn(false);
+    };
 
     return (
         <Router>
             <div>
                 <Switch>
-                    <Route exact path="/" component={GreetingPage}/>
+                    <Route exact path="/" component={GreetingPage} />
                     <Route path="/login">
-                        {loggedIn ? <Redirect to="/home"/> : <LoginPage onLogin={handleLogin}/>}
+                        {loggedIn ? (
+                            <Redirect to="/home" />
+                        ) : (
+                            <LoginPage onLogin={handleLogin} />
+                        )}
                     </Route>
-                    <Route path="/register" component={RegisterPage}/>
+                    <Route path="/register" component={RegisterPage} />
                     <Route path="/home">
                         {loggedIn ? (
-                        <div>
-                          <Navbar isAuthenticated={loggedIn} onLogout={handleLogout} />
-                          <HomePage userEmail={userEmail} />
-                        </div>
+                            <div>
+                                <Navbar
+                                    isAuthenticated={loggedIn}
+                                    onLogout={handleLogout}
+                                />
+                                <HomePage userEmail={userEmail} />
+                            </div>
                         ) : (
-                          <Redirect to="/" />
+                            <Redirect to="/" />
                         )}
                     </Route>
                     <Route path="/tell_about" component={TellAbout}/>
