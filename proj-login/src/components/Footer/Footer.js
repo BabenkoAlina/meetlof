@@ -12,7 +12,7 @@ const Footer = () => {
                 <p>Social networks</p>
                 <div className={`${styles['d-flex']} ${styles['flex-column']}`}>
                     <a href="https://www.instagram.com/meetlof?igsh=MXBxdDU1NzB6M3VtZQ==" target="_blank" className={styles['mr-2']}>
-                        <img src="/instagram.png" alt="Instagram" />
+                        <img className={styles.img} src="/instagram.png" alt="Instagram" />
                     </a>
                 </div>
             </div>
