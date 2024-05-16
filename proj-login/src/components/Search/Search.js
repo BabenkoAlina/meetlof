@@ -104,14 +104,16 @@ function SearchPage() {
 
             if (otherUsers.length > 0) {
                 const bestMatchId = otherUsers[0].userId;
+                const likedArray = otherUsers.map((user) => user.userId);
 
                 await updateDoc(doc(db, "usersHistory", currentUser.uid), {
-                    currentMatchID: bestMatchId,
-
+                    likedArray: likedArray,
                 });
 
-                // Navigate to match_found page
-                history.push("/match_found");
+                // Add a delay before navigating to the match_found page
+                setTimeout(() => {
+                    history.push("/match_found");
+                }, 1000); // 1 second delay
             }
         };
 
@@ -148,15 +150,17 @@ function SearchPage() {
                 </select>
             </div>
 
-      <div id={styles.content_search}>
-        <h2>We are looking for a match</h2>
-        <div className={styles.loader}></div>
-        <button id={styles.button_stop} onClick={() => history.push('/home')}>
-          Stop search
-        </button>
-      </div>
-    </>
-  );
+            <div id={styles.content_search}>
+                <h2>We are looking for a match</h2>
+                <div className={styles.loader}></div>
+                <button
+                    id={styles.button_stop}
+                    onClick={() => history.push("/home")}>
+                    Stop search
+                </button>
+            </div>
+        </>
+    );
 }
 
 export default SearchPage;
