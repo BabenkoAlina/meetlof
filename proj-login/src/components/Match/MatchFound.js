@@ -70,26 +70,36 @@ function MatchFound() {
 
     const fetchAndSortUsers = async () => {
         if (!currentUser) return;
+
+        console.log("Fetching and sorting users...");
         const usersInfoCollection = collection(db, "usersInfo");
         const usersHistoryDocRef = doc(db, "usersHistory", currentUser.uid);
         const usersSnapshot = await getDocs(usersInfoCollection);
         const historyDoc = await getDoc(usersHistoryDocRef);
 
         const currentUserInfo = usersSnapshot.docs
-            .find((doc) => doc.id === currentUser.uid)
+            .find((doc) => doc.data().userId === currentUser.uid)
             ?.data();
+        if (!currentUserInfo) {
+            console.log("Current user info not found");
+            return;
+        }
+
         const rejectedList = historyDoc.data()?.rejectedList || [];
 
         let userMatches = [];
 
         usersSnapshot.forEach((doc) => {
-            if (doc.id !== currentUser.uid && !rejectedList.includes(doc.id)) {
+            if (
+                doc.data().userId !== currentUser.uid &&
+                !rejectedList.includes(doc.data().userId)
+            ) {
                 const matchPercentage = calculateMatchPercentage(
                     currentUserInfo,
                     doc.data()
                 );
                 userMatches.push({
-                    userId: doc.id,
+                    userId: doc.data().userId,
                     matchPercentage,
                     data: doc.data(),
                 });
@@ -98,8 +108,11 @@ function MatchFound() {
 
         userMatches.sort((a, b) => b.matchPercentage - a.matchPercentage);
 
+        console.log("User matches found:", userMatches);
         if (userMatches.length > 0) {
             setMatchedUsers(userMatches);
+        } else {
+            console.log("No matches found.");
         }
     };
 
