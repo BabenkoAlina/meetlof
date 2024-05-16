@@ -3,10 +3,12 @@ import { useHistory } from "react-router-dom";
 import { collection, getDocs, doc, updateDoc } from "firebase/firestore";
 import { auth, db } from "../../firebaseConfig";
 import styles from "./Search.module.css";
+import axios from 'axios';
 
 function SearchPage() {
     const [userEmail, setUserEmail] = useState("");
     const [currentUser, setCurrentUser] = useState(null);
+    const [quote, setQuote] = useState('');
     const history = useHistory();
 
     useEffect(() => {
@@ -19,6 +21,18 @@ function SearchPage() {
         };
 
         fetchUser();
+    }, []);
+
+    useEffect(() => {
+        const fetchQuote = async () => {
+            try {
+                const response = await axios.get('https://api.quotable.io/random');
+                setQuote(response.data.content + " - " + response.data.author);
+            } catch (error) {
+                console.error('Error fetching quote: ', error);
+            }
+        };
+        fetchQuote();
     }, []);
 
     useEffect(() => {
@@ -150,17 +164,20 @@ function SearchPage() {
                 </select>
             </div>
 
-            <div id={styles.content_search}>
-                <h2>We are looking for a match</h2>
-                <div className={styles.loader}></div>
-                <button
-                    id={styles.button_stop}
-                    onClick={() => history.push("/home")}>
-                    Stop search
-                </button>
-            </div>
-        </>
-    );
+      <div id={styles.content_search}>
+        <h2>We are looking for a match</h2>
+        <div className={styles.loader}></div>
+        <button
+            id={styles.button_stop}
+            onClick={() => history.push("/home")}>
+            Stop search
+        </button>
+        <div>
+            <p className={styles.quote}>{quote}</p>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default SearchPage;
