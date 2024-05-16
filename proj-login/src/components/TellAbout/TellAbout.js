@@ -158,7 +158,7 @@ function TellAbout() {
     return (
         <main>
             <div className={styles.content_tell_about}>
-                <h2 id="tell_about_title"> Tell about yourself! </h2>
+                <h2 id={styles.tell_about_title}> Tell about yourself! </h2>
                 <form onSubmit={handleSubmit} id={styles.form_tell_about}>
                     {/* User */}
                     <section className={styles.user_info}>
@@ -373,7 +373,7 @@ function TellAbout() {
                                 </div>
                             </div>
 
-                            <div className={styles.range_field}>
+                            {/* <div className={styles.range_field}>
                                 <div id={styles.range_1}>
                                     <input
                                         type="checkbox"
@@ -426,7 +426,7 @@ function TellAbout() {
                                         25-27+ y.o.
                                     </label>
                                 </div>
-                            </div>
+                            </div> */}
 
                             <div className={styles.looking_for}>
                                 <div id={styles.looking_f}>
@@ -506,7 +506,7 @@ function TellAbout() {
                         </button>
                     </div>
                 </form>
-                <button id={styles.button_save} type="button" onClick={handleGoBack}>
+                <button id={styles.button_back} type="button" onClick={handleGoBack}>
                     Back
                 </button>
             </div>
