@@ -7,11 +7,14 @@ import {
     deleteDoc,
     doc,
 } from "firebase/firestore";
+import { useHistory } from 'react-router-dom';
 import { auth, db } from "../../firebaseConfig";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 
 function TellAbout() {
+    const history = useHistory();
+
     const [userId, setUserId] = useState("");
     const [name, setName] = useState("");
     const [telegram, setTelegram] = useState("");
@@ -62,6 +65,10 @@ function TellAbout() {
         }
     };
 
+    const handleGoBack = () => {
+        history.goBack();
+      };
+
     const handleSubmit = async (e) => {
         e.preventDefault(); // Prevent default form submission
 
@@ -74,7 +81,6 @@ function TellAbout() {
             return;
         }
 
-        // Try to delete doc with this id
         console.log("Trying to delete doc with id: ", userId);
         try {
             const usersCollection = collection(db, "usersInfo");
@@ -116,12 +122,13 @@ function TellAbout() {
         };
         await onSubmitInfo(userData);
         alert("Your information has been submitted!");
+
     };
 
     return (
         <main>
-            <div id="content_tell_about">
-                <p id="tell_about_title"> Tell about yourself! </p>
+            <div className={styles.content_tell_about}>
+                <h2 id="tell_about_title"> Tell about yourself! </h2>
                 <form onSubmit={handleSubmit} id={styles.form_tell_about}>
                     {/* User */}
                     <section className={styles.user_info}>
@@ -469,6 +476,9 @@ function TellAbout() {
                         </button>
                     </div>
                 </form>
+                <button id={styles.button_save} type="button" onClick={handleGoBack}>
+                    Back
+                </button>
             </div>
         </main>
     );
