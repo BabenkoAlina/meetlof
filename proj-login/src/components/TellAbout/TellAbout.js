@@ -112,7 +112,14 @@ function TellAbout() {
       <Navbar isAuthenticated={false}/> {/* Pass isAuthenticated as false for login page */}
       <div id="content_tell_about">
         <p id="tell_about_title"> Tell about yourself! </p>
-
+        <div className="nav_profile">
+          <select id="profile_dropdown" onChange={handleSelectChange} value={selectedOption}>
+            <option value="" disabled selected>Profile</option>
+            <option value="/view_profile">View your profile</option>
+            <option value="/logout">Log out</option>
+          </select>
+          <button onClick={navigateProfile}>Go</button>
+        </div>
         <form onSubmit={handleSubmit} id="form_tell_about">
 
           {/* User */}
