@@ -31,6 +31,8 @@ const RegisterPage = ({ onRegister }) => {
                 history: {},
                 rejectedList: [],
                 likedArray: [],
+                bothLikedArray: [],
+                requestsArray: [],
             });
 
             alert("Registered successfully!");

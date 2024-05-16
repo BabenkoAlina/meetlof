@@ -8,3 +8,36 @@ nav {
     border-radius: 50%;
 
 }
+.nav_profile {
+    margin-top: 20px;
+    text-align: right;
+    margin-right: 100px;
+}
+
+#profile_dropdown {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #a4cfbc;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    color: #4b791c;
+    cursor: pointer;
+}
+
+#profile_dropdown:hover {
+    background-color: #e0e0e0;
+}
+
+#profile_dropdown option {
+    padding: 10px;
+}
+
+#profile_dropdown option[disabled] {
+    color: #888;
+}
+
+#profile_dropdown option[selected] {
+    font-weight: bold;
+    background-color: #a4cfbc;
+    color: white;
+}

@@ -1,26 +1,48 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from "../Navbar/Navbar.module.css";
+import { useHistory } from 'react-router-dom';
 
 const Navbar = ({ isAuthenticated, onLogout }) => {
-  const handleLogout = () => {
-    onLogout();
-  };
+    const history = useHistory();
 
-  return (
-    <nav>
-      <div className="logo">
-        <Link to={isAuthenticated ?
-             '/home' : '/'}>
-          <img src="logo.png" alt="Logo"/>
-        </Link>
-      </div>
+    const handleLogout = () => {
+        onLogout();
+    };
 
-      {isAuthenticated && (
-        <button onClick={handleLogout}>LogOut</button>
-      )}
-    </nav>
-  );
+    const navigateProfile = (event) => {
+        const selectedOption = event.target.value;
+        switch (selectedOption) {
+          case "viewProfile":
+            history.push("/tell_about"); // Navigate to the user's profile page
+            break;
+          case "logout":
+            handleLogout();
+            break;
+          default:
+            break;
+        }
+      };
+    
+
+    return (
+        <nav>
+            <div className="logo">
+                <Link to={isAuthenticated ? '/home' : '/'}>
+                    <img src="logo.png" alt="Logo"/>
+                </Link>
+            </div>
+            {isAuthenticated && (
+                <div className={styles.nav_profile}>
+                    <select id={styles.profile_dropdown} onChange={navigateProfile} defaultValue="">
+                        <option value="" disabled>Profile</option>
+                        <option value="viewProfile">View your profile</option>
+                        <option value="logout">Log out</option>
+                    </select>
+                </div>
+            )}
+        </nav>
+    );
 };
 
 export default Navbar;

@@ -35,13 +35,13 @@ function Contact() {
     return (
       <div>
       {/* <Navbar isAuthenticated={true}/> */}
-        <div className={styles.nav_profile}>
+        {/* <div className={styles.nav_profile}>
         <select id={styles.profile_dropdown} onChange={navigateProfile} defaultValue="">
                     <option value="" disabled>Profile</option>
                     <option value="viewProfile">View your profile</option>
                     <option value="logout">Log out</option>
                 </select>
-        </div>
+        </div> */}
   
         <div className={styles.match_card}>
           <h2>CONGRATULATIONS! YOU HAVE A MATCH!</h2>
