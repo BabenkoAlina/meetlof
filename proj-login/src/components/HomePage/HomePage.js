@@ -1,17 +1,21 @@
 // HomePage.js
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import styles from "../GreetingPage/GreetingPage.module.css";
 import { useHistory } from 'react-router-dom';
 
-function HomePage({userEmail, onLogout}) {
+function HomePage({curUserEmail, onLogout}) {
+
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [userEmail, setUserEmail] = useState("");
         const history = useHistory();
         const handleProfileChange = (event) => {
           console.log(event.target.value);
         };
         const handleLogout = () => {
-            
+            setUserEmail("");
+            setLoggedIn(false);
             history.push("/");
 
         }

@@ -9,6 +9,8 @@ import { useHistory } from 'react-router-dom';
 
 
 function Contact() {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
     const history = useHistory();
     const handleProfileChange = (event) => {
       console.log(event.target.value);
@@ -19,6 +21,12 @@ function Contact() {
     const handleAboutPage = () => {
       history.push("/tell_about")
     }
+    const handleLogout = () => {
+      setUserEmail("");
+      setLoggedIn(false);
+      history.push("/");
+
+  }
     return (
       <div>
       {/* <Navbar isAuthenticated={true}/> */}
@@ -26,7 +34,7 @@ function Contact() {
           <select id={styles.profile_dropdown} defaultValue="" onChange={handleProfileChange}>
             <option value="" disabled>Profile</option>
             <option value="viewProfile" onClick={handleAboutPage}>View your profile</option>
-            <option value="logout">Log out</option>
+            <option value="logout" onClick={handleLogout}>Log out</option>
           </select>
         </div>
   
