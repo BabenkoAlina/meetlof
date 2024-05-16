@@ -107,7 +107,7 @@ function SearchPage() {
 
                 await updateDoc(doc(db, "usersHistory", currentUser.uid), {
                     currentMatchID: bestMatchId,
-                    
+
                 });
 
                 // Navigate to match_found page
@@ -148,17 +148,15 @@ function SearchPage() {
                 </select>
             </div>
 
-            <div id={styles.content_search}>
-                <h2>We are looking for a match</h2>
-                <div className={styles.loader}></div>
-                <button
-                    id={styles.button_stop}
-                    onClick={() => history.push("/")}>
-                    Stop search
-                </button>
-            </div>
-        </>
-    );
+      <div id={styles.content_search}>
+        <h2>We are looking for a match</h2>
+        <div className={styles.loader}></div>
+        <button id={styles.button_stop} onClick={() => history.push('/home')}>
+          Stop search
+        </button>
+      </div>
+    </>
+  );
 }
 
 export default SearchPage;
