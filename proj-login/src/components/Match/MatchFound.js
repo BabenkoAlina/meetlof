@@ -75,26 +75,19 @@ function MatchFound() {
         const historyDoc = await getDoc(usersHistoryDocRef);
 
         const currentUserInfo = usersSnapshot.docs
-            .find((doc) => doc.data().userId === currentUser.uid)
+            .find((doc) => doc.id === currentUser.uid)
             ?.data();
         const rejectedList = historyDoc.data()?.rejectedList || [];
 
         let userMatches = [];
 
         usersSnapshot.forEach((doc) => {
-            if (
-                doc.data().userId !== currentUser.uid &&
-                !rejectedList.includes(doc.data().userId)
-            ) {
+            if (doc.id !== currentUser.uid && !rejectedList.includes(doc.id)) {
                 const matchPercentage = calculateMatchPercentage(
                     currentUserInfo,
                     doc.data()
                 );
-                userMatches.push({
-                    userId: doc.data().userId,
-                    matchPercentage,
-                    data: doc.data(),
-                });
+                userMatches.push({ userId: doc.id, matchPercentage });
             }
         });
 
@@ -102,9 +95,6 @@ function MatchFound() {
 
         if (userMatches.length > 0) {
             setMatchedUsers(userMatches);
-            await updateDoc(usersHistoryDocRef, {
-                likedArray: userMatches.map((user) => user.userId),
-            });
         }
     };
 
@@ -112,12 +102,21 @@ function MatchFound() {
         fetchAndSortUsers();
     }, []);
 
+
     const handleLikeClick = async () => {
         if (currentUser && matchedUsers.length > currentMatchIndex) {
             const userDocRef = doc(db, "usersHistory", currentUser.uid);
+            const likedUserDocRef = doc(
+                db,
+                "usersHistory",
+                matchedUsers[currentMatchIndex].userId
+            );
             await updateDoc(userDocRef, {
                 [`history.${matchedUsers[currentMatchIndex].userId}`]:
                     matchTime,
+            });
+            await updateDoc(likedUserDocRef, {
+                requestsArray: arrayUnion(currentUser.uid),
             });
             setCurrentMatchIndex((prevIndex) => prevIndex + 1);
         }
@@ -135,10 +134,6 @@ function MatchFound() {
         }
     };
 
-    const handleExitClick = () => {
-        history.push("/home");
-    };
-
     return (
         <div>
             <Navbar isAuthenticated={true} />
@@ -154,45 +149,37 @@ function MatchFound() {
                     <option value="logout">Log out</option>
                 </select>
             </div>
-            {matchedUsers.length > 0 &&
-            currentMatchIndex < matchedUsers.length ? (
-                <div className={styles.match_card}>
-                    <h2>MATCH FOUND</h2>
-                    <div className={styles.match_card_top}>
-                        <div className={styles.match_card_top_right}>
-                            <h3>What your best match is looking for:</h3>
-                            <p>
-                                {matchedUsers[currentMatchIndex].data
-                                    .expectation || "No expectations provided."}
-                            </p>
-                        </div>
-                    </div>
-                    <div className={styles.match_card_bottom}>
-                        <button
-                            className={styles.like}
-                            onClick={handleLikeClick}>
-                            Like
-                        </button>
-                        <button
-                            className={styles.skip}
-                            onClick={handleSkipClick}>
-                            Skip
-                        </button>
-                        <button
-                            className={styles.exit}
-                            onClick={handleExitClick}>
-                            Exit
-                        </button>
+            <div className={styles.match_card}>
+                <h2>MATCH FOUND</h2>
+                <div className={styles.match_card_top}>
+                    <div className={styles.match_card_top_right}>
+                        <h3>What your best match is looking for:</h3>
+                        <p>
+                            Sit osculatur puer tuus aut uxorem tuam, osculum,
+                            non dico quod omnia quae sunt hominis, et sic non
+                            tangetur, si aut ex eis moriatur. Nam tristique
+                            facilisis dolor, non lacinia quam. Curabitur sed
+                            posuere enim, eget luctus justo. Cras rhoncus
+                            porttitor varius. In sit amet eros venenatis,
+                            consequat nibh et, sollicitudin lorem. Suspendisse
+                            pretium libero dui, eu aliquet leo congue et.
+                        </p>
                     </div>
                 </div>
-            ) : (
-                <div className={styles.no_match}>
-                    <h2>No Matches Found</h2>
-                    <button className={styles.exit} onClick={handleExitClick}>
-                        Exit
+                <div className={styles.match_card_bottom}>
+                    <button className={styles.like} onClick={handleLikeClick}>
+                        Like
+                    </button>
+                    <button className={styles.skip} onClick={handleSkipClick}>
+                        Skip
                     </button>
                 </div>
-            )}
+                <button
+                    className={styles.exit}
+                    onClick={() => history.push("/home")}>
+                    Exit
+                </button>
+            </div>
         </div>
     );
 }
