@@ -5,9 +5,10 @@ import HomePage from './components/HomePage/HomePage';
 import Navbar from './components/Navbar/Navbar';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import GreetingPage from './components/GreetingPage/GreetingPage';
-import { auth } from './firebaseConfig';
-import { onAuthStateChanged } from 'firebase/auth';
+import {auth} from './firebaseConfig';
+import {onAuthStateChanged} from 'firebase/auth';
 import './App.css';
+import TellAbout from './components/TellAbout/TellAbout';
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -24,10 +25,10 @@ const App = () => {
       }
     });
 
-    return () => {
-      unsubscribe();
-    };
-  }, []);
+        return () => {
+            unsubscribe();
+        };
+    }, []);
 
   const handleLogin = (email) => {
     setUserEmail(email);
@@ -39,29 +40,33 @@ const App = () => {
     setLoggedIn(false);
   };
 
-  return (
-    <Router>
-      <div>
-        <Switch>
-          <Route exact path="/" component={GreetingPage} />
-          <Route path="/login">
-            {loggedIn ? <Redirect to="/home" /> : <LoginPage onLogin={handleLogin} />}
-          </Route>
-          <Route path="/register" component={RegisterPage} />
-          <Route path="/home">
-            {loggedIn ? (
-              <div>
-                <Navbar isAuthenticated={loggedIn} onLogout={handleLogout} />
-                <HomePage userEmail={userEmail} />
-              </div>
-            ) : (
-              <Redirect to="/" />
-            )}
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
+    return (
+        <Router>
+            <div>
+                <Switch>
+                    <Route exact path="/" component={GreetingPage}/>
+                    <Route path="/login">
+                        {loggedIn ? <Redirect to="/home"/> : <LoginPage onLogin={handleLogin}/>}
+                    </Route>
+                    <Route path="/register" component={RegisterPage}/>
+                    <Route path="/home">
+                        {loggedIn ? (
+                        <div>
+                          <Navbar isAuthenticated={loggedIn} onLogout={handleLogout} />
+                          <HomePage userEmail={userEmail} />
+                        </div>
+                        ) : (
+                          <Redirect to="/" />
+                        )}
+                    <Route path="/tell_about">
+                        <TellAbout />
+                    </Route>
+                    </Route>
+                    
+                </Switch>
+            </div>
+        </Router>
+    );
 };
 
 export default App;

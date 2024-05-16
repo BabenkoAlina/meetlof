@@ -4,108 +4,87 @@ import { initializeApp} from "firebase/app"
 import { getFirestore} from "firebase/firestore"
 import {auth} from "../../firebaseConfig";
 
+
+import { db } from "../../firebaseConfig";
+
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 
 function TellAbout() {
+  // current userid 
+  const [userId, setUserId] = useState('');
+
   const [name, setName] = useState('');
-  const [contact, setContact] = useState('');
-  const [isFemale, setIsFemale] = useState(false);
+  const [telegram, setTelegram] = useState('');
+  
+  const [isFemale, setIsFemale] = useState(true);
   const [isMale, setIsMale] = useState(false);
+
+  /////
   const [uploadedPhoto, setUploadedPhoto] = useState(null);
-  const [hobbies, setHobbies] = useState([]);
+
+  const [cinemaddict, setCinemaddict] = useState(false);
+  const [music, setMusic] = useState(false);
+  const [bookworm, setBookworm] = useState(false);
+  const [politics, setPolitics] = useState(false);
+  const [sportsman, setSportsman] = useState(false);
+  const [procrastinate, setProcrastinate] = useState(false);
+  const [promenade, setPromenade] = useState(false);
+
   const [lookingForFemale, setLookingForFemale] = useState(false);
   const [lookingForMale, setLookingForMale] = useState(false);
+
   const [lookingForFriend, setLookingForFriend] = useState(false);
   const [lookingForLover, setLookingForLover] = useState(false);
   const [lookingForChat, setLookingForChat] = useState(false);
+
+  const [years17, setYears17] = useState(true);
+  const [years20, setYears20] = useState(false);
+  const [years23, setYears23] = useState(true);
+  const [years25, setYears25] = useState(false);
+
   const [expectation, setExpectation] = useState('');
+
   const [agreeToShare, setAgreeToShare] = useState(false);
 
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
-
-  const handleContactChange = (e) => {
-    setContact(e.target.value);
-  };
-
-  const handleGenderChange = (e) => {
-    if (e.target.id === 'sex_female') {
-      setIsFemale(e.target.checked);
-      setIsMale(false);
-    } else if (e.target.id === 'sex_male') {
-      setIsMale(e.target.checked);
-      setIsFemale(false);
-    }
-  };
 
   const handlePhotoUpload = (e) => {
     const file = e.target.files[0];
     setUploadedPhoto(URL.createObjectURL(file));
   };
 
-  const handleHobbyChange = (e) => {
-    const hobby = e.target.id;
-    if (e.target.checked) {
-      setHobbies([...hobbies, hobby]);
-    } else {
-      setHobbies(hobbies.filter((item) => item !== hobby));
-    }
-  };
-
-  const handleLookingForChange = (e) => {
-    if (e.target.id === 'search_female') {
-      setLookingForFemale(e.target.checked);
-    } else if (e.target.id === 'search_male') {
-      setLookingForMale(e.target.checked);
-    }
-  };
-
-  const handleRelationshipChange = (e) => {
-    const relationship = e.target.id;
-    if (e.target.checked) {
-      switch (relationship) {
-        case 'search_friend':
-          setLookingForFriend(true);
-          break;
-        case 'search_lover':
-          setLookingForLover(true);
-          break;
-        case 'search_chat':
-          setLookingForChat(true);
-          break;
-        default:
-          break;
-      }
-    } else {
-      switch (relationship) {
-        case 'search_friend':
-          setLookingForFriend(false);
-          break;
-        case 'search_lover':
-          setLookingForLover(false);
-          break;
-        case 'search_chat':
-          setLookingForChat(false);
-          break;
-        default:
-          break;
-      }
-    }
-  };
-
-  const handleExpectationChange = (e) => {
-    setExpectation(e.target.value);
-  };
-
-  const handleAgreeToShareChange = (e) => {
-    setAgreeToShare(e.target.checked);
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const user = {
+      name,
+      telegram,
+      isFemale,
+      isMale,
+      uploadedPhoto,
+      cinemaddict,
+      music,
+      bookworm,
+      politics,
+      sportsman,
+      procrastinate,
+      promenade,
+      lookingForFemale,
+      lookingForMale,
+      lookingForFriend,
+      lookingForLover,
+      lookingForChat,
+      years17,
+      years20,
+      years23,
+      years25,
+      expectation,
+      agreeToShare,
+    };
   };
+
+
+
 
   return (
     <main>
@@ -131,14 +110,14 @@ function TellAbout() {
                   type="text"
                   id="name"
                   value={name}
-                  onChange={handleNameChange}
+                  onChange={(e) => setName(e.target.value)}
                   placeholder="What is your name?"
                 />
                 <input
                   type="text"
                   id="contact"
-                  value={contact}
-                  onChange={handleContactChange}
+                  value={telegram}
+                  onChange={(e) => setTelegram(e.target.value)}
                   placeholder="Your contact (Telegram):"
                 />
               </div>
@@ -149,7 +128,7 @@ function TellAbout() {
                     type="checkbox"
                     id="sex_female"
                     checked={isFemale}
-                    onChange={handleGenderChange}
+                    onChange={(e) => setIsFemale(e.target.checked) && setIsMale(!e.target.checked)}
                   />
                   <label htmlFor="sex_female"> I am a lady </label>
                   <i className="fa-solid fa-venus"></i>
@@ -160,7 +139,7 @@ function TellAbout() {
                     type="checkbox"
                     id="sex_male"
                     checked={isMale}
-                    onChange={handleGenderChange}
+                    onChange={(e) => setIsMale(e.target.checked) && setIsFemale(!e.target.checked)}
                   />
                   <label htmlFor="sex_male"> I am a gentleman </label>
                   <i className="fa-solid fa-mars"></i>
@@ -189,62 +168,78 @@ function TellAbout() {
 
           {/* Hobbies */}
           <div id="hobbies">
-            <div className="hobbie" id="hobbie1">
-              <input
-                type="checkbox"
-                id="hobbies_film"
-                checked={hobbies.includes('hobbies_film')}
-                onChange={handleHobbyChange}
-              />
-              <label htmlFor="hobbies_film"> I am cinemaddict </label>
-              <i className="fa-solid fa-film"></i>
-            </div>
-            <div class="hobbie" id="hobbie2">
-                <input type="checkbox" 
-                id="hobbies_music"
-                checked={hobbies.includes('hobbies_music')}
-                onChange={handleHobbyChange}
-            />
-              <label htmlFor="hobbies_music"> I am music lover </label>
-              <i className="fa-solid fa-music"></i>
-            </div>
-            <div class="hobbie" id="hobbie3">
-                <input type="checkbox" 
-                id="hobbies_read"
-                checked={hobbies.includes('hobbies_read')}
-                onChange={handleHobbyChange}
-            />
-              <label htmlFor="hobbies_read"> I am bookworm </label>
-              <i className="fa-solid fa-book"></i>
-            </div>
-            <div class="hobbie" id="hobbie4">
-                <input type="checkbox" 
-                id="hobbies_sport"
-                checked={hobbies.includes('hobbies_sport')}
-                onChange={handleHobbyChange}
-            />
-              <label htmlFor="hobbies_sport"> I am a sportsman/woman </label>
-              <i className="fa-solid fa-dumbbell"></i>
-            </div>
-            <div class="hobbie" id="hobbie5">
-                <input type="checkbox" 
-                id="hobbies_procrastinate"
-                checked={hobbies.includes('hobbies_procrastinate')}
-                onChange={handleHobbyChange}
-            />
-              <label htmlFor="hobbies_procrastinate">  I like to procrastinate </label>
-              <i className="fa-solid fa-bed"></i>
-            </div>
-            <div class="hobbie" id="hobbie6">
-                <input type="checkbox" 
-                id="hobbies_walk"
-                checked={hobbies.includes('hobbies_walk')}
-                onChange={handleHobbyChange}
-            />
-              <label htmlFor="hobbies_walk"> I am keen of promenade </label>
-              <i className="fa-solid fa-walking"></i>
-            </div>
-            </div>
+              <div className="hobbie" id="hobbie1">
+                  <input
+                      type="checkbox"
+                      id="hobbies_film"
+                      checked={cinemaddict}
+                      onChange={(e) => setCinemaddict(e.target.checked)}
+                  />
+                  <label htmlFor="hobbies_film"> I am cinemaddict </label>
+                  <i className="fa-solid fa-film"></i>
+              </div>
+              <div class="hobbie" id="hobbie2">
+                  <input
+                      type="checkbox"
+                      id="hobbies_music"
+                      checked={music}
+                      onChange={(e) => setMusic(e.target.checked)}
+                  />
+                  <label htmlFor="hobbies_music"> I am music lover </label>
+                  <i className="fa-solid fa-music"></i>
+              </div>
+              <div class="hobbie" id="hobbie3">
+                  <input
+                      type="checkbox"
+                      id="hobbies_read"
+                      checked={bookworm}
+                      onChange={(e) => setBookworm(e.target.checked)}
+                  />
+                  <label htmlFor="hobbies_read"> I am bookworm </label>
+                  <i className="fa-solid fa-book"></i>
+              </div>
+              <div class="hobbie" id="hobbie7">
+                  <input
+                      type="checkbox"
+                      id="hobbies_politics"
+                      checked={politics}
+                      onChange={(e) => setPolitics(e.target.checked)}
+                  />
+                  <label htmlFor="hobbies_politics"> I am interested in politics </label>
+                  <i className="fa-solid fa-globe"></i>
+              </div>
+              <div class="hobbie" id="hobbie4">
+                  <input
+                      type="checkbox"
+                      id="hobbies_sport"
+                      checked={sportsman}
+                      onChange={(e) => setSportsman(e.target.checked)}
+                  />
+                  <label htmlFor="hobbies_sport"> I am a sportsman/woman </label>
+                  <i className="fa-solid fa-dumbbell"></i>
+              </div>
+              <div class="hobbie" id="hobbie5">
+                  <input
+                      type="checkbox"
+                      id="hobbies_procrastinate"
+                      checked={procrastinate}
+                      onChange={(e) => setProcrastinate(e.target.checked)}
+                  />
+                  <label htmlFor="hobbies_procrastinate"> I like to procrastinate </label>
+                  <i className="fa-solid fa-bed"></i>
+              </div>
+              <div class="hobbie" id="hobbie6">
+                  <input
+                      type="checkbox"
+                      id="hobbies_walk"
+                      checked={promenade}
+                      onChange={(e) => setPromenade(e.target.checked)}
+                  />
+                  <label htmlFor="hobbies_walk"> I am keen of promenade </label>
+                  <i className="fa-solid fa-walking"></i>
+              </div>
+          </div>
+
           {/* User interest */}
             <section className="user_interest_info">
             <p id="text_header">Who are you looking for?</p>
@@ -257,7 +252,7 @@ function TellAbout() {
                     type="checkbox"
                     id="search_female"
                     checked={lookingForFemale}
-                    onChange={handleLookingForChange}
+                    onChange={(e) => setLookingForFemale(e.target.checked)}
                     />
                     <label htmlFor="search_female"> I am looking for a beautiful lady </label>
                     <i className="fa-solid fa-venus"></i>
@@ -268,7 +263,7 @@ function TellAbout() {
                     type="checkbox"
                     id="search_male"
                     checked={lookingForMale}
-                    onChange={handleLookingForChange}
+                    onChange={(e) => setLookingForMale(e.target.checked)}
                     />
                     <label htmlFor="search_male"> I am looking for a handsome gentleman </label>
                     <i className="fa-solid fa-mars"></i>
@@ -281,7 +276,9 @@ function TellAbout() {
                     <input
                     type="checkbox"
                     id="range_first"
-                    value="Range1"
+                    // value="Range1"
+                    checked={years17}
+                    onChange={(e) => setYears17(e.target.checked)}
                     />
                     <label htmlFor="range1"> 17-20 y.o. </label>
                 </div>
@@ -290,7 +287,9 @@ function TellAbout() {
                     <input
                     type="checkbox"
                     id="range_second"
-                    value="Range2"
+                    // value="Range2"
+                    checked={years20}
+                    onChange={(e) => setYears20(e.target.checked)}
                     />
                     <label htmlFor="range2"> 20-23 y.o.</label>
                 </div>
@@ -300,6 +299,8 @@ function TellAbout() {
                     type="checkbox"
                     id="range_third"
                     value="Range3"
+                    checked={years23}
+                    onChange={(e) => setYears23(e.target.checked)}
                     />
                     <label htmlFor="range3"> 23-25 y.o.</label>
                 </div>
@@ -309,6 +310,8 @@ function TellAbout() {
                     type="checkbox"
                     id="range_fourth"
                     value="Range4"
+                    checked={years25}
+                    onChange={(e) => setYears25(e.target.checked)}
                     />
                     <label htmlFor="range4"> 25-27+ y.o.</label>
                 </div>
@@ -321,7 +324,7 @@ function TellAbout() {
                     type="checkbox"
                     id="search_friend"
                     checked={lookingForFriend}
-                    onChange={handleRelationshipChange}
+                    onChange={(e) => setLookingForFriend(e.target.checked)}
                     />
                     <label htmlFor="search_friend"> I need a good friend </label>
                     <i className="fa-regular fa-handshake"></i>
@@ -332,7 +335,7 @@ function TellAbout() {
                     type="checkbox"
                     id="search_lover"
                     checked={lookingForLover}
-                    onChange={handleRelationshipChange}
+                    onChange={(e) => setLookingForLover(e.target.checked)}
                     />
                     <label htmlFor="search_lover"> I need a passionate lover </label>
                     <i className="fa-solid fa-hand-holding-heart"></i>
@@ -343,7 +346,7 @@ function TellAbout() {
                     type="checkbox"
                     id="search_chat"
                     checked={lookingForChat}
-                    onChange={handleRelationshipChange}
+                    onChange={(e) => setLookingForChat(e.target.checked)}
                     />
                     <label htmlFor="search_chat"> I just want to chat with someone </label>
                     <i className="fa-solid fa-hand-peace"></i>
@@ -357,7 +360,7 @@ function TellAbout() {
             rows="2"
             cols="10"
             value={expectation}
-            onChange={handleExpectationChange}
+            onChange={(e) => setExpectation(e.target.value)}
             placeholder="What do you expect from communication?"
           ></textarea>
 
@@ -368,7 +371,7 @@ function TellAbout() {
                 type="checkbox"
                 id="agree"
                 checked={agreeToShare}
-                onChange={handleAgreeToShareChange}
+                onChange={(e) => setAgreeToShare(e.target.checked)}
               />
               <label htmlFor="agree"> I agree to share my info </label>
             </div>
@@ -385,4 +388,5 @@ function TellAbout() {
 // export const auth = getAuth(app);
 
 // export const db = getFirestore(app);
+
 export default TellAbout;
