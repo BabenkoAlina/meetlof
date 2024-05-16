@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import styles from "../TellAbout/TellAbout.module.css";
-import { getDocs, collection, addDoc } from "firebase/firestore";
-import { db } from "../../firebaseConfig";
+import {
+    getDocs,
+    collection,
+    addDoc,
+    deleteDoc,
+    doc,
+} from "firebase/firestore";
+import { auth, db } from "../../firebaseConfig";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 
 function TellAbout() {
-    // State declarations
     const [userId, setUserId] = useState("");
     const [name, setName] = useState("");
     const [telegram, setTelegram] = useState("");
@@ -31,9 +36,16 @@ function TellAbout() {
     const [years25, setYears25] = useState(false);
     const [expectation, setExpectation] = useState("");
     const [agreeToShare, setAgreeToShare] = useState(false);
-    const [infos, setInfos] = useState([]);
 
-    const infosCollection = collection(db, "usersInfo");
+    useEffect(() => {
+        // Set the user ID once the component mounts and the auth state changes
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (user) {
+                setUserId(user.uid);
+            }
+        });
+        return () => unsubscribe();
+    }, []);
 
     const handlePhotoUpload = (e) => {
         const file = e.target.files[0];
@@ -43,17 +55,41 @@ function TellAbout() {
     // Function to add user data to Firestore
     const onSubmitInfo = async (userData) => {
         try {
-            await addDoc(infosCollection, userData);
+            await addDoc(collection(db, "usersInfo"), userData);
             console.log("Document successfully written!");
         } catch (e) {
             console.error("Error adding document: ", e);
         }
     };
 
-    // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault(); // Prevent default form submission
+
+        if (!userId) {
+            alert("You must be logged in to submit your information.");
+            return;
+        }
+        if (!agreeToShare) {
+            alert("You must agree to share your information to submit.");
+            return;
+        }
+
+        // Try to delete doc with this id
+        console.log("Trying to delete doc with id: ", userId);
+        try {
+            const usersCollection = collection(db, "usersInfo");
+            const userDocs = await getDocs(usersCollection);
+            userDocs.forEach(async (doc) => {
+                if (doc.data().userId === userId) {
+                    await deleteDoc(doc.ref);
+                }
+            });
+        } catch (e) {
+            console.error("Error fetching document: ", e);
+        }
+
         const userData = {
+            userId,
             name,
             telegram,
             isFemale,
@@ -78,24 +114,9 @@ function TellAbout() {
             expectation,
             agreeToShare,
         };
-        await onSubmitInfo(userData); // Pass form data to onSubmitInfo
+        await onSubmitInfo(userData);
+        alert("Your information has been submitted!");
     };
-
-    // Fetch user info from Firestore
-    useEffect(() => {
-        const getUserInfo = async () => {
-            try {
-                const usersCollection = collection(db, "usersInfo");
-                const userDocs = await getDocs(usersCollection);
-                userDocs.forEach((doc) => {
-                    console.log(doc.id, "=>", doc.data());
-                });
-            } catch (e) {
-                console.error("Error fetching document: ", e);
-            }
-        };
-        getUserInfo();
-    }, []);
 
     return (
         <main>
@@ -130,16 +151,15 @@ function TellAbout() {
                                     <input
                                         type="radio"
                                         id={styles.sex_female}
-                                        name="gender" // Add a name attribute to group the radio buttons
+                                        name="gender"
                                         checked={isFemale}
                                         onChange={() => {
                                             setIsFemale(true);
-                                            setIsMale(false); // Set isMale to false when female is selected
+                                            setIsMale(false);
                                         }}
                                     />
                                     <label htmlFor={styles.sex_female}>
-                                        {" "}
-                                        I am a lady{" "}
+                                        I am a lady
                                     </label>
                                     <i className="fa-solid fa-venus"></i>
                                 </div>
@@ -148,16 +168,15 @@ function TellAbout() {
                                     <input
                                         type="radio"
                                         id={styles.sex_male}
-                                        name="gender" // Add the same name attribute as above
+                                        name="gender"
                                         checked={isMale}
                                         onChange={() => {
-                                            setIsFemale(false); // Set isFemale to false when male is selected
+                                            setIsFemale(false);
                                             setIsMale(true);
                                         }}
                                     />
                                     <label htmlFor={styles.sex_male}>
-                                        {" "}
-                                        I am a gentleman{" "}
+                                        I am a gentleman
                                     </label>
                                     <i className="fa-solid fa-mars"></i>
                                 </div>
@@ -199,8 +218,7 @@ function TellAbout() {
                                 }
                             />
                             <label htmlFor={styles.hobbies_film}>
-                                {" "}
-                                I am cinemaddict{" "}
+                                I am cinemaddict
                             </label>
                             <i className="fa-solid fa-film"></i>
                         </div>
@@ -212,8 +230,7 @@ function TellAbout() {
                                 onChange={(e) => setMusic(e.target.checked)}
                             />
                             <label htmlFor={styles.hobbies_music}>
-                                {" "}
-                                I am music lover{" "}
+                                I am music lover
                             </label>
                             <i className="fa-solid fa-music"></i>
                         </div>
@@ -225,8 +242,7 @@ function TellAbout() {
                                 onChange={(e) => setBookworm(e.target.checked)}
                             />
                             <label htmlFor={styles.hobbies_read}>
-                                {" "}
-                                I am bookworm{" "}
+                                I am bookworm
                             </label>
                             <i className="fa-solid fa-book"></i>
                         </div>
@@ -238,8 +254,7 @@ function TellAbout() {
                                 onChange={(e) => setPolitics(e.target.checked)}
                             />
                             <label htmlFor={styles.hobbies_politics}>
-                                {" "}
-                                I am interested in politics{" "}
+                                I am interested in politics
                             </label>
                             <i className="fa-solid fa-globe"></i>
                         </div>
@@ -251,8 +266,7 @@ function TellAbout() {
                                 onChange={(e) => setSportsman(e.target.checked)}
                             />
                             <label htmlFor={styles.hobbies_sport}>
-                                {" "}
-                                I am a sportsman/woman{" "}
+                                I am a sportsman/woman
                             </label>
                             <i className="fa-solid fa-dumbbell"></i>
                         </div>
@@ -266,8 +280,7 @@ function TellAbout() {
                                 }
                             />
                             <label htmlFor={styles.hobbies_procrastinate}>
-                                {" "}
-                                I like to procrastinate{" "}
+                                I like to procrastinate
                             </label>
                             <i className="fa-solid fa-bed"></i>
                         </div>
@@ -279,8 +292,7 @@ function TellAbout() {
                                 onChange={(e) => setPromenade(e.target.checked)}
                             />
                             <label htmlFor={styles.hobbies_walk}>
-                                {" "}
-                                I am keen of promenade{" "}
+                                I am keen of promenade
                             </label>
                             <i className="fa-solid fa-walking"></i>
                         </div>
@@ -303,8 +315,7 @@ function TellAbout() {
                                         }
                                     />
                                     <label htmlFor={styles.search_female}>
-                                        {" "}
-                                        I am looking for a beautiful lady{" "}
+                                        I am looking for a beautiful lady
                                     </label>
                                     <i className="fa-solid fa-venus"></i>
                                 </div>
@@ -319,8 +330,7 @@ function TellAbout() {
                                         }
                                     />
                                     <label htmlFor={styles.search_male}>
-                                        {" "}
-                                        I am looking for a handsome gentleman{" "}
+                                        I am looking for a handsome gentleman
                                     </label>
                                     <i className="fa-solid fa-mars"></i>
                                 </div>
@@ -337,8 +347,7 @@ function TellAbout() {
                                         }
                                     />
                                     <label htmlFor={styles.range1}>
-                                        {" "}
-                                        17-20 y.o.{" "}
+                                        17-20 y.o.
                                     </label>
                                 </div>
                                 <div id={styles.range_2}>
@@ -351,7 +360,6 @@ function TellAbout() {
                                         }
                                     />
                                     <label htmlFor={styles.range2}>
-                                        {" "}
                                         20-23 y.o.
                                     </label>
                                 </div>
@@ -365,7 +373,6 @@ function TellAbout() {
                                         }
                                     />
                                     <label htmlFor={styles.range3}>
-                                        {" "}
                                         23-25 y.o.
                                     </label>
                                 </div>
@@ -379,7 +386,6 @@ function TellAbout() {
                                         }
                                     />
                                     <label htmlFor={styles.range4}>
-                                        {" "}
                                         25-27+ y.o.
                                     </label>
                                 </div>
@@ -398,8 +404,7 @@ function TellAbout() {
                                         }
                                     />
                                     <label htmlFor={styles.search_friend}>
-                                        {" "}
-                                        I need a good friend{" "}
+                                        I need a good friend
                                     </label>
                                     <i className="fa-regular fa-handshake"></i>
                                 </div>
@@ -413,8 +418,7 @@ function TellAbout() {
                                         }
                                     />
                                     <label htmlFor={styles.search_lover}>
-                                        {" "}
-                                        I need a passionate lover{" "}
+                                        I need a passionate lover
                                     </label>
                                     <i className="fa-solid fa-hand-holding-heart"></i>
                                 </div>
@@ -428,8 +432,7 @@ function TellAbout() {
                                         }
                                     />
                                     <label htmlFor={styles.search_chat}>
-                                        {" "}
-                                        I just want to chat with someone{" "}
+                                        I just want to chat with someone
                                     </label>
                                     <i className="fa-solid fa-hand-peace"></i>
                                 </div>
@@ -458,8 +461,7 @@ function TellAbout() {
                                 }
                             />
                             <label htmlFor={styles.agree}>
-                                {" "}
-                                I agree to share my info{" "}
+                                I agree to share my info
                             </label>
                         </div>
                         <button id={styles.button_save} type="submit">
