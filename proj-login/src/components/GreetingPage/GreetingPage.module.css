@@ -1,0 +1,147 @@
+.parent {
+    display: flex; /* Set the parent container to flex */
+    justify-content: center; /* Center children horizontally */
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.page {
+    margin: 0 150px 0 150px;
+}
+
+.greeting-container {
+    display: flex;
+    justify-content: center;
+}
+.greeting-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 100px 0 50px;
+
+}
+
+.greeting-text h1, h2 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 40px;
+}
+
+.greeting-text h1 {
+    margin-bottom: 15px;
+}
+
+
+
+.horizontal-images {
+    margin-top: 20px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Adjust the gap size as needed */
+    width: 100%;
+}
+
+
+.horizontal-images img {
+    width: calc(50% - 10px);
+    border-radius: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    gap: 50px;
+    margin-bottom: 50px;
+}
+
+.my-btn,
+.my-btn-1 {
+    box-sizing: border-box;
+    width: 280px;
+    height: 85px;
+    border: 3px solid black;
+    border-radius: 0 50px 50px 75px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.my-btn span,
+.my-btn-1 span {
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 23px;
+    line-height: 37px;
+    color: #ffffff;
+}
+
+.my-btn:hover {
+    background-color: grey;
+}
+
+.my-btn-1 {
+    border: 3px solid #05b895;
+    background-color: #05b895;
+}
+
+.my-btn-1:hover {
+    background-color: #074135;
+}
+
+.buttons a {
+    text-decoration: none;
+}
+
+.title {
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 40px;
+}
+
+.explore-topic {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 31% auto;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+
+.explore-topic h3 {
+    color: black;
+}
+
+.explore-topic img {
+    border-radius: 15px;
+    padding: 5px; /* Shorter way to set padding for all sides */
+    width: 90%;
+}
+
+.explore-table p {
+    padding-top: 5px;
+    font-family: "Montserrat";
+    font-weight: 500;
+    font-size: 16px;
+    color: black;
+}
+
+.explore-table p a {
+    text-decoration: none;
+    font-style: normal;
+    color: #299de6;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    min-height: 98vh; /* Ensure the wrapper fills the viewport height */
+}
