@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import styles from '../static/tell_about.css'; // Import the CSS module
-
+import styles from '../TellAbout/TellAbout.module.css';
 import { initializeApp} from "firebase/app"
 import { getFirestore} from "firebase/firestore"
+import {auth} from "../../firebaseConfig";
 
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
@@ -374,8 +374,8 @@ function TellAbout() {
   );
 }
 
-const app = initializeApp(firebaseConfig);
+// const app = initializeApp(firebaseConfig);
 // export const auth = getAuth(app);
 
-export const db = getFirestore(app);
+// export const db = getFirestore(app);
 export default TellAbout;

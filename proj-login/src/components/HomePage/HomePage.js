@@ -7,7 +7,7 @@ const HomePage = ({userEmail, onLogout}) => {
         <div>
             <Navbar isAuthenticated={true}/> {/* Pass isAuthenticated as true for home page */}
             <h2>Welcome, {userEmail}!</h2>
-            <button onClick={onLogout}>Logout</button>
+            {/* <button onClick={onLogout}>Logout</button> */}
         </div>
     );
 };
