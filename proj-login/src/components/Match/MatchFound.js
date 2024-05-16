@@ -69,6 +69,7 @@ function MatchFound() {
     };
 
     const fetchAndSortUsers = async () => {
+        if (!currentUser) return;
         const usersInfoCollection = collection(db, "usersInfo");
         const usersHistoryDocRef = doc(db, "usersHistory", currentUser.uid);
         const usersSnapshot = await getDocs(usersInfoCollection);
@@ -87,7 +88,11 @@ function MatchFound() {
                     currentUserInfo,
                     doc.data()
                 );
-                userMatches.push({ userId: doc.id, matchPercentage });
+                userMatches.push({
+                    userId: doc.id,
+                    matchPercentage,
+                    data: doc.data(),
+                });
             }
         });
 
@@ -101,7 +106,6 @@ function MatchFound() {
     useEffect(() => {
         fetchAndSortUsers();
     }, []);
-
 
     const handleLikeClick = async () => {
         if (currentUser && matchedUsers.length > currentMatchIndex) {
@@ -149,37 +153,49 @@ function MatchFound() {
                     <option value="logout">Log out</option>
                 </select>
             </div>
-            <div className={styles.match_card}>
-                <h2>MATCH FOUND</h2>
-                <div className={styles.match_card_top}>
-                    <div className={styles.match_card_top_right}>
-                        <h3>What your best match is looking for:</h3>
-                        <p>
-                            Sit osculatur puer tuus aut uxorem tuam, osculum,
-                            non dico quod omnia quae sunt hominis, et sic non
-                            tangetur, si aut ex eis moriatur. Nam tristique
-                            facilisis dolor, non lacinia quam. Curabitur sed
-                            posuere enim, eget luctus justo. Cras rhoncus
-                            porttitor varius. In sit amet eros venenatis,
-                            consequat nibh et, sollicitudin lorem. Suspendisse
-                            pretium libero dui, eu aliquet leo congue et.
-                        </p>
+            {matchedUsers.length > 0 &&
+            matchedUsers.length > currentMatchIndex ? (
+                <div className={styles.match_card}>
+                    <h2>MATCH FOUND</h2>
+                    <div className={styles.match_card_top}>
+                        <div className={styles.match_card_top_right}>
+                            <h3>What your best match is looking for:</h3>
+                            <p>
+                                {
+                                    matchedUsers[currentMatchIndex].data
+                                        .expectation
+                                }
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div className={styles.match_card_bottom}>
-                    <button className={styles.like} onClick={handleLikeClick}>
-                        Like
+                    <div className={styles.match_card_bottom}>
+                        <button
+                            className={styles.like}
+                            onClick={handleLikeClick}>
+                            Like
+                        </button>
+                        <button
+                            className={styles.skip}
+                            onClick={handleSkipClick}>
+                            Skip
+                        </button>
+                    </div>
+                    <button
+                        className={styles.exit}
+                        onClick={() => history.push("/home")}>
+                        Exit
                     </button>
-                    <button className={styles.skip} onClick={handleSkipClick}>
-                        Skip
+                </div>
+            ) : (
+                <div className={styles.match_card}>
+                    <h2>No Matches Found</h2>
+                    <button
+                        className={styles.exit}
+                        onClick={() => history.push("/home")}>
+                        Exit
                     </button>
                 </div>
-                <button
-                    className={styles.exit}
-                    onClick={() => history.push("/home")}>
-                    Exit
-                </button>
-            </div>
+            )}
         </div>
     );
 }
