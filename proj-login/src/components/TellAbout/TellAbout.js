@@ -42,9 +42,39 @@ function TellAbout() {
 
     useEffect(() => {
         // Set the user ID once the component mounts and the auth state changes
-        const unsubscribe = auth.onAuthStateChanged((user) => {
+        const unsubscribe = auth.onAuthStateChanged(async (user) => {
             if (user) {
                 setUserId(user.uid);
+                const usersCollection = collection(db, "usersInfo");
+                const userDocs = await getDocs(usersCollection);
+                userDocs.forEach((doc) => {
+                    if (doc.data().userId === user.uid) {
+                        const userData = doc.data();
+                        setName(userData.name || "");
+                        setTelegram(userData.telegram || "");
+                        setIsFemale(userData.isFemale || false);
+                        setIsMale(userData.isMale || false);
+                        setUploadedPhoto(userData.uploadedPhoto || null);
+                        setCinemaddict(userData.cinemaddict || false);
+                        setMusic(userData.music || false);
+                        setBookworm(userData.bookworm || false);
+                        setPolitics(userData.politics || false);
+                        setSportsman(userData.sportsman || false);
+                        setProcrastinate(userData.procrastinate || false);
+                        setPromenade(userData.promenade || false);
+                        setLookingForFemale(userData.lookingForFemale || false);
+                        setLookingForMale(userData.lookingForMale || false);
+                        setLookingForFriend(userData.lookingForFriend || false);
+                        setLookingForLover(userData.lookingForLover || false);
+                        setLookingForChat(userData.lookingForChat || false);
+                        setYears17(userData.years17 || true);
+                        setYears20(userData.years20 || false);
+                        setYears23(userData.years23 || true);
+                        setYears25(userData.years25 || false);
+                        setExpectation(userData.expectation || "");
+                        setAgreeToShare(userData.agreeToShare || false);
+                    }
+                });
             }
         });
         return () => unsubscribe();
