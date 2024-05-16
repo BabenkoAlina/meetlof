@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import styles from "./MatchFound.module.css";
 import { auth, db } from "../../firebaseConfig";
-import { doc, updateDoc, arrayUnion } from "firebase/firestore";
+import { collection, doc, updateDoc, arrayUnion, getDocs, getDoc } from "firebase/firestore";
 
 function MatchFound() {
     const history = useHistory();
-    const [userEmail, setUserEmail] = useState("");
     const currentUser = auth.currentUser;
-    const matchedUserId = "matchedUserId"; // Replace with actual matched user's ID
+    const [userEmail, setUserEmail] = useState("");
+    const [matchedUserId, setMatchedUserId] = useState(null); 
     const matchTime = new Date();
 
     const navigateProfile = (event) => {
@@ -26,6 +26,71 @@ function MatchFound() {
                 break;
         }
     };
+
+    const calculateMatchPercentage = (user1, user2) => {
+        const attributes = [
+            "agreeToShare",
+            "bookworm",
+            "cinemaddict",
+            "expectation",
+            "isFemale",
+            "isMale",
+            "lookingForChat",
+            "lookingForFemale",
+            "lookingForFriend",
+            "lookingForLover",
+            "lookingForMale",
+            "music",
+            "politics",
+            "procrastinate",
+            "promenade",
+            "sportsman",
+            "years17",
+            "years20",
+            "years23",
+            "years25",
+        ];
+        
+        let matches = 0;
+        attributes.forEach((attr) => {
+            if (user1[attr] === user2[attr]) {
+                matches += 1;
+            }
+        });
+        return (matches / attributes.length) * 100;
+    };
+
+    const fetchAndSortUsers = async () => {
+        const usersInfoCollection = collection(db, "usersInfo");
+        const usersHistoryDocRef = doc(db, "usersHistory", currentUser.uid);
+        const usersSnapshot = await getDocs(usersInfoCollection);
+        const historyDoc = await getDoc(usersHistoryDocRef);
+
+        const currentUserInfo = usersSnapshot.docs.find(doc => doc.id === currentUser.uid)?.data();
+        const rejectedList = historyDoc.data()?.rejectedList || [];
+
+        let userMatches = [];
+
+        usersSnapshot.forEach(doc => {
+            if (doc.id !== currentUser.uid && !rejectedList.includes(doc.id)) {
+                const matchPercentage = calculateMatchPercentage(currentUserInfo, doc.data());
+                userMatches.push({ userId: doc.id, matchPercentage });
+            }
+        });
+
+        userMatches.sort((a, b) => b.matchPercentage - a.matchPercentage);
+
+        if (userMatches.length > 0) {
+            setMatchedUserId(userMatches[0].userId);
+            await updateDoc(usersHistoryDocRef, {
+                currentMatchID: userMatches[0].userId,
+            });
+        }
+    };
+
+    useEffect(() => {
+        fetchAndSortUsers();
+    }, []);
 
     const handleLikeClick = async () => {
         if (currentUser) {

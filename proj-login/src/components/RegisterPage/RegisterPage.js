@@ -27,8 +27,10 @@ const RegisterPage = ({ onRegister }) => {
 
             // Create an empty instance in the usersHistory collection
             await setDoc(doc(db, "usersHistory", user.uid), {
+                userId: user.uid,
                 history: {},
-                rejectedList: {},
+                rejectedList: [],
+                currentMatchID: null,
             });
 
             alert("Registered successfully!");
