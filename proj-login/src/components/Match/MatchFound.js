@@ -25,7 +25,9 @@ function MatchFound() {
   
     return (
       <div>
+      {/* <Navbar isAuthenticated={true}/> */}
         <div className={styles.nav_profile}>
+          
           <select id={styles.profile_dropdown} defaultValue="" onChange={handleProfileChange}>
             <option value="" disabled>Profile</option>
             <option value="viewProfile">View your profile</option>
