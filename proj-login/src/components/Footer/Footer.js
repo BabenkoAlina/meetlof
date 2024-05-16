@@ -11,7 +11,7 @@ const Footer = () => {
             <div>
                 <p>Social networks</p>
                 <div className={`${styles['d-flex']} ${styles['flex-column']}`}>
-                    <a href="https://instagram.com/" target="_blank" className={styles['mr-2']}>
+                    <a href="https://www.instagram.com/meetlof?igsh=MXBxdDU1NzB6M3VtZQ==" target="_blank" className={styles['mr-2']}>
                         <img src="/instagram.png" alt="Instagram" />
                     </a>
                 </div>

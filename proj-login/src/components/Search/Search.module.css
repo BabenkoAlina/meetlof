@@ -2,73 +2,12 @@
   height: 100vh;
   background-image: url(./img/back5.jpeg);
   background-size: cover;
-} */
-/* Nav bar */
-.panel-body {
-    background: #fff9f5;
-    /* color: #333333; */
-    margin-top: 5rem;
-  }
-  
-  .button-container {
-    background-color: #4b791c;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
-  }
-  .row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* margin-top: 10px; */
-    /* position: static; */
-  }
-  .alert{
-    margin-top: 10px;
-  }
-  /* .container-but{
-    position:fixed;
-  } */
-  .nav-link{
-    color: #fff;
-    background-color: #57817f;
-    font-weight: 500;
-  }
-  .bg-steel {
-    color: #fff;
-    background-color: #57817f;
-    text-align: center;
-    /* font-weight: 700; */
-  }
-  .navbar{
-    height: 62px;
-  }
-  .header-container {
-    /* position: fixed; */
-    max-width: 1140px !important;
-  }
-  .site-header .navbar-nav .nav-link {
-    color: #cbd5db;
-  }
-  
-  .site-header .navbar-nav .nav-link:hover {
-    color: #ffce59;
-    transition: background-color 0.3s; 
-  }
-  
-  .site-header .navbar-nav .nav-link.active {
-    font-weight: 500;
-    color: #ffce59;
-  }
-
 /* Buttons */
 
 .nav_profile {
-    margin-top: 100px; /* Adjust margin-top as needed */
+    margin-top: 10px; /* Adjust margin-top as needed */
     text-align: right;
-    margin-right: 100px;
+    margin-right: 10px;
   }
   
   #profile_dropdown {

@@ -3,10 +3,34 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import styles from "../GreetingPage/GreetingPage.module.css";
+import { useHistory } from 'react-router-dom';
 
-const HomePage = ({userEmail, onLogout}) => {
+function HomePage({userEmail, onLogout}) {
+        const history = useHistory();
+        const handleProfileChange = (event) => {
+          console.log(event.target.value);
+        };
+        const handleLogout = () => {
+            
+            history.push("/");
+
+        }
+        const handleAboutPage = () => {
+          history.push("/tell_about")
+        }
+    
+
 return (
+    
     <div className={styles.main}>
+    <div className={styles.nav_profile}>
+          
+          <select id={styles.profile_dropdown} defaultValue="" onChange={handleProfileChange}>
+            <option value="" disabled>Profile</option>
+            <option value="viewProfile" onClick={handleAboutPage}>View your profile</option>
+            <option value="logout" onClick={handleLogout}>Log out</option>
+          </select>
+        </div>
         <div className={styles.parent}>
             <div className={styles.page}>
                 <div>
