@@ -11,6 +11,7 @@ import './App.css';
 import TellAbout from './components/TellAbout/TellAbout';
 import MatchFound from './components/Match/MatchFound';
 import Contact from './components/Contacts/Contacts';
+import Search from './components/Search/Search';
 const App = () => {
     const [loggedIn, setLoggedIn] = useState(false);
     const [userEmail, setUserEmail] = useState("");
@@ -71,7 +72,9 @@ const App = () => {
                     
                     <Route path="/match_found" component={MatchFound}/>
                     <Route path="/contacts" component={Contact}/>
+                    <Route path="/search" component={Search}/>
                     <Route render={() => <Redirect to="/" />} />
+                  
                 </Switch>
             </div>
         </Router>
