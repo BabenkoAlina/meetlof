@@ -1,15 +1,16 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
-import Navbar from '../Navbar/Navbar';
-import {auth} from '../../firebaseConfig';
-import {createUserWithEmailAndPassword} from 'firebase/auth';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import Navbar from "../Navbar/Navbar";
+import { auth, db } from "../../firebaseConfig";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 import styles from "../RegisterPage/RegisterPage.module.css";
 import Footer from "../Footer/Footer";
 
-const RegisterPage = ({onRegister}) => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+const RegisterPage = ({ onRegister }) => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
 
     const handleRegister = async () => {
         try {
@@ -17,27 +18,39 @@ const RegisterPage = ({onRegister}) => {
                 throw new Error("Passwords do not match");
             }
 
-            await createUserWithEmailAndPassword(auth, email, password)
-            alert('Registered successfully!');
+            const userCredential = await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+            const user = userCredential.user;
+
+            // Create an empty instance in the usersHistory collection
+            await setDoc(doc(db, "usersHistory", user.uid), {
+                history: {},
+                rejectedList: {},
+            });
+
+            alert("Registered successfully!");
         } catch (error) {
             const errorCode = error.code;
             let errorMessage = error.message;
 
             switch (errorCode) {
-                case 'auth/weak-password':
-                    errorMessage = 'Password is too weak';
+                case "auth/weak-password":
+                    errorMessage = "Password is too weak";
                     break;
-                case 'auth/email-already-in-use':
-                    errorMessage = 'Email address is already in use';
+                case "auth/email-already-in-use":
+                    errorMessage = "Email address is already in use";
                     break;
-                case 'auth/invalid-email':
-                    errorMessage = 'Invalid email address';
+                case "auth/invalid-email":
+                    errorMessage = "Invalid email address";
                     break;
-                case 'auth/missing-email':
-                    errorMessage = 'Please enter an email address';
+                case "auth/missing-email":
+                    errorMessage = "Please enter an email address";
                     break;
-                case 'auth/missing-password':
-                    errorMessage = 'Please enter a password';
+                case "auth/missing-password":
+                    errorMessage = "Please enter a password";
                     break;
                 default:
                     break;
@@ -49,7 +62,7 @@ const RegisterPage = ({onRegister}) => {
 
     return (
         <div className={styles.main}>
-            <Navbar isAuthenticated={false}/>
+            <Navbar isAuthenticated={false} />
             <div className={styles.parent}>
                 <div className={styles.page}>
                     <h2>Register</h2>
