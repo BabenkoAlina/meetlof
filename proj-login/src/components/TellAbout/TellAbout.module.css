@@ -5,7 +5,8 @@ body {
     /* background-image: url(./img/back.jpeg); */
     background-size: cover;
     font-family: 'Lexend', sans-serif;
-    overflow: hidden;
+    overflow-x: hidden;  
+    overflow-y: auto;
 }
 
   
