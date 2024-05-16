@@ -9,7 +9,8 @@ import {auth} from './firebaseConfig';
 import {onAuthStateChanged} from 'firebase/auth';
 import './App.css';
 import TellAbout from './components/TellAbout/TellAbout';
-
+import MatchFound from './components/Match/MatchFound';
+import Contact from './components/Contacts/Contacts';
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState('');
@@ -60,6 +61,8 @@ const App = () => {
                         )}
                     </Route>
                     <Route path="/tell_about" component={TellAbout}/>
+                    <Route path="/match_found" component={MatchFound}/>
+                    <Route path="/contacts" component={Contact}/>
                     <Route render={() => <Redirect to="/" />} />
                 </Switch>
             </div>
