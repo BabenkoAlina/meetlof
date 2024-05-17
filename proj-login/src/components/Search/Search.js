@@ -15,7 +15,7 @@ import { auth, db } from "../../firebaseConfig";
 import styles from "./Search.module.css";
 import axios from "axios";
 
-function SearchPage() {
+function SearchPage({onLogout}) {
     const [userEmail, setUserEmail] = useState("");
     const [currentUser, setCurrentUser] = useState(null);
     const [hasFoundMatches, setHasFoundMatches] = useState(false);
@@ -206,9 +206,10 @@ function SearchPage() {
     return (
         <>
             <div className={styles.cont}>
-                <Navbar isAuthenticated={true} />
+                <Navbar isAuthenticated={true} onLogout={onLogout}/>
                 <div id={styles.content_search}>
                     <h2>We are looking for a match</h2>
+                    <h4>Make sure, that you have edited your profile</h4>
                     <div className={styles.loader}></div>
                     <button
                         id={styles.button_stop}
