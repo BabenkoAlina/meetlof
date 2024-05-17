@@ -163,10 +163,21 @@ function MatchFound() {
                             <h3>What your best match is looking for:</h3>
                             <p>
                                 {
-                                    matchedUsers[currentMatchIndex].data
-                                        .expectation
+                                    matchedUsers[currentMatchIndex]?.data
+                                        ?.expectation
                                 }
                             </p>
+                            {matchedUsers[currentMatchIndex]?.data
+                                ?.profileImage && (
+                                <img
+                                    src={
+                                        matchedUsers[currentMatchIndex]?.data
+                                            ?.profileImage
+                                    }
+                                    alt="Matched User"
+                                    className={styles.match_image}
+                                />
+                            )}
                         </div>
                     </div>
                     <div className={styles.match_card_bottom}>

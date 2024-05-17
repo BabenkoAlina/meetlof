@@ -12,15 +12,14 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "../../firebaseConfig";
 import styles from "./Search.module.css";
-import axios from 'axios';
-
+import axios from "axios";
 
 function SearchPage() {
     const [userEmail, setUserEmail] = useState("");
     const [currentUser, setCurrentUser] = useState(null);
     const [hasFoundMatches, setHasFoundMatches] = useState(false);
     const history = useHistory();
-    const [quote, setQuote] = useState('');
+    const [quote, setQuote] = useState("");
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -37,10 +36,12 @@ function SearchPage() {
     useEffect(() => {
         const fetchQuote = async () => {
             try {
-                const response = await axios.get('https://api.quotable.io/random');
+                const response = await axios.get(
+                    "https://api.quotable.io/random"
+                );
                 setQuote(response.data.content + " - " + response.data.author);
             } catch (error) {
-                console.error('Error fetching quote: ', error);
+                console.error("Error fetching quote: ", error);
             }
         };
         fetchQuote();
@@ -71,7 +72,6 @@ function SearchPage() {
             years23: false,
             years25: false,
         };
-
 
         const initializeAttributes = (user) => {
             const initializedUser = { ...defaultAttributes, ...user };
@@ -123,13 +123,18 @@ function SearchPage() {
             }
 
             const otherUsers = usersSnapshot.docs
-                .filter(
-                    (doc) =>
-                        doc.data().userId !== currentUser.uid &&
+                .filter((doc) => {
+                    const userData = doc.data();
+                    return (
+                        userData.userId !== currentUser.uid &&
                         !currentUserHistoryData.rejectedList.includes(
-                            doc.data().userId
+                            userData.userId
+                        ) &&
+                        !currentUserHistoryData.likedArray.includes(
+                            userData.userId
                         )
-                )
+                    );
+                })
                 .map((doc) => {
                     const userData = initializeAttributes(doc.data());
                     return {
@@ -214,20 +219,20 @@ function SearchPage() {
                 </select>
             </div>
 
-                <div id={styles.content_search}>
-                    <h2>We are looking for a match</h2>
-                    <div className={styles.loader}></div>
-                    <button
-                        id={styles.button_stop}
-                        onClick={() => history.push("/home")}>
-                        Stop search
-                    </button>
-                    <div>
-                        <p className={styles.quote}>{quote}</p>
-                    </div>
+            <div id={styles.content_search}>
+                <h2>We are looking for a match</h2>
+                <div className={styles.loader}></div>
+                <button
+                    id={styles.button_stop}
+                    onClick={() => history.push("/home")}>
+                    Stop search
+                </button>
+                <div>
+                    <p className={styles.quote}>{quote}</p>
                 </div>
+            </div>
         </>
     );
-    }
+}
 
 export default SearchPage;
