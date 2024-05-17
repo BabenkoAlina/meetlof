@@ -66,8 +66,9 @@ const HistoryPage = () => {
         );
 
         if (action === "like") {
+            const timestamp = new Date();
             await updateDoc(currentUserHistoryDocRef, {
-                [`history.${userId}`]: new Date(),
+                [`history.${userId}`]: timestamp,
                 likedArray: arrayUnion(userId),
                 requestsArray: arrayRemove(userId),
             });
@@ -82,10 +83,10 @@ const HistoryPage = () => {
                 });
             } else {
                 await updateDoc(currentUserHistoryDocRef, {
-                    [`history.${userId}`]: new Date(),
+                    [`history.${userId}`]: timestamp,
                 });
                 await updateDoc(likedUserDocRef, {
-                    [`history.${currentUser.uid}`]: new Date(),
+                    [`history.${currentUser.uid}`]: timestamp,
                 });
             }
 
