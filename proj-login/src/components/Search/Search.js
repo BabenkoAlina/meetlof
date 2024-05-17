@@ -67,10 +67,6 @@ function SearchPage() {
             procrastinate: false,
             promenade: false,
             sportsman: false,
-            years17: false,
-            years20: false,
-            years23: false,
-            years25: false,
         };
 
         const initializeAttributes = (user) => {
