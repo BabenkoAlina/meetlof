@@ -7,7 +7,7 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
 
     const handleLogout = () => {
         onLogout();
-        history.push("/"); // Redirect to the root path after logout
+        history.push("/");
     };
 
     const navigateProfile = (event) => {
@@ -15,6 +15,9 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
         switch (selectedOption) {
             case "viewProfile":
                 history.push("/tell_about");
+                break;
+            case "history":
+                history.push("/history");
                 break;
             case "logout":
                 handleLogout();
@@ -41,6 +44,7 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
                             Profile
                         </option>
                         <option value="viewProfile">View your profile</option>
+                        <option value="history">My history</option>
                         <option value="logout">Log out</option>
                     </select>
                 </div>

@@ -69,42 +69,9 @@
   color: #ffce59;
 }
 
-/* Buttons */
-
-.nav_profile {
-  margin-top: 26px;
-  text-align: right;
-  margin-right: 114px;
+.cont {
+  height: 100vh;
 }
-
-#profile_dropdown {
-  padding: 10px;
-  font-size: 16px;
-  border: 2px solid #a4cfbc;
-  border-radius: 5px;
-  background-color: #f8f8f8;
-  color: #4b791c;
-  cursor: pointer;
-}
-
-#profile_dropdown:hover {
-  background-color: #e0e0e0;
-}
-
-#profile_dropdown option {
-  padding: 10px;
-}
-
-#profile_dropdown option[disabled] {
-  color: #888;
-}
-
-#profile_dropdown option[selected] {
-  font-weight: bold;
-  background-color: #a4cfbc;
-  color: white;
-}
-
 /* Content */
 
 #content_search {
