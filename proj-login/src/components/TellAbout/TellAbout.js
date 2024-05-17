@@ -33,10 +33,10 @@ function TellAbout() {
     const [lookingForFriend, setLookingForFriend] = useState(false);
     const [lookingForLover, setLookingForLover] = useState(false);
     const [lookingForChat, setLookingForChat] = useState(false);
-    const [years17, setYears17] = useState(true);
-    const [years20, setYears20] = useState(false);
-    const [years23, setYears23] = useState(true);
-    const [years25, setYears25] = useState(false);
+    // const [years17, setYears17] = useState(true);
+    // const [years20, setYears20] = useState(false);
+    // const [years23, setYears23] = useState(true);
+    // const [years25, setYears25] = useState(false);
     const [expectation, setExpectation] = useState("");
     const [agreeToShare, setAgreeToShare] = useState(false);
 
@@ -67,10 +67,10 @@ function TellAbout() {
                         setLookingForFriend(userData.lookingForFriend || false);
                         setLookingForLover(userData.lookingForLover || false);
                         setLookingForChat(userData.lookingForChat || false);
-                        setYears17(userData.years17 || true);
-                        setYears20(userData.years20 || false);
-                        setYears23(userData.years23 || true);
-                        setYears25(userData.years25 || false);
+                        // setYears17(userData.years17 || true);
+                        // setYears20(userData.years20 || false);
+                        // setYears23(userData.years23 || true);
+                        // setYears25(userData.years25 || false);
                         setExpectation(userData.expectation || "");
                         setAgreeToShare(userData.agreeToShare || false);
                     }
@@ -110,6 +110,18 @@ function TellAbout() {
             alert("You must agree to share your information to submit.");
             return;
         }
+        if (!name) {
+            alert("Please enter your name.");
+            return;
+        }
+        if (!telegram) {
+            alert("Please enter your Telegram username.");
+            return;
+        }
+        if (!expectation) {
+            alert("Please enter your expectation.");
+            return;
+        }
 
         console.log("Trying to delete doc with id: ", userId);
         try {
@@ -143,10 +155,10 @@ function TellAbout() {
             lookingForFriend,
             lookingForLover,
             lookingForChat,
-            years17,
-            years20,
-            years23,
-            years25,
+            // years17,
+            // years20,
+            // years23,
+            // years25,
             expectation,
             agreeToShare,
         };
