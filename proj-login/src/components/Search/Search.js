@@ -150,22 +150,25 @@ function SearchPage() {
                 // Only update requestsArray
                 const batch = writeBatch(db);
                 for (const user of otherUsers) {
-                    const likedUserDocRef = doc(
-                        db,
-                        "usersHistory",
-                        user.userId
-                    );
-                    const likedUserDoc = await getDoc(likedUserDocRef);
-                    if (!likedUserDoc.exists()) {
-                        await setDoc(likedUserDocRef, {
-                            rejectedList: [],
-                            likedArray: [],
-                            requestsArray: [],
+                    if (user.userId) {
+                        // Ensure userId is defined
+                        const likedUserDocRef = doc(
+                            db,
+                            "usersHistory",
+                            user.userId
+                        );
+                        const likedUserDoc = await getDoc(likedUserDocRef);
+                        if (!likedUserDoc.exists()) {
+                            await setDoc(likedUserDocRef, {
+                                rejectedList: [],
+                                likedArray: [],
+                                requestsArray: [],
+                            });
+                        }
+                        batch.update(likedUserDocRef, {
+                            requestsArray: arrayUnion(currentUser.uid),
                         });
                     }
-                    batch.update(likedUserDocRef, {
-                        requestsArray: arrayUnion(currentUser.uid),
-                    });
                 }
                 await batch.commit();
 
