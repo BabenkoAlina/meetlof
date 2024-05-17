@@ -15,7 +15,6 @@ import { onAuthStateChanged } from "firebase/auth";
 import "./App.css";
 import TellAbout from "./components/TellAbout/TellAbout";
 import MatchFound from "./components/Match/MatchFound";
-// import Contact from "./components/Contacts/Contacts";
 import Search from "./components/Search/Search";
 import History from "./components/History/History";
 
@@ -104,13 +103,6 @@ const App = () => {
                             <Redirect to="/login" />
                         )}
                     </Route>
-                    {/*<Route path="/contacts">*/}
-                    {/*    {loggedIn ? (*/}
-                    {/*        <Contact />*/}
-                    {/*    ) : (*/}
-                    {/*        <Redirect to="/login" />*/}
-                    {/*    )}*/}
-                    {/*</Route>*/}
                     <Route path="/search">
                         {loggedIn ? (
                             <div>
