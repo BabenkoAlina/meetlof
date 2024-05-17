@@ -80,6 +80,13 @@ const HistoryPage = () => {
                 await updateDoc(likedUserDocRef, {
                     requestsArray: arrayUnion(currentUser.uid),
                 });
+            } else {
+                await updateDoc(currentUserHistoryDocRef, {
+                    [`history.${userId}`]: new Date(),
+                });
+                await updateDoc(likedUserDocRef, {
+                    [`history.${currentUser.uid}`]: new Date(),
+                });
             }
 
             setRequestsArray((prev) => prev.filter((id) => id !== userId));
