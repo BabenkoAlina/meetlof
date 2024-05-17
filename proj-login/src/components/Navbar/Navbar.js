@@ -1,13 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styles from "../Navbar/Navbar.module.css";
-import { useHistory } from "react-router-dom";
 
 const Navbar = ({ isAuthenticated, onLogout }) => {
     const history = useHistory();
 
     const handleLogout = () => {
         onLogout();
+        history.push("/"); // Redirect to the root path after logout
     };
 
     const navigateProfile = (event) => {

@@ -2,6 +2,11 @@
   height: 100vh;
   background-image: url(./img/back5.jpeg);
   background-size: cover;
+  
+} */
+
+/* body {
+  font-family: 'Montserrat';
 } */
 /* Nav bar */
 .panel_body {
@@ -148,7 +153,8 @@
 #button_stop {
   margin-top: 50px;
   border: 2.5px solid #a4cfbc;
-  border-radius: 30px;
+  /* border-radius: 30px; */
+  border-radius: 0 50px 50px 75px;
   width: 150px;
   height: 50px;
   transition: background-color 0.3s;
@@ -167,7 +173,7 @@
   margin-bottom: 40px;
   color: #000;
   font-size: 38px;
-  font-family: 'Lexend', sans-serif;
+  /* font-family: 'Lexend', sans-serif; */
 
 }
 
@@ -176,7 +182,7 @@
   margin-bottom: 30px; */
   color: #000;
   font-size: 24px;
-  font-family: 'Lexend', sans-serif;
+  /* font-family: 'Lexend', sans-serif; */
   margin-left: 20px;
   margin-right: 20px;
 }
