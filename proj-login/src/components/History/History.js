@@ -9,10 +9,12 @@ import {
     arrayRemove,
 } from "firebase/firestore";
 import { auth, db } from "../../firebaseConfig";
+import { useHistory } from 'react-router-dom';
 import Navbar from "../Navbar/Navbar";
 import "./History.css"; // Correctly import the CSS file
 
 const HistoryPage = ({onLogout}) => {
+    const history = useHistory();
     const [likedArray, setLikedArray] = useState([]);
     const [requestsArray, setRequestsArray] = useState([]);
     const [usersInfo, setUsersInfo] = useState({});
@@ -58,6 +60,9 @@ const HistoryPage = ({onLogout}) => {
         return () => clearInterval(intervalId);
     }, [currentUser]);
 
+     const handleGoBack = () => {
+        history.goBack();
+      };
     const handleActionClick = async (userId, action) => {
         const currentUserHistoryDocRef = doc(
             db,
@@ -184,6 +189,9 @@ const HistoryPage = ({onLogout}) => {
                         </tbody>
                     </table>
                 </div>
+                <button id="button_back" type="button" onClick={handleGoBack}>
+                    Back
+                </button>
             </div>
         </div>
     );
