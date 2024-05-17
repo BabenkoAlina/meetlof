@@ -75,6 +75,7 @@ const App = () => {
                         ) : (
                             <RegisterPage />
                         )}
+
                     </Route>
                     <Route path="/home">
                         {loggedIn ? (
