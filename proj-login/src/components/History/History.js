@@ -10,7 +10,7 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "../../firebaseConfig";
 import Navbar from "../Navbar/Navbar";
-import "./History.css"; // Correctly import the CSS file
+import "./History.css";
 
 const HistoryPage = () => {
     const [likedArray, setLikedArray] = useState([]);
@@ -47,14 +47,11 @@ const HistoryPage = () => {
 
             setActions(actionsMap);
         };
-
-        // Fetch data initially
+    
         fetchData();
 
-        // Set up interval to fetch data every 5 seconds
         const intervalId = setInterval(fetchData, 5000);
 
-        // Clean up interval on component unmount
         return () => clearInterval(intervalId);
     }, [currentUser]);
 
@@ -79,13 +76,6 @@ const HistoryPage = () => {
             if (!likedUserData?.likedArray?.includes(currentUser.uid)) {
                 await updateDoc(likedUserDocRef, {
                     requestsArray: arrayUnion(currentUser.uid),
-                });
-            } else {
-                await updateDoc(currentUserHistoryDocRef, {
-                    [`history.${userId}`]: new Date(),
-                });
-                await updateDoc(likedUserDocRef, {
-                    [`history.${currentUser.uid}`]: new Date(),
                 });
             }
 
@@ -146,7 +136,7 @@ const HistoryPage = () => {
 
     return (
         <div>
-            <Navbar isAuthenticated={true} />
+            <Navbar isAuthenticated={true} onLogout={auth.signOut} />
             <div className="historyContainer">
                 <h2>History Page</h2>
                 <div className="tableContainer">

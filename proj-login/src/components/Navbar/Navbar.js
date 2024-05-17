@@ -6,8 +6,12 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
     const history = useHistory();
 
     const handleLogout = () => {
-        onLogout();
-        history.push("/"); // Redirect to the root path after logout
+        if (onLogout) {
+            onLogout();
+            history.push("/"); // Redirect to the root path after logout
+        } else {
+            console.error("onLogout function is not provided");
+        }
     };
 
     const navigateProfile = (event) => {
