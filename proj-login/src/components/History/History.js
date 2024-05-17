@@ -146,7 +146,7 @@ const HistoryPage = ({onLogout}) => {
 
     return (
         <div>
-            <Navbar isAuthenticated={true} onLogout={{onLogout}}/>
+            <Navbar isAuthenticated={true} onLogout={onLogout}/>
             <div className="historyContainer">
                 <h2>History Page</h2>
                 <div className="tableContainer">
