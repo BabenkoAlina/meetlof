@@ -137,13 +137,21 @@
 }
 #content_search h2{
   margin-top: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   color: #000;
   font-size: 38px;
   /* font-family: 'Lexend', sans-serif; */
 
 }
+#content_search h4{
 
+  font-style: normal;
+  margin-bottom: 40px;
+  color: #000;
+  font-size: 20px;
+  /* font-family: 'Lexend', sans-serif; */
+
+}
 #content_search p{
   /* margin-top: 20px;
   margin-bottom: 30px; */
