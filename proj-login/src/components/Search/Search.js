@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import Navbar from '../Navbar/Navbar';
+
 import {
     collection,
     getDocs,
@@ -67,10 +69,6 @@ function SearchPage() {
             procrastinate: false,
             promenade: false,
             sportsman: false,
-            years17: false,
-            years20: false,
-            years23: false,
-            years25: false,
         };
 
         const initializeAttributes = (user) => {
@@ -179,10 +177,14 @@ function SearchPage() {
 
                 setHasFoundMatches(true);
 
-                // Add a delay before navigating to the match_found page
                 setTimeout(() => {
                     history.push("/match_found");
-                }, 1000); // 1 second delay
+                }, 1000);
+            } else {
+                setHasFoundMatches(true);
+                setTimeout(() => {
+                    history.push("/match_not_found");
+                }, 1000);
             }
         };
 
@@ -206,19 +208,8 @@ function SearchPage() {
 
     return (
         <>
-            <div className={styles.nav_profile}>
-                <select
-                    id={styles.profile_dropdown}
-                    onChange={navigateProfile}
-                    defaultValue="">
-                    <option value="" disabled>
-                        Profile
-                    </option>
-                    <option value="viewProfile">View your profile</option>
-                    <option value="logout">Log out</option>
-                </select>
-            </div>
-
+        <div className={styles.cont}>
+            <Navbar isAuthenticated={true}/>
             <div id={styles.content_search}>
                 <h2>We are looking for a match</h2>
                 <div className={styles.loader}></div>
@@ -231,6 +222,7 @@ function SearchPage() {
                     <p className={styles.quote}>{quote}</p>
                 </div>
             </div>
+        </div>     
         </>
     );
 }
