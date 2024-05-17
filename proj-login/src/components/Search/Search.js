@@ -209,6 +209,7 @@ function SearchPage({ onLogout }) {
                 <Navbar isAuthenticated={true} onLogout={onLogout} />
                 <div id={styles.content_search}>
                     <h2>We are looking for a match</h2>
+                    <h4>Make sure, that you have edited your profile</h4>
                     <div className={styles.loader}></div>
                     <button
                         id={styles.button_stop}
