@@ -143,7 +143,7 @@ const HistoryPage = () => {
             <div className="historyContainer">
                 <h2>History Page</h2>
                 <div className="tableContainer">
-                    <h3>Requests I Sent</h3>
+                    <h3>Users I liked</h3>
                     <table className="historyTable">
                         <thead>
                             <tr>
@@ -160,7 +160,7 @@ const HistoryPage = () => {
                     </table>
                 </div>
                 <div className="tableContainer">
-                    <h3>Users I liked</h3>
+                    <h3>Requests I Got</h3>
                     <table className="historyTable">
                         <thead>
                             <tr>
