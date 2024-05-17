@@ -231,28 +231,6 @@ function TellAbout() {
                                 </div>
                             </div>
                         </div>
-
-                        {/* Right section */}
-                        <div className={styles.right_section}>
-                            <div id={styles.photo}>
-                                <input
-                                    type="file"
-                                    id={styles.imageUpload}
-                                    name="imageUpload"
-                                    accept="image/*"
-                                    onChange={handlePhotoUpload}
-                                />
-                                <label htmlFor={styles.imageUpload}>
-                                    You can upload photo here
-                                </label>
-                            </div>
-
-                            <div id={styles.uploadedPhoto}>
-                                {uploadedPhoto && (
-                                    <img src={uploadedPhoto} alt="Uploaded" />
-                                )}
-                            </div>
-                        </div>
                     </section>
 
                     {/* Hobbies */}
