@@ -61,7 +61,9 @@ const App = () => {
         <Router>
             <div>
                 <Switch>
-                    <Route exact path="/" component={GreetingPage} />
+                    <Route exact path="/" component={GreetingPage}>
+                        {loggedIn ? <Redirect to="/home" /> : <GreetingPage />}
+                    </Route>
                     <Route path="/login">
                         {loggedIn ? (
                             <Redirect to="/home" />
@@ -95,7 +97,9 @@ const App = () => {
                     </Route>
                     <Route path="/match_found">
                         {loggedIn ? (
-                            <MatchFound />
+                            <div>
+                                <MatchFound onLogout={handleLogout} />
+                            </div>
                         ) : (
                             <Redirect to="/login" />
                         )}
@@ -116,11 +120,14 @@ const App = () => {
                     </Route>
                     <Route path="/history">
                         {loggedIn ? (
-                            <History />
+                            <div>
+                                <History onLogout={handleLogout} />
+                            </div>
                         ) : (
                             <Redirect to="/login" />
                         )}
                     </Route>
+
                     <Route render={() => (loggedIn ? <Redirect to="/home" /> : <Redirect to="/" />)} />
                 </Switch>
             </div>

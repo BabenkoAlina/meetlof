@@ -12,7 +12,7 @@ import {
     getDoc,
 } from "firebase/firestore";
 
-function MatchFound() {
+function MatchFound({onLogout}) {
     const history = useHistory();
     const currentUser = auth.currentUser;
     const [userEmail, setUserEmail] = useState("");
@@ -153,7 +153,7 @@ function MatchFound() {
 
     return (
         <div>
-            <Navbar isAuthenticated={true} />
+            <Navbar isAuthenticated={true} onLogout={onLogout} />
             {matchedUsers.length > 0 &&
             matchedUsers.length > currentMatchIndex ? (
                 <div className={styles.match_card}>

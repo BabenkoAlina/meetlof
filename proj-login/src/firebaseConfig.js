@@ -5,12 +5,12 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyCsb4jm2iurRS-9hVQ2Td3tKCBv_pblaHA",
-    authDomain: "meetlof-b2faa.firebaseapp.com",
-    projectId: "meetlof-b2faa",
-    storageBucket: "meetlof-b2faa.appspot.com",
-    messagingSenderId: "366345120330",
-    appId: "1:366345120330:web:ff1e02d3e46d07031454b3"
+    apiKey: "AIzaSyA7M8LccZsCIq7Rr3NZw19J_EEANAJP_lA",
+    authDomain: "meetlof-90717.firebaseapp.com",
+    projectId: "meetlof-90717",
+    storageBucket: "meetlof-90717.appspot.com",
+    messagingSenderId: "207041903006",
+    appId: "1:207041903006:web:2bcc9b3a92636767ccfe8f"
 };
 
 // Initialize Firebase
