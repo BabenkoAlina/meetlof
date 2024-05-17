@@ -179,10 +179,14 @@ function SearchPage() {
 
                 setHasFoundMatches(true);
 
-                // Add a delay before navigating to the match_found page
                 setTimeout(() => {
                     history.push("/match_found");
-                }, 1000); // 1 second delay
+                }, 1000);
+            } else {
+                setHasFoundMatches(true);
+                setTimeout(() => {
+                    history.push("/match_not_found");
+                }, 1000);
             }
         };
 
