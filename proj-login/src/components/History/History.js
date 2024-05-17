@@ -67,7 +67,6 @@ const HistoryPage = () => {
 
         if (action === "like") {
             await updateDoc(currentUserHistoryDocRef, {
-                [`history.${userId}`]: new Date(),
                 likedArray: arrayUnion(userId),
                 requestsArray: arrayRemove(userId),
             });
@@ -116,7 +115,9 @@ const HistoryPage = () => {
                 <td>{user.name}</td>
                 <td>{user.expectation}</td>
                 <td>
-                    {userAction === "like"
+                    {userAction === "like" &&
+                    likedArray.includes(userId) &&
+                    user.requestsArray.includes(currentUser.uid)
                         ? user.telegram
                         : userAction === "reject"
                         ? "rejected by me"

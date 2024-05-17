@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import Navbar from '../Navbar/Navbar';
-
+import Navbar from "../Navbar/Navbar";
 import {
     collection,
     getDocs,
@@ -148,12 +147,7 @@ function SearchPage() {
             otherUsers.sort((a, b) => b.matchPercentage - a.matchPercentage);
 
             if (otherUsers.length > 0) {
-                const likedArray = otherUsers.map((user) => user.userId);
-                await updateDoc(currentUserHistoryDocRef, {
-                    likedArray: likedArray,
-                });
-
-                // Add the current user to the requestsArray of each liked user
+                // Only update requestsArray
                 const batch = writeBatch(db);
                 for (const user of otherUsers) {
                     const likedUserDocRef = doc(
@@ -208,21 +202,21 @@ function SearchPage() {
 
     return (
         <>
-        <div className={styles.cont}>
-            <Navbar isAuthenticated={true}/>
-            <div id={styles.content_search}>
-                <h2>We are looking for a match</h2>
-                <div className={styles.loader}></div>
-                <button
-                    id={styles.button_stop}
-                    onClick={() => history.push("/home")}>
-                    Stop search
-                </button>
-                <div>
-                    <p className={styles.quote}>{quote}</p>
+            <div className={styles.cont}>
+                <Navbar isAuthenticated={true} />
+                <div id={styles.content_search}>
+                    <h2>We are looking for a match</h2>
+                    <div className={styles.loader}></div>
+                    <button
+                        id={styles.button_stop}
+                        onClick={() => history.push("/home")}>
+                        Stop search
+                    </button>
+                    <div>
+                        <p className={styles.quote}>{quote}</p>
+                    </div>
                 </div>
             </div>
-        </div>     
         </>
     );
 }
