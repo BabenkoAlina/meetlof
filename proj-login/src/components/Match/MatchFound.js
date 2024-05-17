@@ -202,7 +202,7 @@ function MatchFound() {
                 <div className={styles.match_card}>
                     <h2>No Matches Found</h2>
                     <button
-                        className={styles.exit}
+                        className={styles.exit2}
                         onClick={() => history.push("/home")}>
                         Exit
                     </button>

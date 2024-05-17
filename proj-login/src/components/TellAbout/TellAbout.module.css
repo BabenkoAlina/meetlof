@@ -4,7 +4,7 @@ body {
     margin-left: 0px;
     /* background-image: url(./img/back.jpeg); */
     background-size: cover;
-    font-family: 'Lexend', sans-serif;
+    /* font-family: 'Lexend', sans-serif; */
     overflow-x: hidden;  
     overflow-y: auto; 
 }
@@ -385,7 +385,8 @@ input[type="checkbox"]:checked {
     background-color: #4ab66e;
     color: white;
     border: 2px solid;
-    border-radius: 32px;
+    /* border-radius: 32px; */
+    border-radius: 0 50px 50px 75px;
     border-color: #4ab66e;
     cursor: pointer;
     transition: transform 0.2s;
@@ -403,8 +404,8 @@ input[type="checkbox"]:checked {
     border: 2px solid black;
     background-color: black;
     color: white;
-    border-radius: 30px;
-   
+    /* border-radius: 30px; */
+    border-radius: 0 50px 50px 75px;
     width: 150px;
     height: 50px;
    
