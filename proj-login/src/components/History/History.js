@@ -12,7 +12,7 @@ import { auth, db } from "../../firebaseConfig";
 import Navbar from "../Navbar/Navbar";
 import "./History.css"; // Correctly import the CSS file
 
-const HistoryPage = ({onLogout}) => {
+const HistoryPage = () => {
     const [likedArray, setLikedArray] = useState([]);
     const [requestsArray, setRequestsArray] = useState([]);
     const [usersInfo, setUsersInfo] = useState({});
@@ -67,6 +67,7 @@ const HistoryPage = ({onLogout}) => {
 
         if (action === "like") {
             await updateDoc(currentUserHistoryDocRef, {
+                [`history.${userId}`]: new Date(),
                 likedArray: arrayUnion(userId),
                 requestsArray: arrayRemove(userId),
             });
@@ -115,9 +116,7 @@ const HistoryPage = ({onLogout}) => {
                 <td>{user.name}</td>
                 <td>{user.expectation}</td>
                 <td>
-                    {userAction === "like" &&
-                    likedArray.includes(userId) &&
-                    user.requestsArray.includes(currentUser.uid)
+                    {userAction === "like"
                         ? user.telegram
                         : userAction === "reject"
                         ? "rejected by me"
@@ -147,7 +146,7 @@ const HistoryPage = ({onLogout}) => {
 
     return (
         <div>
-            <Navbar isAuthenticated={true} onLogout={onLogout} />
+            <Navbar isAuthenticated={true} />
             <div className="historyContainer">
                 <h2>History Page</h2>
                 <div className="tableContainer">
