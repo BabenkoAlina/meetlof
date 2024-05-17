@@ -1,103 +1,98 @@
-/* History.css */
-
 .historyContainer {
-    width: 90%;
-    margin: 5% auto;
-    padding: 20px;
-    background-color: #e0e0e0; /* Light grey background color */
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Center align all content */
+  width: 90%;
+  margin: 5% auto;
+  padding: 20px;
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .historyContainer h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
 }
 
 .tableContainer {
-    margin-bottom: 30px;
-    display: flex;
-    justify-content: center; /* Center align the table container */
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
 }
 
 .tableContainer h3 {
-    margin-bottom: 10px;
-    color: #555;
+  margin-bottom: 10px;
+  color: #555;
 }
 
 .historyTable {
-    width: 80%; /* Adjust width as needed */
-    border-collapse: collapse;
-    margin: 0 auto; /* Center align the table */
+  width: 80%;
+  border-collapse: collapse;
+  margin: 0 auto;
 }
 
 .historyTable th,
 .historyTable td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-    color: #333;
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  color: #333;
 }
 
 .historyTable th {
-    background-color: #f2f2f2;
-    font-weight: bold;
+  background-color: #f2f2f2;
+  font-weight: bold;
 }
 
 .historyTable tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
+  background-color: #f9f9f9;
 }
 
 .historyTable tbody tr:nth-child(odd) {
-    background-color: #fff;
+  background-color: #fff;
 }
 
 .historyTable button {
-    padding: 5px 10px;
-    margin: 0 5px;
-    border: none;
-    width: 100px;
-    /* border-radius: 4px; */
-    cursor: pointer;
-    color: #fff;
+  padding: 5px 10px;
+  margin: 0 5px;
+  border: none;
+  width: 100px;
+  cursor: pointer;
+  color: #fff;
 }
 
 .like {
-    background-color: rgba(76, 175, 80, 0.7);
-    border-radius: 0 50px 50px 75px;
+  background-color: rgba(76, 175, 80, 0.7);
+  border-radius: 0 50px 50px 75px;
 }
 
 .reject {
-    background-color: rgba(244, 67, 54, 0.7);
-    border-radius: 0 50px 50px 75px;
+  background-color: rgba(244, 67, 54, 0.7);
+  border-radius: 0 50px 50px 75px;
 }
 
 .historyTable button:hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
-
 #button_back {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 
-    border: 2px solid black;
-    background-color: black;
-    color: white;
-    /* border-radius: 30px; */
-    border-radius: 0 50px 50px 75px;
-    width: 150px;
-    height: 50px;
-   
-    font-size: 18px;
-    opacity: 0.8;
+  border: 2px solid black;
+  background-color: black;
+  color: white;
+  border-radius: 0 50px 50px 75px;
+  width: 150px;
+  height: 50px;
+
+  font-size: 18px;
+  opacity: 0.8;
 }
 
 #button_back:hover {
-    border: 2.5px solid #a4cfbc;
-    background-color: white;
-    color: black;
-    opacity: 0.7;
-    transition: background-color 0.3s;
+  border: 2.5px solid #a4cfbc;
+  background-color: white;
+  color: black;
+  opacity: 0.7;
+  transition: background-color 0.3s;
 }

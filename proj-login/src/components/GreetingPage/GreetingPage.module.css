@@ -1,197 +1,185 @@
-/* body{
-    font-family: "Montserrat";
-} */
 .parent {
-    display: flex; /* Set the parent container to flex */
-    justify-content: center; /* Center children horizontally */
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
 }
 
 .page {
-    margin: -70px 150px 0 150px;
+  margin: -70px 150px 0 150px;
 }
 
 .greeting-container {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 .greeting-text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; 
-    margin: 20px auto; 
-    padding: 20px;
-    /* background-color: rgba(255, 255, 255, 0.8); */
-    /* border-radius: 32px; */
-    width: 60vw;
-    color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+  padding: 20px;
+  width: 60vw;
+  color: white;
 }
 
-
-.greeting-text h1, h2 {
-    margin: 0;
-    font-weight: 700;
-    font-size: 35px;
-    line-height: 40px;
+.greeting-text h1,
+h2 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 40px;
 }
 
 .greeting-text h1 {
-    margin-bottom: 15px;
-    
+  margin-bottom: 15px;
 }
-
-
 
 .horizontal-images {
-    margin-top: 20px;
-    margin-bottom: 50px;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px; /* Adjust the gap size as needed */
-    width: 100%;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
 }
 
-
 .horizontal-images img {
-    width: calc(50% - 10px);
-    border-radius: 20px;
+  width: calc(50% - 10px);
+  border-radius: 20px;
 }
 
 .buttons {
-    display: flex;
-    justify-content: center; /* Center the buttons horizontally */
-    gap: 50px;
-    margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-bottom: 50px;
 }
 
 .my-btn,
 .my-btn-1 {
-    box-sizing: border-box;
-    width: 300px;
-    height: 70px;
-    border: 3px rgba(255, 255, 255, 0.5);
-    border-radius: 0 50px 50px 75px;
-    background-color: rgba(255, 255, 255, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: relative;
-    font-family: "Montserrat";
+  box-sizing: border-box;
+  width: 300px;
+  height: 70px;
+  border: 3px rgba(255, 255, 255, 0.5);
+  border-radius: 0 50px 50px 75px;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  font-family: "Montserrat";
 }
 
 .my-btn span,
 .my-btn-1 span {
-/* font-family: "Montserrat"; */
-    font-style: normal;
-    font-weight: 600;
-    font-size: 23px;
-    line-height: 37px;
-    color: #282828;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 23px;
+  line-height: 37px;
+  color: #282828;
 }
 
 .my-btn:hover {
-    background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
 }
 
 .my-btn-1 {
-    border: 3px solid rgba(205, 251, 69, 0.5);
-    background-color: rgba(205, 251, 69, 0.5);
+  border: 3px solid rgba(205, 251, 69, 0.5);
+  background-color: rgba(205, 251, 69, 0.5);
 }
 
 .my-btn-1:hover {
-    background-color: rgba(205, 251, 69, 1);;
+  background-color: rgba(205, 251, 69, 1);
 }
 
 .buttons a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .title {
-    margin-bottom: 15px;
-    text-align: center;
-    font-weight: 700;
-    font-size: 35px;
-    line-height: 40px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 40px;
 }
 
 .explore-topic {
-    width: 90%;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: 31% auto;
-    background-color: rgba(255, 255, 255, 0.85);
-    border-radius: 32px;
-    margin-top: 50px;
-    margin-bottom: 30px;
-    margin-left: auto;
-    margin-right: auto;
+  width: 90%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 31% auto;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 32px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .nav_profile {
-    margin-top: 40px;
-    text-align: right;
-    margin-right: 100px;
-  }
-  
-  #profile_dropdown {
-    padding: 10px;
-    font-size: 16px;
-    border: 2px solid #a4cfbc;
-    border-radius: 5px;
-    background-color: #f8f8f8;
-    color: #4b791c;
-    cursor: pointer;
-  }
-  
-  #profile_dropdown:hover {
-    background-color: #e0e0e0;
-  }
-  
-  #profile_dropdown option {
-    padding: 10px;
-  }
-  
-  #profile_dropdown option[disabled] {
-    color: #888;
-  }
-  
-  #profile_dropdown option[selected] {
-    font-weight: bold;
-    background-color: #a4cfbc;
-    color: white;
-  }
-  
+  margin-top: 40px;
+  text-align: right;
+  margin-right: 100px;
+}
+
+#profile_dropdown {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #a4cfbc;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  color: #4b791c;
+  cursor: pointer;
+}
+
+#profile_dropdown:hover {
+  background-color: #e0e0e0;
+}
+
+#profile_dropdown option {
+  padding: 10px;
+}
+
+#profile_dropdown option[disabled] {
+  color: #888;
+}
+
+#profile_dropdown option[selected] {
+  font-weight: bold;
+  background-color: #a4cfbc;
+  color: white;
+}
 
 .explore-topic h3 {
-    color: black;
+  color: black;
 }
 
 .explore-topic img {
-    border-radius: 15px;
-    padding: 5px; /* Shorter way to set padding for all sides */
-    width: 90%;
+  border-radius: 15px;
+  padding: 5px;
+  width: 90%;
 }
 
 .explore-table p {
-    padding-top: 5px;
-    /* font-family: "Montserrat"; */
-    font-weight: 500;
-    font-size: 16px;
-    color: black;
+  padding-top: 5px;
+  font-weight: 500;
+  font-size: 16px;
+  color: black;
 }
 
 .explore-table p a {
-    text-decoration: none;
-    font-style: normal;
-    color: #299de6;
+  text-decoration: none;
+  font-style: normal;
+  color: #299de6;
 }
 
 .main {
-    display: flex;
-    flex-direction: column;
-    min-height: 98vh; /* Ensure the wrapper fills the viewport height */
+  display: flex;
+  flex-direction: column;
+  min-height: 98vh;
 }

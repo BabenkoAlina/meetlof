@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import {
-    BrowserRouter as Router,
-    Route,
-    Switch,
-    Redirect,
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
 } from "react-router-dom";
 import LoginPage from "./components/LoginPage/LoginPage";
 import HomePage from "./components/HomePage/HomePage";
@@ -19,114 +19,110 @@ import Search from "./components/Search/Search";
 import History from "./components/History/History";
 
 const App = () => {
-    const [loggedIn, setLoggedIn] = useState(false);
-    const [userEmail, setUserEmail] = useState("");
-    const [loading, setLoading] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUserEmail(user.email);
-                setLoggedIn(true);
-            } else {
-                setUserEmail("");
-                setLoggedIn(false);
-            }
-            setLoading(false); // Set loading to false after auth state is determined
-        });
-
-        return () => {
-            unsubscribe();
-        };
-    }, []);
-
-    const handleLogin = (email) => {
-        setUserEmail(email);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUserEmail(user.email);
         setLoggedIn(true);
+      } else {
+        setUserEmail("");
+        setLoggedIn(false);
+      }
+      setLoading(false);
+    });
+
+    return () => {
+      unsubscribe();
     };
+  }, []);
 
-    const handleLogout = () => {
-        auth.signOut().then(() => {
-            setUserEmail("");
-            setLoggedIn(false);
-        });
-    };
+  const handleLogin = (email) => {
+    setUserEmail(email);
+    setLoggedIn(true);
+  };
 
-    if (loading) {
-        return <div>Loading...</div>; // Show a loading indicator while checking auth status
-    }
+  const handleLogout = () => {
+    auth.signOut().then(() => {
+      setUserEmail("");
+      setLoggedIn(false);
+    });
+  };
 
-    return (
-        <Router>
-            <div>
-                <Switch>
-                    <Route exact path="/" component={GreetingPage}>
-                        {loggedIn ? <Redirect to="/home" /> : <GreetingPage />}
-                    </Route>
-                    <Route path="/login">
-                        {loggedIn ? (
-                            <Redirect to="/home" />
-                        ) : (
-                            <LoginPage onLogin={handleLogin} />
-                        )}
-                    </Route>
-                    <Route path="/register">
-                        {loggedIn ? (
-                            <Redirect to="/home" />
-                        ) : (
-                            <RegisterPage />
-                        )}
-                    </Route>
-                    <Route path="/home">
-                        {loggedIn ? (
-                            <div>
-                                <Navbar isAuthenticated={loggedIn} onLogout={handleLogout} />
-                                <HomePage userEmail={userEmail} />
-                            </div>
-                        ) : (
-                            <Redirect to="/login" />
-                        )}
-                    </Route>
-                    <Route path="/tell_about">
-                        {loggedIn ? (
-                            <TellAbout />
-                        ) : (
-                            <Redirect to="/login" />
-                        )}
-                    </Route>
-                    <Route path="/match_found">
-                        {loggedIn ? (
-                            <div>
-                                <MatchFound onLogout={handleLogout} />
-                            </div>
-                        ) : (
-                            <Redirect to="/login" />
-                        )}
-                    </Route>
-                    <Route path="/search">
-                        {loggedIn ? (
-                            <div>
-                                <Search onLogout={handleLogout} />
-                            </div>
-                        ) : (
-                            <Redirect to="/login" />
-                        )}
-                    </Route>
-                    <Route path="/history">
-                        {loggedIn ? (
-                            <div>
-                                <History onLogout={handleLogout} />
-                            </div>
-                        ) : (
-                            <Redirect to="/login" />
-                        )}
-                    </Route>
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-                    <Route render={() => (loggedIn ? <Redirect to="/home" /> : <Redirect to="/" />)} />
-                </Switch>
-            </div>
-        </Router>
-    );
+  return (
+    <Router>
+      <div>
+        <Switch>
+          <Route exact path="/" component={GreetingPage}>
+            {loggedIn ? <Redirect to="/home" /> : <GreetingPage />}
+          </Route>
+          <Route path="/login">
+            {loggedIn ? (
+              <Redirect to="/home" />
+            ) : (
+              <LoginPage onLogin={handleLogin} />
+            )}
+          </Route>
+          <Route path="/register">
+            {loggedIn ? <Redirect to="/home" /> : <RegisterPage />}
+          </Route>
+          <Route path="/home">
+            {loggedIn ? (
+              <div>
+                <Navbar isAuthenticated={loggedIn} onLogout={handleLogout} />
+                <HomePage userEmail={userEmail} />
+              </div>
+            ) : (
+              <Redirect to="/login" />
+            )}
+          </Route>
+          <Route path="/tell_about">
+            {loggedIn ? <TellAbout /> : <Redirect to="/login" />}
+          </Route>
+          <Route path="/match_found">
+            {loggedIn ? (
+              <div>
+                <MatchFound onLogout={handleLogout} />
+              </div>
+            ) : (
+              <Redirect to="/login" />
+            )}
+          </Route>
+          <Route path="/search">
+            {loggedIn ? (
+              <div>
+                <Search onLogout={handleLogout} />
+              </div>
+            ) : (
+              <Redirect to="/login" />
+            )}
+          </Route>
+          <Route path="/history">
+            {loggedIn ? (
+              <div>
+                <History onLogout={handleLogout} />
+              </div>
+            ) : (
+              <Redirect to="/login" />
+            )}
+          </Route>
+
+          <Route
+            render={() =>
+              loggedIn ? <Redirect to="/home" /> : <Redirect to="/" />
+            }
+          />
+        </Switch>
+      </div>
+    </Router>
+  );
 };
 
 export default App;

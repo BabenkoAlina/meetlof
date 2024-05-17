@@ -1,50 +1,47 @@
-/* Navbar.module.css */
-
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /* background-color: rgba(255, 255, 255, 0.5); */
-    padding: 10px 20px;
-    border-radius: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 50px;
 }
 
 .logo img {
-        background-color: rgba(255, 255, 255, 0.5);
-    width: 70px;
-    border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 70px;
+  border-radius: 50px;
 }
 
 .nav_profile {
-    display: flex;
-    align-items: center;
-    margin-right: 5%;
+  display: flex;
+  align-items: center;
+  margin-right: 5%;
 }
 
 #profile_dropdown {
-    padding: 10px;
-    font-size: 16px;
-    border: 2px solid #a4cfbc;
-    border-radius: 5px;
-    background-color: #f8f8f8;
-    color: #4b791c;
-    cursor: pointer;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #a4cfbc;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  color: #4b791c;
+  cursor: pointer;
 }
 
 #profile_dropdown:hover {
-    background-color: #e0e0e0;
+  background-color: #e0e0e0;
 }
 
 #profile_dropdown option {
-    padding: 10px;
+  padding: 10px;
 }
 
 #profile_dropdown option[disabled] {
-    color: #888;
+  color: #888;
 }
 
 #profile_dropdown option[selected] {
-    font-weight: bold;
-    background-color: #a4cfbc;
-    color: white;
+  font-weight: bold;
+  background-color: #a4cfbc;
+  color: white;
 }
