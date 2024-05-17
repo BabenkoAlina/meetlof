@@ -61,7 +61,9 @@ const App = () => {
         <Router>
             <div>
                 <Switch>
-                    <Route exact path="/" component={GreetingPage} />
+                    <Route exact path="/" component={GreetingPage}>
+                        {loggedIn ? <Redirect to="/home" /> : <GreetingPage />}
+                    </Route>
                     <Route path="/login">
                         {loggedIn ? (
                             <Redirect to="/home" />
