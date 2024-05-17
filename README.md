@@ -1,5 +1,5 @@
 # How run website
-To run website you should downloda node package manager before.<br>
+To run website you should download **node package manager** before.<br>
 Then just run 
 ```
 ./compile.sh
