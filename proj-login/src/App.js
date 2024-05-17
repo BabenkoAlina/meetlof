@@ -121,7 +121,7 @@ const App = () => {
                             <Redirect to="/login" />
                         )}
                     </Route>
-                    <Route render={() => <Redirect to="/" />} />
+                    <Route render={() => (loggedIn ? <Redirect to="/home" /> : <Redirect to="/" />)} />
                 </Switch>
             </div>
         </Router>

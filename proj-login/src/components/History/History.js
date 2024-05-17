@@ -6,6 +6,7 @@ import {
     getDoc,
     updateDoc,
     arrayUnion,
+    arrayRemove,
 } from "firebase/firestore";
 import { auth, db } from "../../firebaseConfig";
 import Navbar from "../Navbar/Navbar";
@@ -35,6 +36,16 @@ const HistoryPage = () => {
             setUsersInfo(userInfoMap);
             setLikedArray(historyDoc.data()?.likedArray || []);
             setRequestsArray(historyDoc.data()?.requestsArray || []);
+
+            const actionsMap = {};
+            (historyDoc.data()?.likedArray || []).forEach((userId) => {
+                actionsMap[userId] = "like";
+            });
+            (historyDoc.data()?.rejectedList || []).forEach((userId) => {
+                actionsMap[userId] = "reject";
+            });
+
+            setActions(actionsMap);
         };
 
         // Fetch data initially
@@ -58,16 +69,35 @@ const HistoryPage = () => {
             await updateDoc(currentUserHistoryDocRef, {
                 [`history.${userId}`]: new Date(),
                 likedArray: arrayUnion(userId),
+                requestsArray: arrayRemove(userId),
             });
 
             const likedUserDocRef = doc(db, "usersHistory", userId);
-            await updateDoc(likedUserDocRef, {
-                requestsArray: arrayUnion(currentUser.uid),
-            });
+            const likedUserDoc = await getDoc(likedUserDocRef);
+            const likedUserData = likedUserDoc.data();
+
+            if (!likedUserData?.likedArray?.includes(currentUser.uid)) {
+                await updateDoc(likedUserDocRef, {
+                    requestsArray: arrayUnion(currentUser.uid),
+                });
+            } else {
+                await updateDoc(currentUserHistoryDocRef, {
+                    [`history.${userId}`]: new Date(),
+                });
+                await updateDoc(likedUserDocRef, {
+                    [`history.${currentUser.uid}`]: new Date(),
+                });
+            }
+
+            setRequestsArray((prev) => prev.filter((id) => id !== userId));
+            setLikedArray((prev) => [...prev, userId]);
         } else if (action === "reject") {
             await updateDoc(currentUserHistoryDocRef, {
                 rejectedList: arrayUnion(userId),
+                requestsArray: arrayRemove(userId),
             });
+
+            setRequestsArray((prev) => prev.filter((id) => id !== userId));
         }
 
         setActions((prev) => ({
@@ -120,7 +150,7 @@ const HistoryPage = () => {
             <div className="historyContainer">
                 <h2>History Page</h2>
                 <div className="tableContainer">
-                    <h3>Requests I Sent</h3>
+                    <h3>Users I liked</h3>
                     <table className="historyTable">
                         <thead>
                             <tr>
