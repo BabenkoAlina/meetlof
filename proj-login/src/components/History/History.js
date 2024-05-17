@@ -12,7 +12,7 @@ import { auth, db } from "../../firebaseConfig";
 import Navbar from "../Navbar/Navbar";
 import "./History.css"; // Correctly import the CSS file
 
-const HistoryPage = () => {
+const HistoryPage = ({onLogout}) => {
     const [likedArray, setLikedArray] = useState([]);
     const [requestsArray, setRequestsArray] = useState([]);
     const [usersInfo, setUsersInfo] = useState({});
@@ -147,7 +147,7 @@ const HistoryPage = () => {
 
     return (
         <div>
-            <Navbar isAuthenticated={true} />
+            <Navbar isAuthenticated={true} onLogout={onLogout} />
             <div className="historyContainer">
                 <h2>History Page</h2>
                 <div className="tableContainer">
