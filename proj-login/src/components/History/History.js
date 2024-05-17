@@ -80,6 +80,13 @@ const HistoryPage = () => {
                 await updateDoc(likedUserDocRef, {
                     requestsArray: arrayUnion(currentUser.uid),
                 });
+            } else {
+                await updateDoc(currentUserHistoryDocRef, {
+                    [`history.${userId}`]: new Date(),
+                });
+                await updateDoc(likedUserDocRef, {
+                    [`history.${currentUser.uid}`]: new Date(),
+                });
             }
 
             setRequestsArray((prev) => prev.filter((id) => id !== userId));
@@ -143,7 +150,7 @@ const HistoryPage = () => {
             <div className="historyContainer">
                 <h2>History Page</h2>
                 <div className="tableContainer">
-                    <h3>Requests I Sent</h3>
+                    <h3>Users I liked</h3>
                     <table className="historyTable">
                         <thead>
                             <tr>
@@ -160,7 +167,7 @@ const HistoryPage = () => {
                     </table>
                 </div>
                 <div className="tableContainer">
-                    <h3>Users I liked</h3>
+                    <h3>Requests I Got</h3>
                     <table className="historyTable">
                         <thead>
                             <tr>
