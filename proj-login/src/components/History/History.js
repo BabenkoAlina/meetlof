@@ -52,7 +52,7 @@ const HistoryPage = ({onLogout}) => {
         fetchData();
 
         // Set up interval to fetch data every 5 seconds
-        const intervalId = setInterval(fetchData, 5000);
+        const intervalId = setInterval(fetchData, 1000);
 
         // Clean up interval on component unmount
         return () => clearInterval(intervalId);
