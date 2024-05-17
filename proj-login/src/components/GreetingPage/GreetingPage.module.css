@@ -1,3 +1,6 @@
+/* body{
+    font-family: "Montserrat";
+} */
 .parent {
     display: flex; /* Set the parent container to flex */
     justify-content: center; /* Center children horizontally */
@@ -67,7 +70,7 @@
 .my-btn,
 .my-btn-1 {
     box-sizing: border-box;
-    width: 280px;
+    width: 300px;
     height: 70px;
     border: 3px rgba(255, 255, 255, 0.5);
     border-radius: 0 50px 50px 75px;
@@ -77,11 +80,12 @@
     align-items: center;
     text-align: center;
     position: relative;
+    font-family: "Montserrat";
 }
 
 .my-btn span,
 .my-btn-1 span {
-    font-family: "Montserrat";
+/* font-family: "Montserrat"; */
     font-style: normal;
     font-weight: 600;
     font-size: 23px;
@@ -174,7 +178,7 @@
 
 .explore-table p {
     padding-top: 5px;
-    font-family: "Montserrat";
+    /* font-family: "Montserrat"; */
     font-weight: 500;
     font-size: 16px;
     color: black;
