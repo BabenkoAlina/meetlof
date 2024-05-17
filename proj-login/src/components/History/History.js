@@ -150,7 +150,7 @@ const HistoryPage = ({onLogout}) => {
             <div className="historyContainer">
                 <h2>History Page</h2>
                 <div className="tableContainer">
-                    <h3>Users I liked</h3>
+                    <h3>My Matches</h3>
                     <table className="historyTable">
                         <thead>
                             <tr>
