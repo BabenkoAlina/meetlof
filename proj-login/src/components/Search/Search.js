@@ -12,12 +12,15 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "../../firebaseConfig";
 import styles from "./Search.module.css";
+import axios from 'axios';
+
 
 function SearchPage() {
     const [userEmail, setUserEmail] = useState("");
     const [currentUser, setCurrentUser] = useState(null);
     const [hasFoundMatches, setHasFoundMatches] = useState(false);
     const history = useHistory();
+    const [quote, setQuote] = useState('');
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -29,6 +32,18 @@ function SearchPage() {
         };
 
         fetchUser();
+    }, []);
+
+    useEffect(() => {
+        const fetchQuote = async () => {
+            try {
+                const response = await axios.get('https://api.quotable.io/random');
+                setQuote(response.data.content + " - " + response.data.author);
+            } catch (error) {
+                console.error('Error fetching quote: ', error);
+            }
+        };
+        fetchQuote();
     }, []);
 
     useEffect(() => {
@@ -56,6 +71,7 @@ function SearchPage() {
             years23: false,
             years25: false,
         };
+
 
         const initializeAttributes = (user) => {
             const initializedUser = { ...defaultAttributes, ...user };
@@ -198,17 +214,20 @@ function SearchPage() {
                 </select>
             </div>
 
-            <div id={styles.content_search}>
-                <h2>We are looking for a match</h2>
-                <div className={styles.loader}></div>
-                <button
-                    id={styles.button_stop}
-                    onClick={() => history.push("/home")}>
-                    Stop search
-                </button>
-            </div>
+                <div id={styles.content_search}>
+                    <h2>We are looking for a match</h2>
+                    <div className={styles.loader}></div>
+                    <button
+                        id={styles.button_stop}
+                        onClick={() => history.push("/home")}>
+                        Stop search
+                    </button>
+                    <div>
+                        <p className={styles.quote}>{quote}</p>
+                    </div>
+                </div>
         </>
     );
-}
+    }
 
 export default SearchPage;
